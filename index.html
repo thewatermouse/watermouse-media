@@ -69,5 +69,27 @@
     <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a>
   </div>
 </footer>
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, medição de audiência. Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<style>
+.wm-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:680px;margin:0 auto;background:#122019;color:#FAF8F5;border:1px solid rgba(250,248,245,0.16);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:'DM Sans',sans-serif;box-shadow:0 10px 34px rgba(0,0,0,0.3);}
+.wm-cookie[hidden]{display:none!important;}
+.wm-cookie-text{font-size:13px;font-weight:300;line-height:1.5;color:rgba(250,248,245,0.82);flex:1;min-width:220px;}
+.wm-cookie-text a{color:#7AAB9B;}
+.wm-cookie-actions{display:flex;gap:8px;flex-shrink:0;}
+.wm-cookie-btn{font-family:inherit;font-size:13px;font-weight:500;border-radius:100px;padding:9px 18px;cursor:pointer;border:none;}
+.wm-cookie-btn.ghost{background:transparent;color:rgba(250,248,245,0.72);border:1px solid rgba(250,248,245,0.24);}
+.wm-cookie-btn.solid{background:#4A7C6F;color:#fff;}
+</style>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+
 </body>
 </html>
