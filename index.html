@@ -25,7 +25,7 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Watermouse Media, notícias internacionais em português</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="canonical" href="https://media.thewatermouse.com/">
 <meta property="og:type" content="website">
@@ -60,9 +60,11 @@
 <style>
   :root{
     --bg:#FAF8F5; --surface:#FFFFFF; --tint:#FBF5ED; --tint-sage:#EEF3F0;
-    --ink:#1C2B26; --muted:#5B6862; --faint:#8A948E;
-    --sage:#4A7C6F; --sage-dark:#2D5246; --warm-deep:#C4A882; --warm-dark:#7A6450;
+    --ink:#1C2B26; --muted:#5B6862; --faint:#8A948E; --off-white:#FAF8F5;
+    --sage:#4A7C6F; --sage-dark:#2D5246; --sage-light:#7AAB9B; --warm-deep:#C4A882; --warm-dark:#7A6450;
     --line:rgba(28,43,38,0.12); --line-soft:rgba(28,43,38,0.07);
+    /* category identity colors */
+    --c-mundo:#2D5246; --c-tech:#4A7C6F; --c-ciencia:#3F7A84; --c-negocios:#A5854E; --c-cultura:#8A5A44;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -70,78 +72,98 @@
   a{text-decoration:none;color:inherit;}
   .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
   .serif{font-family:'Fraunces',Georgia,serif;}
+  :target{scroll-margin-top:132px;}
 
   /* construction banner */
-  .constr{background:var(--ink);color:var(--off-white,#FAF8F5);text-align:center;font-size:12.5px;font-weight:400;padding:9px 16px;letter-spacing:0.01em;color:#FAF8F5;}
+  .constr{background:var(--ink);text-align:center;font-size:12.5px;font-weight:400;padding:9px 16px;letter-spacing:0.01em;color:#FAF8F5;}
   .constr b{color:var(--warm-deep);font-weight:600;}
 
   /* masthead */
-  header.mast{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:50;}
+  header.mast{border-bottom:1px solid var(--line);background:rgba(250,248,245,0.92);backdrop-filter:saturate(1.4) blur(8px);position:sticky;top:0;z-index:50;}
   .mast-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0 14px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand svg{color:var(--sage);}
   .brand .word{font-family:'Fraunces',serif;font-size:22px;font-weight:300;letter-spacing:0.03em;color:var(--ink);}
   .brand .tag{font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-dark);border-left:1px solid var(--line);padding-left:10px;}
-  .sub-link{font-size:13px;font-weight:500;color:var(--sage-dark);border:1px solid var(--line);border-radius:100px;padding:8px 16px;transition:border-color .2s;}
-  .sub-link:hover{border-color:var(--sage);}
-  nav.cats{display:flex;gap:26px;padding:2px 0 14px;flex-wrap:wrap;}
-  nav.cats a{font-size:13px;font-weight:500;letter-spacing:0.04em;color:var(--muted);text-transform:uppercase;transition:color .2s;}
-  nav.cats a:hover{color:var(--sage-dark);}
+  .sub-link{font-size:13px;font-weight:500;color:#fff;background:var(--sage);border:1px solid var(--sage);border-radius:100px;padding:8px 17px;transition:background .2s;}
+  .sub-link:hover{background:var(--sage-dark);border-color:var(--sage-dark);}
+  nav.cats{display:flex;gap:8px;padding:2px 0 14px;flex-wrap:wrap;}
+  nav.cats a{font-size:12px;font-weight:600;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;padding:5px 12px;border-radius:100px;border:1px solid var(--line-soft);transition:all .2s;}
+  nav.cats a:hover{color:#fff;background:var(--acc,var(--sage));border-color:var(--acc,var(--sage));}
 
   /* tagline */
-  .tagline{padding:28px 0 6px;}
-  .tagline p{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2.4vw,21px);font-weight:300;color:var(--muted);max-width:60ch;}
+  .tagline{padding:26px 0 4px;}
+  .tagline p{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(17px,2.4vw,22px);font-weight:300;color:var(--muted);max-width:62ch;}
+
+  /* chips */
+  .chip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:4px 10px;border-radius:100px;margin-bottom:11px;}
+  .chip.mundo{background:var(--c-mundo);}
+  .chip.tech{background:var(--c-tech);}
+  .chip.ciencia{background:var(--c-ciencia);}
+  .chip.negocios{background:var(--c-negocios);}
+  .chip.cultura{background:var(--c-cultura);}
 
   /* hero feature */
-  .lead-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:36px;padding:24px 0 46px;border-bottom:1px solid var(--line-soft);align-items:start;}
+  .lead-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:38px;padding:22px 0 44px;border-bottom:1px solid var(--line);align-items:start;}
   @media(max-width:820px){.lead-grid{grid-template-columns:1fr;gap:28px;}}
   .feat{display:block;}
-  .feat-img{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);position:relative;overflow:hidden;margin-bottom:18px;}
+  .feat-img{aspect-ratio:16/9;border-radius:16px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);position:relative;overflow:hidden;margin-bottom:18px;}
   .feat-img::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 78% 22%,rgba(196,168,130,0.35),transparent 55%);}
-  .cat{display:inline-block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px;}
   .feat h2{font-family:'Fraunces',serif;font-size:clamp(26px,3.6vw,38px);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:12px;text-wrap:balance;}
   .feat:hover h2{color:var(--sage-dark);}
   .feat .dek{font-size:16px;color:var(--muted);max-width:60ch;}
   .feat .src{font-size:12.5px;color:var(--faint);margin-top:12px;}
 
-  /* side list */
+  /* side "em destaque" */
+  .side-h{font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--warm-dark);margin-bottom:6px;}
   .side{display:flex;flex-direction:column;gap:0;}
-  .side-item{padding:16px 0;border-top:1px solid var(--line-soft);}
-  .side-item:first-child{border-top:none;padding-top:0;}
-  .side-item h3{font-family:'Fraunces',serif;font-size:18px;font-weight:400;line-height:1.25;color:var(--ink);margin-top:4px;}
+  .side-item{padding:15px 0;border-top:1px solid var(--line-soft);display:flex;gap:13px;align-items:flex-start;}
+  .side-item .n{font-family:'Fraunces',serif;font-size:15px;font-weight:500;color:var(--faint);line-height:1.5;min-width:16px;}
+  .side-item h3{font-family:'Fraunces',serif;font-size:17px;font-weight:400;line-height:1.28;color:var(--ink);}
+  .side-item .k{display:block;font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
   .side-item:hover h3{color:var(--sage-dark);}
 
-  /* grid */
-  .sec-label{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-dark);padding:38px 0 18px;}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-bottom:20px;}
+  /* category sections */
+  .cat-sec{padding:8px 0 6px;}
+  .cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:40px 0 22px;padding-bottom:14px;border-bottom:2px solid var(--acc);}
+  .cat-head h2{font-family:'Fraunces',serif;font-size:24px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:11px;}
+  .cat-head h2::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--acc);flex-shrink:0;}
+  .cat-count{font-size:11.5px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding-bottom:6px;}
   @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:540px){.grid{grid-template-columns:1fr;}}
   .card{display:block;}
   .card-img{aspect-ratio:16/10;border-radius:12px;margin-bottom:14px;position:relative;overflow:hidden;}
-  .card-img.g1{background:linear-gradient(140deg,#7AAB9B,#2D5246);}
-  .card-img.g2{background:linear-gradient(140deg,#C4A882,#7A6450);}
-  .card-img.g3{background:linear-gradient(140deg,#4A7C6F,#1C2B26);}
-  .card-img.g4{background:linear-gradient(140deg,#7A6450,#2D5246);}
-  .card-img.g5{background:linear-gradient(140deg,#2D5246,#7AAB9B);}
-  .card h3{font-family:'Fraunces',serif;font-size:19px;font-weight:400;line-height:1.25;color:var(--ink);margin:6px 0 8px;text-wrap:balance;}
+  .card-img::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 80% 18%,rgba(255,255,255,0.14),transparent 52%);}
+  .card-img.mundo{background:linear-gradient(140deg,#4A7C6F,#1C2B26);}
+  .card-img.tech{background:linear-gradient(140deg,#5E9C8C,#2D5246);}
+  .card-img.ciencia{background:linear-gradient(140deg,#5FA0AC,#25454C);}
+  .card-img.negocios{background:linear-gradient(140deg,#C4A882,#7A6450);}
+  .card-img.cultura{background:linear-gradient(140deg,#B0836A,#3E2A20);}
+  .card h3{font-family:'Fraunces',serif;font-size:19px;font-weight:400;line-height:1.26;color:var(--ink);margin:2px 0 8px;text-wrap:balance;}
   .card:hover h3{color:var(--sage-dark);}
-  .card .dek{font-size:14px;color:var(--muted);}
+  .card .dek{font-size:14px;color:var(--muted);line-height:1.55;}
 
   /* newsletter */
-  .news{background:var(--ink);border-radius:20px;padding:42px 40px;margin:48px 0;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;}
+  .news{background:var(--ink);border-radius:22px;padding:44px 40px;margin:52px 0 8px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;position:relative;overflow:hidden;}
+  .news::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(122,171,155,0.22),transparent 70%);}
   @media(max-width:720px){.news{grid-template-columns:1fr;padding:32px 24px;}}
-  .news h2{font-family:'Fraunces',serif;font-size:26px;font-weight:300;color:#FAF8F5;margin-bottom:8px;}
-  .news p{font-size:14.5px;color:rgba(250,248,245,0.6);max-width:46ch;}
-  .news form{display:flex;gap:10px;flex-wrap:wrap;}
+  .news h2{font-family:'Fraunces',serif;font-size:27px;font-weight:300;color:#FAF8F5;margin-bottom:8px;position:relative;}
+  .news p{font-size:14.5px;color:rgba(250,248,245,0.6);max-width:46ch;position:relative;}
+  .news form{display:flex;gap:10px;flex-wrap:wrap;position:relative;}
   .news input{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.16);border-radius:100px;padding:13px 18px;font:inherit;font-size:14px;color:#fff;min-width:220px;outline:none;}
   .news input::placeholder{color:rgba(250,248,245,0.4);}
-  .news input:focus{border-color:var(--sage-light,#7AAB9B);}
+  .news input:focus{border-color:var(--sage-light);}
   .news button{background:var(--sage);color:#fff;border:none;border-radius:100px;padding:13px 24px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s;}
   .news button:hover{background:#5C8C7C;}
-  .news .ok{font-size:14px;color:#9ecab9;}
+  .news .ok{font-size:14px;color:#9ecab9;position:relative;}
   .hp{position:absolute;left:-9999px;}
 
-  footer{border-top:1px solid var(--line);padding:30px 0 56px;margin-top:10px;}
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:20px;}
+  .foot-top{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .foot-top a{font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);padding:5px 12px;border-radius:100px;border:1px solid var(--line-soft);}
+  .foot-top a:hover{color:var(--sage-dark);border-color:var(--sage);}
   .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);}
   .foot a{color:var(--sage-dark);}
 
@@ -171,11 +193,11 @@
       <a href="#newsletter" class="sub-link">Receber no e-mail</a>
     </div>
     <nav class="cats" aria-label="Categorias">
-      <a href="#">Mundo</a>
-      <a href="#">Tecnologia</a>
-      <a href="#">Ciência</a>
-      <a href="#">Negócios</a>
-      <a href="#">Cultura</a>
+      <a href="#mundo" style="--acc:var(--c-mundo)">Mundo</a>
+      <a href="#tecnologia" style="--acc:var(--c-tech)">Tecnologia</a>
+      <a href="#ciencia" style="--acc:var(--c-ciencia)">Ciência</a>
+      <a href="#negocios" style="--acc:var(--c-negocios)">Negócios</a>
+      <a href="#cultura" style="--acc:var(--c-cultura)">Cultura</a>
     </nav>
   </div>
 </header>
@@ -189,29 +211,68 @@
   <div class="lead-grid">
     <a href="everything-to-grid-2026.html" class="feat">
       <div class="feat-img"></div>
-      <span class="cat">Tecnologia</span>
+      <span class="chip tech">Tecnologia</span>
       <h2>Carros e casas que devolvem energia à rede: conheça o "everything-to-grid"</h2>
       <p class="dek">O Fórum Econômico Mundial e a Frontiers elegeram a energia bidirecional a tecnologia emergente número um de 2026. Entenda o conceito e por que ele faz sentido especial no Brasil.</p>
       <p class="src">Cobertura Watermouse Media · fonte: Fórum Econômico Mundial + Frontiers</p>
     </a>
     <div class="side">
-      <a href="computacao-quantica-mil-vezes-2026.html" class="side-item"><span class="cat">Tecnologia</span><h3>Operações quânticas 1.000 vezes mais rápidas: o avanço que encurta a corrida</h3></a>
-      <a href="antidepressivos-rios-peixes-2026.html" class="side-item"><span class="cat">Ciência</span><h3>Antidepressivos nos rios afetam peixes mais que humanos, mostra estudo</h3></a>
-      <a href="china-russia-asia-central-2026.html" class="side-item"><span class="cat">Negócios</span><h3>China ultrapassa a Rússia e vira a maior parceira comercial da Ásia Central</h3></a>
-      <a href="karahantepe-estatua-leopardo-2026.html" class="side-item"><span class="cat">Cultura</span><h3>Estátua de 11 mil anos mostra humano montado em leopardo em Karahantepe</h3></a>
+      <div class="side-h">Em destaque</div>
+      <a href="pacto-defesa-turquia-paquistao-arabia-2026.html" class="side-item"><span class="n">01</span><span><span class="k" style="color:var(--c-mundo)">Mundo</span><h3>Turquia, Paquistão e Arábia firmam pacto de defesa no estilo OTAN</h3></span></a>
+      <a href="cerebro-dois-orgaos-evolucao-2026.html" class="side-item"><span class="n">02</span><span><span class="k" style="color:var(--c-ciencia)">Ciência</span><h3>O cérebro humano é, na verdade, dois órgãos que a evolução colou</h3></span></a>
+      <a href="india-deep-tech-espacial-2026.html" class="side-item"><span class="n">03</span><span><span class="k" style="color:var(--c-tech)">Tecnologia</span><h3>A Índia vira potência de deep tech e espaço, com US$ 1,6 bi em um ano</h3></span></a>
+      <a href="ue-eolica-solar-fosseis-2026.html" class="side-item"><span class="n">04</span><span><span class="k" style="color:var(--c-negocios)">Negócios</span><h3>Eólica e solar superam os fósseis na União Europeia pela 1ª vez</h3></span></a>
     </div>
   </div>
 
-  <!-- GRID -->
-  <div class="sec-label">Mais recentes</div>
-  <div class="grid">
-    <a href="china-seguro-cuidados-idosos-2026.html" class="card"><div class="card-img g1"></div><span class="cat">Mundo</span><h3>China cria "sexto seguro" para cuidar dos idosos até 2028</h3><p class="dek">Um seguro nacional de cuidados de longo prazo, e uma prévia de um debate que o Brasil terá.</p></a>
-    <a href="india-deep-tech-espacial-2026.html" class="card"><div class="card-img g2"></div><span class="cat">Tecnologia</span><h3>A Índia vira potência de deep tech e espaço, com US$ 1,6 bi em um ano</h3><p class="dek">Nove startups indianas entram na lista de Pioneiras da Tecnologia do Fórum Econômico Mundial.</p></a>
-    <a href="coracao-regenera-infarto-2026.html" class="card"><div class="card-img g3"></div><span class="cat">Ciência</span><h3>Coração humano regenera músculo após infarto, mostra estudo inédito</h3><p class="dek">O achado derruba um velho dogma e abre caminho para tratar a insuficiência cardíaca.</p></a>
-    <a href="ue-eolica-solar-fosseis-2026.html" class="card"><div class="card-img g4"></div><span class="cat">Negócios</span><h3>Eólica e solar superam os fósseis na União Europeia pela primeira vez</h3><p class="dek">Em 2025, vento e sol geraram 30% da eletricidade do bloco, à frente dos fósseis.</p></a>
-    <a href="lingua-sidetica-alfabeto-2026.html" class="card"><div class="card-img g5"></div><span class="cat">Cultura</span><h3>Uma língua perdida ganha cinco letras e fica mais perto de ser lida de novo</h3><p class="dek">O alfabeto do sidético, morto há 2 mil anos, sobe de 26 para 31 sinais na Turquia.</p></a>
-    <a href="ue-greenwashing-alegacoes-verdes-2026.html" class="card"><div class="card-img g1"></div><span class="cat">Negócios</span><h3>UE proíbe rótulos "verde" e "eco" sem prova a partir de setembro</h3><p class="dek">Cerco ao greenwashing que respinga em quem exporta pra Europa, inclusive do Brasil.</p></a>
-  </div>
+  <!-- MUNDO -->
+  <section class="cat-sec" id="mundo" style="--acc:var(--c-mundo)">
+    <div class="cat-head"><h2>Mundo</h2><span class="cat-count">Geopolítica e sociedade</span></div>
+    <div class="grid">
+      <a href="pacto-defesa-turquia-paquistao-arabia-2026.html" class="card"><div class="card-img mundo"></div><span class="chip mundo">Mundo</span><h3>Turquia, Paquistão e Arábia Saudita firmam pacto de defesa no estilo OTAN</h3><p class="dek">Um acordo no espírito do Artigo 5 une três potências e soma cerca de 1,4 milhão de militares.</p></a>
+      <a href="china-seguro-cuidados-idosos-2026.html" class="card"><div class="card-img mundo"></div><span class="chip mundo">Mundo</span><h3>China cria um "sexto seguro" para cuidar dos idosos</h3><p class="dek">Um seguro nacional de cuidados de longo prazo, e uma prévia de um debate que o Brasil vai ter.</p></a>
+      <a href="china-russia-asia-central-2026.html" class="card"><div class="card-img mundo"></div><span class="chip mundo">Mundo</span><h3>China ultrapassa a Rússia e vira a maior parceira comercial da Ásia Central</h3><p class="dek">Pequim avança sobre o quintal histórico de Moscou e redesenha o mapa de influência da região.</p></a>
+    </div>
+  </section>
+
+  <!-- TECNOLOGIA -->
+  <section class="cat-sec" id="tecnologia" style="--acc:var(--c-tech)">
+    <div class="cat-head"><h2>Tecnologia</h2><span class="cat-count">Inovação e energia</span></div>
+    <div class="grid">
+      <a href="everything-to-grid-2026.html" class="card"><div class="card-img tech"></div><span class="chip tech">Tecnologia</span><h3>"Everything-to-grid": carros e casas que devolvem energia à rede</h3><p class="dek">A energia bidirecional foi eleita a tecnologia emergente número 1 de 2026 pelo Fórum Econômico Mundial.</p></a>
+      <a href="computacao-quantica-mil-vezes-2026.html" class="card"><div class="card-img tech"></div><span class="chip tech">Tecnologia</span><h3>Operações quânticas 1.000 vezes mais rápidas: o avanço que encurta a corrida</h3><p class="dek">Um novo método acelera drasticamente as operações e aproxima o computador quântico útil.</p></a>
+      <a href="india-deep-tech-espacial-2026.html" class="card"><div class="card-img tech"></div><span class="chip tech">Tecnologia</span><h3>A Índia vira potência de deep tech e espaço, com US$ 1,6 bi em um ano</h3><p class="dek">Nove startups indianas entram na lista de Pioneiras da Tecnologia do Fórum Econômico Mundial.</p></a>
+    </div>
+  </section>
+
+  <!-- CIÊNCIA -->
+  <section class="cat-sec" id="ciencia" style="--acc:var(--c-ciencia)">
+    <div class="cat-head"><h2>Ciência</h2><span class="cat-count">Saúde e descobertas</span></div>
+    <div class="grid">
+      <a href="cerebro-dois-orgaos-evolucao-2026.html" class="card"><div class="card-img ciencia"></div><span class="chip ciencia">Ciência</span><h3>O cérebro humano é, na verdade, dois órgãos antigos que a evolução colou</h3><p class="dek">A parte que pensa e a parte que mantém você vivo nasceram de linhagens celulares diferentes.</p></a>
+      <a href="long-covid-dopamina-2026.html" class="card"><div class="card-img ciencia"></div><span class="chip ciencia">Ciência</span><h3>Long COVID danifica neurônios de dopamina, mostra imagem cerebral</h3><p class="dek">Exames de PET encontraram até 20% menos densidade de dopamina no cérebro de quem tem COVID longa.</p></a>
+      <a href="coracao-regenera-infarto-2026.html" class="card"><div class="card-img ciencia"></div><span class="chip ciencia">Ciência</span><h3>Coração humano regenera músculo após infarto, mostra estudo inédito</h3><p class="dek">O achado derruba um velho dogma e abre caminho para tratar a insuficiência cardíaca.</p></a>
+      <a href="antidepressivos-rios-peixes-2026.html" class="card"><div class="card-img ciencia"></div><span class="chip ciencia">Ciência</span><h3>Antidepressivos nos rios afetam peixes mais que humanos, mostra estudo</h3><p class="dek">Resíduos de remédios mudam o comportamento dos peixes e acendem um alerta ambiental.</p></a>
+    </div>
+  </section>
+
+  <!-- NEGÓCIOS -->
+  <section class="cat-sec" id="negocios" style="--acc:var(--c-negocios)">
+    <div class="cat-head"><h2>Negócios</h2><span class="cat-count">Economia e mercados</span></div>
+    <div class="grid">
+      <a href="ue-eolica-solar-fosseis-2026.html" class="card"><div class="card-img negocios"></div><span class="chip negocios">Negócios</span><h3>Eólica e solar superam os fósseis na União Europeia pela primeira vez</h3><p class="dek">Em 2025, vento e sol geraram 30% da eletricidade do bloco, à frente dos combustíveis fósseis.</p></a>
+      <a href="ue-greenwashing-alegacoes-verdes-2026.html" class="card"><div class="card-img negocios"></div><span class="chip negocios">Negócios</span><h3>UE proíbe rótulos "verde" e "eco" sem prova a partir de setembro</h3><p class="dek">Cerco ao greenwashing que respinga em quem exporta para a Europa, inclusive do Brasil.</p></a>
+    </div>
+  </section>
+
+  <!-- CULTURA -->
+  <section class="cat-sec" id="cultura" style="--acc:var(--c-cultura)">
+    <div class="cat-head"><h2>Cultura</h2><span class="cat-count">História e linguagem</span></div>
+    <div class="grid">
+      <a href="karahantepe-estatua-leopardo-2026.html" class="card"><div class="card-img cultura"></div><span class="chip cultura">Cultura</span><h3>Estátua de 11 mil anos mostra humano montado em leopardo em Karahantepe</h3><p class="dek">A descoberta na Turquia amplia o que sabíamos sobre um dos sítios mais antigos do mundo.</p></a>
+      <a href="lingua-sidetica-alfabeto-2026.html" class="card"><div class="card-img cultura"></div><span class="chip cultura">Cultura</span><h3>Uma língua perdida ganha cinco letras e fica mais perto de ser lida de novo</h3><p class="dek">O alfabeto do sidético, morto há 2 mil anos, sobe de 26 para 31 sinais na Turquia.</p></a>
+    </div>
+  </section>
 
   <!-- NEWSLETTER -->
   <section class="news" id="newsletter">
@@ -231,9 +292,18 @@
 </div>
 
 <footer>
-  <div class="wrap foot">
-    <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
-    <span><a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+  <div class="wrap">
+    <nav class="foot-top" aria-label="Categorias">
+      <a href="#mundo">Mundo</a>
+      <a href="#tecnologia">Tecnologia</a>
+      <a href="#ciencia">Ciência</a>
+      <a href="#negocios">Negócios</a>
+      <a href="#cultura">Cultura</a>
+    </nav>
+    <div class="foot">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+    </div>
   </div>
 </footer>
 
