@@ -123,6 +123,21 @@
   .wm-cookie-btn.ghost{background:transparent;color:rgba(250,248,245,0.72);border:1px solid rgba(250,248,245,0.24);}
   .wm-cookie-btn.solid{background:#4A7C6F;color:#fff;}
 </style>
+<style>
+/* mobile header fix (WM) */
+.brand{min-width:0;}
+.brand .word{white-space:nowrap;}
+.brand .tag{white-space:nowrap;}
+.sub-link{white-space:nowrap;flex-shrink:0;}
+@media(max-width:560px){
+  .mast-top{gap:10px;}
+  .brand{gap:8px;}
+  .brand .word{font-size:17px;}
+  .brand .tag{font-size:9.5px;padding-left:7px;letter-spacing:0.1em;}
+  .sub-link{padding:7px 13px;font-size:12px;}
+}
+@media(max-width:380px){.brand .tag{display:none;}.brand .word{font-size:15px;}}
+</style>
 </head>
 <body>
 
