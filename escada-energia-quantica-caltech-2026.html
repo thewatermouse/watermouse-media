@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- Google Analytics 4 (consent-gated), loads only after cookie consent. -->
+<script>
+(function(){
+  var GA_ID = 'G-RSR83B38QN';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', GA_ID, { anonymize_ip: true });
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Físicos medem pela primeira vez uma "escada de energia" quântica prevista há 40 anos | Watermouse Media</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Sans:wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/escada-energia-quantica-caltech-2026.html">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:title" content="Físicos medem pela primeira vez uma 'escada de energia' quântica prevista há 40 anos">
+<meta property="og:description" content="Com átomos presos por laser, uma equipe de Caltech recriou pontos críticos da matéria e confirmou, na prática, uma teoria de 40 anos que nunca tinha sido medida diretamente.">
+<meta property="og:url" content="https://media.thewatermouse.com/escada-energia-quantica-caltech-2026.html">
+<meta property="og:image" content="https://media.thewatermouse.com/og-image.png">
+<meta name="description" content="Físicos de Caltech usaram um simulador quântico de átomos neutros para medir, pela primeira vez, as razões de energia previstas há 40 anos pela teoria de campos conformes. Cobertura Watermouse Media, com a fonte original.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "Físicos medem pela primeira vez uma 'escada de energia' quântica prevista há 40 anos",
+  "description": "Com átomos presos por laser, uma equipe de Caltech recriou pontos críticos da matéria e confirmou, na prática, uma teoria de 40 anos que nunca tinha sido medida diretamente.",
+  "image": "https://media.thewatermouse.com/og-image.png",
+  "datePublished": "2026-10-02T12:30:00-03:00",
+  "dateModified": "2026-10-02T12:30:00-03:00",
+  "inLanguage": "pt-BR",
+  "articleSection": "Ciência",
+  "author": { "@type": "Organization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/" },
+  "publisher": {
+    "@type": "NewsMediaOrganization",
+    "name": "Watermouse Media",
+    "logo": { "@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png" }
+  },
+  "mainEntityOfPage": "https://media.thewatermouse.com/escada-energia-quantica-caltech-2026.html",
+  "isBasedOn": "https://www.sciencedaily.com/releases/2026/09/260928100554.htm"
+}
+</script>
+<style>
+  :root{
+    --bg:#FAF8F5; --surface:#FFFFFF; --tint:#FBF5ED; --tint-sage:#EEF3F0;
+    --ink:#1C2B26; --muted:#5B6862; --faint:#8A948E;
+    --sage:#4A7C6F; --sage-dark:#2D5246; --warm-deep:#C4A882; --warm-dark:#7A6450;
+    --sci:#3F7A84;
+    --line:rgba(28,43,38,0.12); --line-soft:rgba(28,43,38,0.07);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;font-weight:300;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .col{max-width:680px;margin:0 auto;padding:0 32px;}
+
+  header.mast{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:50;}
+  .mast-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand svg{color:var(--sage);}
+  .brand .word{font-family:'Fraunces',serif;font-size:21px;font-weight:300;letter-spacing:0.03em;color:var(--ink);white-space:nowrap;}
+  .brand .tag{font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-dark);border-left:1px solid var(--line);padding-left:10px;white-space:nowrap;}
+  .sub-link{font-size:13px;font-weight:500;color:var(--sage-dark);border:1px solid var(--line);border-radius:100px;padding:8px 16px;white-space:nowrap;flex-shrink:0;}
+  .sub-link:hover{border-color:var(--sage);}
+
+  article{padding:36px 0 20px;}
+  .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin-bottom:24px;}
+  .back:hover{color:var(--sage-dark);}
+  .a-cat{font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sci);margin-bottom:14px;}
+  h1{font-family:'Fraunces',serif;font-size:clamp(30px,4.6vw,44px);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:18px;text-wrap:balance;}
+  .dek{font-size:19px;font-weight:300;line-height:1.55;color:var(--muted);margin-bottom:26px;}
+  .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--faint);padding-bottom:26px;border-bottom:1px solid var(--line-soft);margin-bottom:8px;}
+  .meta b{color:var(--ink);font-weight:500;}
+  .hero-img{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,var(--sci) 0%,#2C5A62 55%,var(--ink) 100%);position:relative;overflow:hidden;margin:26px 0;}
+  .hero-img::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 78% 22%,rgba(122,171,155,0.35),transparent 55%);}
+  .body p{font-size:17px;line-height:1.75;color:#26332e;margin-bottom:20px;}
+  .body h2{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
+  .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
+
+  .attrib{background:var(--tint-sage);border:1px solid var(--line-soft);border-left:3px solid var(--sci);border-radius:0 12px 12px 0;padding:18px 20px;margin:34px 0;font-size:14.5px;line-height:1.6;color:var(--ink);}
+  .attrib b{color:var(--sage-dark);}
+  .attrib a{color:var(--sage-dark);font-weight:500;border-bottom:1px solid var(--line);}
+  .attrib .note{display:block;margin-top:8px;font-size:13px;color:var(--muted);}
+
+  .news{background:var(--ink);border-radius:18px;padding:30px 28px;margin:36px 0;text-align:center;}
+  .news h2{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#FAF8F5;margin-bottom:8px;}
+  .news p{font-size:14px;color:rgba(250,248,245,0.6);margin-bottom:16px;}
+  .news a{display:inline-block;background:var(--sage);color:#fff;border-radius:100px;padding:12px 24px;font-size:14px;font-weight:500;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 56px;}
+  .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);}
+  .foot a{color:var(--sage-dark);}
+
+  .wm-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:680px;margin:0 auto;background:#122019;color:#FAF8F5;border:1px solid rgba(250,248,245,0.16);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);}
+  .wm-cookie[hidden]{display:none!important;}
+  .wm-cookie-text{font-size:13px;font-weight:300;line-height:1.5;color:rgba(250,248,245,0.82);flex:1;min-width:220px;}
+  .wm-cookie-text a{color:#7AAB9B;}
+  .wm-cookie-actions{display:flex;gap:8px;flex-shrink:0;}
+  .wm-cookie-btn{font-family:inherit;font-size:13px;font-weight:500;border-radius:100px;padding:9px 18px;cursor:pointer;border:none;}
+  .wm-cookie-btn.ghost{background:transparent;color:rgba(250,248,245,0.72);border:1px solid rgba(250,248,245,0.24);}
+  .wm-cookie-btn.solid{background:#4A7C6F;color:#fff;}
+  @media(max-width:560px){
+    .mast-top{gap:10px;}
+    .brand{gap:8px;}
+    .brand .word{font-size:17px;}
+    .brand .tag{font-size:9.5px;padding-left:7px;letter-spacing:0.1em;}
+    .sub-link{padding:7px 13px;font-size:12px;}
+  }
+  @media(max-width:380px){.brand .tag{display:none;}.brand .word{font-size:15px;}}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-top">
+      <a href="/" class="brand">
+        <svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><path d="M23 7C31 19 34 28 24 37C15 30 15 20 23 7Z" fill="currentColor"/><path d="M24 36c2 3 7 4 10 1 2.5-2.5 0-6-3-4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <span class="word">the watermouse</span>
+        <span class="tag">Media</span>
+      </a>
+      <a href="/#newsletter" class="sub-link">Receber no e-mail</a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="col">
+    <a href="/" class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg> Todas as notícias</a>
+    <div class="a-cat">Ciência</div>
+    <h1>Físicos medem pela primeira vez uma "escada de energia" quântica prevista há 40 anos</h1>
+    <p class="dek">Usando átomos presos por laser, uma equipe de Caltech recriou pontos críticos da matéria e viu os átomos se encaixarem exatamente nas proporções de energia que a teoria previa, mas que ninguém tinha medido.</p>
+    <div class="meta"><span>Por <b>Redação Watermouse Media</b></span><span>2 de outubro de 2026</span><span>4 min de leitura</span></div>
+  </div>
+
+  <div class="col">
+    <div class="hero-img"></div>
+
+    <div class="body">
+      <p>Há cerca de 40 anos, físicos teóricos previram que, em certos momentos extremos, quando a matéria está prestes a mudar de estado, seus níveis de energia deveriam se organizar como os degraus de uma escada, com espaçamentos regidos por regras matemáticas muito precisas. O problema é que essa "escada" nunca tinha sido medida diretamente. Ela era um resultado elegante no papel, confirmado apenas de forma indireta. Agora, uma equipe de Caltech conseguiu subir esses degraus no laboratório.</p>
+
+      <p>Para isso, os pesquisadores montaram um simulador quântico: alinharam átomos de estrôncio em fila usando "pinças ópticas" (feixes de laser que seguram um átomo de cada vez) e, com outros lasers, empurraram esses átomos para estados muito energéticos, chamados estados de Rydberg, fazendo com que os vizinhos passassem a interagir fortemente entre si. Esse arranjo controlado funciona como uma pequena maquete de um sistema quântico real, mas que os cientistas podem ajustar e medir com calma.</p>
+
+      <p>Em seguida veio a parte engenhosa: uma técnica que a equipe batizou de "espectroscopia de modulação de muitos corpos". Na prática, eles balançavam suavemente a fileira de átomos variando os lasers em frequências escolhidas e observavam com que intensidade os átomos respondiam a cada uma. Varrendo várias frequências, conseguiram reconstruir a tal escada de energia, degrau por degrau, e comprovar que as proporções batiam com as previsões da chamada teoria de campos conformes, o arcabouço matemático que John Cardy ajudou a montar quatro décadas atrás. O trabalho, feito sobre dois pontos críticos diferentes, saiu na revista <i>Nature</i>.</p>
+
+      <h2>Por que isso importa no Brasil</h2>
+
+      <p>Esse tipo de experimento está no coração da corrida mundial pelos computadores quânticos, uma área em que o Brasil vem tentando marcar presença, com grupos de pesquisa em universidades públicas e iniciativas de laboratórios nacionais. Simuladores de átomos neutros como o de Caltech são justamente uma das plataformas candidatas a rodar cálculos quânticos úteis. Além disso, mostrar que uma teoria abstrata de 40 anos se confirma no laboratório é um lembrete do porquê de o investimento em ciência básica valer a pena: ideias que parecem só matemática acabam virando as ferramentas tecnológicas da geração seguinte.</p>
+
+      <div class="attrib">
+        <b>Fonte:</b> com base em <a href="https://www.sciencedaily.com/releases/2026/09/260928100554.htm" target="_blank" rel="noopener">comunicado divulgado pelo ScienceDaily</a> sobre estudo do Caltech com simulador quântico de átomos neutros, publicado na revista <i>Nature</i> (setembro de 2026).
+        <span class="note">Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução.</span>
+      </div>
+    </div>
+
+    <section class="news">
+      <h2 class="serif">Gostou? Receba as próximas.</h2>
+      <p>As notícias internacionais que importam, em português, uma vez por semana.</p>
+      <a href="/#newsletter">Assinar a newsletter</a>
+    </section>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+    <span><a href="/sobre.html">Sobre</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+  </div>
+</footer>
+
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, medição de audiência. Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+</body>
+</html>

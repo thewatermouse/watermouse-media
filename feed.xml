@@ -6,7 +6,31 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 29 Sep 2026 15:17:00 -0300</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 13:30:00 -0300</lastBuildDate>
+    <item>
+      <title>Novo material gera hidrogênio só com luz do sol, sem depender de metal caro</title>
+      <link>https://media.thewatermouse.com/bvr19-hidrogenio-solar-oregon-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/bvr19-hidrogenio-solar-oregon-2026.html</guid>
+      <pubDate>Fri, 02 Oct 2026 13:00:00 -0300</pubDate>
+      <category>Tecnologia</category>
+      <description>Pesquisadores da Oregon State criaram o BVR-19, um material que usa a luz para quebrar a água e liberar hidrogênio, sem precisar de catalisadores de metais raros e caros.</description>
+    </item>
+    <item>
+      <title>Físicos medem pela primeira vez uma "escada de energia" quântica prevista há 40 anos</title>
+      <link>https://media.thewatermouse.com/escada-energia-quantica-caltech-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/escada-energia-quantica-caltech-2026.html</guid>
+      <pubDate>Fri, 02 Oct 2026 12:30:00 -0300</pubDate>
+      <category>Ciência</category>
+      <description>Com átomos presos por laser, uma equipe de Caltech recriou pontos críticos da matéria e confirmou, na prática, uma teoria de 40 anos que nunca tinha sido medida diretamente.</description>
+    </item>
+    <item>
+      <title>Oficina de cobre de 9.000 anos na Turquia revela indústria já organizada no Neolítico</title>
+      <link>https://media.thewatermouse.com/oficina-cobre-neolitico-cayonu-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/oficina-cobre-neolitico-cayonu-2026.html</guid>
+      <pubDate>Fri, 02 Oct 2026 12:00:00 -0300</pubDate>
+      <category>Cultura</category>
+      <description>Em Çayönü, no sudeste da Turquia, arqueólogos acharam um espaço feito de propósito para processar minério de cobre. É um dos registros mais antigos de produção especializada de metal.</description>
+    </item>
     <item>
       <title>A lua Encélado pode "preparar a amostra" e facilitar a busca por vida</title>
       <link>https://media.thewatermouse.com/encelado-oceano-vida-2026.html</link>
