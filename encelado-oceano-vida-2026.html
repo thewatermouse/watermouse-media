@@ -35,7 +35,7 @@
 <meta property="og:title" content="A lua Encélado pode 'preparar a amostra' e facilitar a busca por vida">
 <meta property="og:description" content="O gelo lançado pela lua de Saturno concentra sozinho substâncias do oceano escondido. Isso pode facilitar muito a detecção de sinais de vida por uma futura missão.">
 <meta property="og:url" content="https://media.thewatermouse.com/encelado-oceano-vida-2026.html">
-<meta property="og:image" content="https://media.thewatermouse.com/og-image.png">
+<meta property="og:image" content="https://media.thewatermouse.com/media/encelado-cassini.jpg">
 <meta name="description" content="Um estudo mostra que, ao congelar devagar, as gotas do oceano de Encélado separam e concentram seus compostos em grãos de gelo individuais, o que pode facilitar a detecção de biosassinaturas por uma futura sonda. Cobertura Watermouse Media, com a fonte original.">
 <script type="application/ld+json">
 {
@@ -43,7 +43,7 @@
   "@type": "NewsArticle",
   "headline": "A lua Encélado pode 'preparar a amostra' e facilitar a busca por vida",
   "description": "O gelo lançado pela lua de Saturno concentra sozinho substâncias do oceano escondido, o que pode facilitar a detecção de sinais de vida por uma futura missão.",
-  "image": "https://media.thewatermouse.com/og-image.png",
+  "image": "https://media.thewatermouse.com/media/encelado-cassini.jpg",
   "datePublished": "2026-09-29T12:00:00-03:00",
   "dateModified": "2026-09-29T12:00:00-03:00",
   "inLanguage": "pt-BR",
@@ -89,8 +89,10 @@
   .dek{font-size:19px;font-weight:300;line-height:1.55;color:var(--muted);margin-bottom:26px;}
   .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--faint);padding-bottom:26px;border-bottom:1px solid var(--line-soft);margin-bottom:8px;}
   .meta b{color:var(--ink);font-weight:500;}
-  .hero-img{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);position:relative;overflow:hidden;margin:26px 0;}
-  .hero-img::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 78% 22%,rgba(196,168,130,0.35),transparent 55%);}
+  .hero-fig{margin:26px 0;}
+  .hero-fig img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:14px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);}
+  .hero-fig figcaption{font-size:12.5px;line-height:1.5;color:var(--faint);margin-top:8px;}
+  .hero-fig figcaption a{color:inherit;text-decoration:underline;}
   .body p{font-size:17px;line-height:1.75;color:#26332e;margin-bottom:20px;}
   .body h2{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
   .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
@@ -160,7 +162,10 @@
   </div>
 
   <div class="col">
-    <div class="hero-img"></div>
+    <figure class="hero-fig">
+      <img src="media/encelado-cassini.jpg" alt="Encélado, lua gelada de Saturno, fotografada pela sonda Cassini: um globo claro com terreno craterado no topo e a região polar sul ativa desaparecendo na escuridão embaixo." width="1020" height="1020" loading="lazy">
+      <figcaption>Encélado, lua de Saturno, vista pela sonda Cassini ao se aproximar da região polar sul ativa. Crédito: NASA / JPL-Caltech.</figcaption>
+    </figure>
 
     <div class="body">
       <p>Encélado, uma das luas geladas de Saturno, é uma das apostas mais fortes para procurar vida fora da Terra: sob a casca de gelo, existe um oceano de água líquida, e por rachaduras no polo sul saem gêiseres que jogam grãos de gelo desse oceano direto para o espaço. Um novo estudo revela que esse gelo é ainda mais interessante do que se pensava, e por um motivo curiosamente prático.</p>
