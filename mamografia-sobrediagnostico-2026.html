@@ -35,7 +35,7 @@
 <meta property="og:title" content="O maior medo sobre a mamografia pode ter sido superestimado por décadas">
 <meta property="og:description" content="Uma reanálise dos grandes estudos de rastreamento estima o sobrediagnóstico do câncer de mama abaixo de 5%, contra estimativas antigas de 30% a 50%.">
 <meta property="og:url" content="https://media.thewatermouse.com/mamografia-sobrediagnostico-2026.html">
-<meta property="og:image" content="https://media.thewatermouse.com/og-image.png">
+<meta property="og:image" content="https://media.thewatermouse.com/media/mammogram.jpg">
 <meta name="description" content="Pesquisadores da Universidade do Sul da Dinamarca reanalisaram os oito grandes ensaios de rastreamento e estimam o sobrediagnóstico no câncer de mama abaixo de 5%, muito menos do que se pensava. Cobertura Watermouse Media, com a fonte original.">
 <script type="application/ld+json">
 {
@@ -43,7 +43,7 @@
   "@type": "NewsArticle",
   "headline": "O maior medo sobre a mamografia pode ter sido superestimado por décadas",
   "description": "Uma reanálise dos grandes estudos de rastreamento estima o sobrediagnóstico do câncer de mama abaixo de 5%, contra estimativas antigas de 30% a 50%.",
-  "image": "https://media.thewatermouse.com/og-image.png",
+  "image": "https://media.thewatermouse.com/media/mammogram.jpg",
   "datePublished": "2026-09-28T15:00:00-03:00",
   "dateModified": "2026-09-28T15:00:00-03:00",
   "inLanguage": "pt-BR",
@@ -52,7 +52,7 @@
   "publisher": {
     "@type": "NewsMediaOrganization",
     "name": "Watermouse Media",
-    "logo": { "@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png" }
+    "logo": { "@type": "ImageObject", "url": "https://media.thewatermouse.com/media/mammogram.jpg" }
   },
   "mainEntityOfPage": "https://media.thewatermouse.com/mamografia-sobrediagnostico-2026.html",
   "isBasedOn": "https://www.sciencedaily.com/releases/2026/09/260924020351.htm"
@@ -89,8 +89,10 @@
   .dek{font-size:19px;font-weight:300;line-height:1.55;color:var(--muted);margin-bottom:26px;}
   .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--faint);padding-bottom:26px;border-bottom:1px solid var(--line-soft);margin-bottom:8px;}
   .meta b{color:var(--ink);font-weight:500;}
-  .hero-img{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);position:relative;overflow:hidden;margin:26px 0;}
-  .hero-img::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 78% 22%,rgba(196,168,130,0.35),transparent 55%);}
+  .hero-fig{margin:26px 0;}
+  .hero-fig img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:14px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);}
+  .hero-fig figcaption{font-size:12.5px;line-height:1.5;color:var(--faint);margin-top:8px;}
+  .hero-fig figcaption a{color:inherit;text-decoration:underline;}
   .body p{font-size:17px;line-height:1.75;color:#26332e;margin-bottom:20px;}
   .body h2{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
   .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
@@ -160,7 +162,10 @@
   </div>
 
   <div class="col">
-    <div class="hero-img"></div>
+    <figure class="hero-fig">
+      <img src="media/mammogram.jpg" alt="Uma mulher realizando um exame de mamografia." width="1280" height="1024" loading="lazy">
+      <figcaption>Exame de mamografia. Foto: Rhoda Baer / National Cancer Institute (domínio público).</figcaption>
+    </figure>
 
     <div class="body">
       <p>Um dos argumentos mais usados contra o rastreamento do câncer de mama é o "sobrediagnóstico": a ideia de que a mamografia encontra tumores que nunca causariam mal na vida da pessoa, levando a tratamentos e angústia desnecessários. Estimativas antigas eram assustadoras, sugerindo que de 30% a 50% dos casos achados no rastreamento seriam desse tipo. Um novo estudo diz que esse número foi muito exagerado.</p>
