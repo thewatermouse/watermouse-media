@@ -216,6 +216,14 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 ::selection{background:#2337FF;color:#F8F8F9;}
 @media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
 </style>
+<style>
+.ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+.ad-slot.live{display:block;}
+.ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+</style>
+<!-- Google AdSense: adicione UMA vez no <head> (com ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + <ins class="adsbygoogle">). -->
 </head>
 <body>
 
@@ -286,6 +294,7 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
   </div>
 
   <!-- MUNDO -->
+  <div class="wrap"><div class="ad-slot" data-ad="home-leaderboard"><!-- Google AdSense: ao aprovar, classe "ad-slot live" + <span class="ad-label">Publicidade</span> + <ins class="adsbygoogle" ...></ins>. --></div></div>
   <section class="cat-sec" id="mundo" style="--acc:var(--c-mundo)">
     <div class="cat-head"><h2>Mundo</h2><a class="cat-count" href="mundo.html">Geopolítica e sociedade →</a></div>
     <div class="grid">
@@ -330,6 +339,7 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
   </section>
 
   <!-- NEGÓCIOS -->
+  <div class="wrap"><div class="ad-slot" data-ad="home-infeed"><!-- Google AdSense: ao aprovar, classe "ad-slot live" + <span class="ad-label">Publicidade</span> + <ins class="adsbygoogle" ...></ins>. --></div></div>
   <section class="cat-sec" id="negocios" style="--acc:var(--c-negocios)">
     <div class="cat-head"><h2>Negócios</h2><a class="cat-count" href="negocios.html">Economia e mercados →</a></div>
     <div class="grid">

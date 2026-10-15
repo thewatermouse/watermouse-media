@@ -161,6 +161,14 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 ::selection{background:#2337FF;color:#F8F8F9;}
 @media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
 </style>
+<style>
+.ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+.ad-slot.live{display:block;}
+.ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+</style>
+<!-- Google AdSense: quando a conta for aprovada, adicione UMA vez no <head> (com o ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + bloco <ins class="adsbygoogle">). -->
 </head>
 <body>
 
@@ -216,6 +224,11 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     <div class="body">
       <p>Aconteceu pela primeira vez: em 2025, a energia eólica somada à solar gerou mais eletricidade do que todos os combustíveis fósseis juntos na União Europeia. Foram 30% da geração elétrica do bloco para vento e sol, contra 29% para carvão, gás e petróleo somados. O dado é do relatório European Electricity Review 2026, do centro de pesquisa energética Ember, publicado em 22 de janeiro.</p>
 
+      <div class="ad-slot" data-ad="in-article-1">
+        <!-- Google AdSense (in-article 1): ao aprovar, classe "ad-slot live" + <span class="ad-label">Publicidade</span> + <ins class="adsbygoogle" ...></ins>. -->
+      </div>
+
+
       <p>O destaque do ano foi o sol. A geração solar cresceu mais de 20% pelo quarto ano seguido e chegou a um recorde de 13% da eletricidade da UE, ultrapassando tanto o carvão quanto as hidrelétricas. A eólica se manteve como a segunda maior fonte de eletricidade do bloco, com 17%, gerando mais do que o gás. Em 14 dos 27 países da UE, vento e sol já superaram todas as fontes fósseis combinadas.</p>
 
       <p>A vantagem ainda é apertada, 30% contra 29%, mas a tendência é o que importa. Em cinco anos, a fatia de eólica e solar saltou de 20% (2020) para 30% (2025), enquanto a dos fósseis caiu de 37% para 29% no mesmo período. "Este momento histórico mostra o quão rápido a UE está caminhando para um sistema elétrico sustentado por vento e sol", afirmou Beatrice Petrovich, analista sênior da Ember.</p>
@@ -228,6 +241,10 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
         <b>Fonte:</b> com base no relatório <a href="https://ember-energy.org/latest-updates/wind-and-solar-generated-more-power-than-fossil-fuels-in-the-eu-for-the-first-time-in-2025/" target="_blank" rel="noopener">European Electricity Review 2026</a>, do centro de pesquisa Ember (22 de janeiro de 2026).
         <span class="note">Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução.</span>
       </div>
+    </div>
+
+            <div class="ad-slot" data-ad="in-article-2">
+      <!-- Google AdSense (fim do artigo): mesma instrução do slot acima. -->
     </div>
 
         <section class="related-reads">

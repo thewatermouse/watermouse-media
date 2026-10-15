@@ -157,6 +157,14 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 ::selection{background:#2337FF;color:#F8F8F9;}
 @media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
 </style>
+<style>
+.ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+.ad-slot.live{display:block;}
+.ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+</style>
+<!-- Google AdSense: quando a conta for aprovada, adicione UMA vez no <head> (com o ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + bloco <ins class="adsbygoogle">). -->
 </head>
 <body>
 
@@ -211,6 +219,11 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 
     <div class="body">
       <p>Uma cidade de porte médio na Finlândia anunciou que vai adotar a semana de quatro dias em toda a sua rede de serviços públicos por um período de teste. A medida abrange escolas, unidades de saúde e a administração municipal, e é acompanhada de perto por governos de outros países europeus que estudam o modelo.</p>
+
+      <div class="ad-slot" data-ad="in-article-1">
+        <!-- Google AdSense (in-article 1): ao aprovar, classe "ad-slot live" + <span class="ad-label">Publicidade</span> + <ins class="adsbygoogle" ...></ins>. -->
+      </div>
+
       <p>Diferente de experimentos anteriores, restritos a empresas ou a um único setor, este teste tenta responder a uma pergunta maior: dá para reduzir a jornada sem perder qualidade no atendimento à população? É justamente essa amplitude que chamou atenção fora do país.</p>
       <h2>Por que isso importa para o leitor brasileiro</h2>
       <p>O debate sobre redução de jornada também acontece no Brasil, mas quase sempre a partir de casos de fora que chegam com atraso e sem contexto. Acompanhar como uma rede pública inteira lida com a mudança, custos, escala de plantões, satisfação dos servidores, oferece um parâmetro concreto para a discussão daqui.</p>
@@ -224,7 +237,11 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
       <div class="example-note"><b>Nota de template:</b> esta matéria é um exemplo do formato. Numa matéria real, o corpo é escrito com base nas fontes aprovadas, a imagem leva crédito, e o bloco acima aponta para o link original.</div>
     </div>
 
-    <section class="news">
+        <div class="ad-slot" data-ad="in-article-2">
+      <!-- Google AdSense (fim do artigo): mesma instrução do slot acima. -->
+    </div>
+
+<section class="news">
       <h2 class="serif">Gostou? Receba as próximas.</h2>
       <p>As notícias internacionais que importam, em português, uma vez por semana.</p>
       <a href="/#newsletter">Assinar a newsletter</a>
