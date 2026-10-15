@@ -219,6 +219,8 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 <style>
 .ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
 .ad-slot.live{display:block;}
+.ad-slot.live:has(ins.adsbygoogle[data-ad-status="unfilled"]){display:none;}
+
 .ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
 </style>
 <!-- Google AdSense: adicione UMA vez no <head> (com ca-pub real):
