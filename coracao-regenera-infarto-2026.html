@@ -96,6 +96,10 @@
   .body p{font-size:17px;line-height:1.75;color:#1A1A1E;margin-bottom:20px;}
   .body h2{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
   .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
+  /* Ad slots (reserved; invisible until activated with class "live"). */
+  .ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+  .ad-slot.live{display:block;}
+  .ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
 
   .attrib{background:var(--tint-sage);border:1px solid var(--line-soft);border-left:3px solid var(--sage);border-radius:2px;padding:18px 20px;margin:34px 0;font-size:14.5px;line-height:1.6;color:var(--ink);}
   .attrib b{color:var(--sage-dark);}
@@ -161,6 +165,9 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 ::selection{background:#2337FF;color:#F8F8F9;}
 @media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
 </style>
+<!-- Google AdSense: quando a conta for aprovada, adicione UMA vez no <head> (com o ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + bloco <ins class="adsbygoogle">). -->
 </head>
 <body>
 
@@ -204,7 +211,7 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     <div class="a-cat">Ciência</div>
     <h1>Coração humano regenera músculo após infarto, mostra estudo inédito</h1>
     <p class="dek">Pela primeira vez, cientistas viram células do músculo cardíaco humano voltarem a se dividir depois de um infarto. O achado derruba um velho dogma da medicina.</p>
-    <div class="meta"><span>Por <b>Redação Watermouse Media</b></span><span>15 de setembro de 2026</span><span>3 min de leitura</span></div>
+    <div class="meta"><span>Por <b>Redação Watermouse Media</b></span><span>15 de setembro de 2026</span><span>5 min de leitura</span></div>
   </div>
 
   <div class="col">
@@ -214,20 +221,38 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     </figure>
 
     <div class="body">
-      <p>Por muito tempo, a medicina tratou o coração como um órgão que não se conserta: a área destruída por um infarto viraria cicatriz, e ponto final. Um estudo da Universidade de Sydney, na Austrália, acaba de mostrar que a história é mais complexa. Pela primeira vez, pesquisadores demonstraram que células do músculo cardíaco humano conseguem, sim, voltar a se dividir depois de um infarto.</p>
+      <p>Por muito tempo, a medicina tratou o coração como um órgão que não se conserta. A área destruída por um infarto viraria cicatriz, e ponto final, porque se acreditava que as células do músculo cardíaco perdiam quase toda a capacidade de se dividir pouco depois do nascimento. Um estudo da Universidade de Sydney, na Austrália, acaba de mostrar que a história é mais complexa: pela primeira vez, pesquisadores viram células do músculo cardíaco <strong>humano</strong> voltarem a se dividir depois de um infarto.</p>
 
-      <p>A pesquisa, feita em parceria com o Baird Institute e o Royal Prince Alfred Hospital e publicada na revista Circulation Research, encontrou evidências de que os cardiomiócitos, as células que fazem o coração bater, podem reentrar no processo de divisão celular após o dano. É a primeira vez que esse mecanismo de reparo é observado no coração humano, contrariando a ideia de que a região lesionada seria totalmente incapaz de se regenerar.</p>
+      <div class="ad-slot" data-ad="in-article-1">
+        <!-- Google AdSense (in-article 1): quando a conta (ca-pub-XXXX) for aprovada, troque a classe para "ad-slot live", adicione <span class="ad-label">Publicidade</span> e cole aqui o bloco <ins class="adsbygoogle" ...></ins>. -->
+      </div>
 
-      <p>Antes de qualquer empolgação, os próprios autores freiam: a resposta natural é fraca demais para repor todas as células perdidas em um infarto. O coração tenta se recuperar, mas o esforço é pequeno diante do estrago. A boa notícia é o que isso abre: se existe um mecanismo de reparo, ele pode, em tese, ser estimulado. Os cientistas agora querem descobrir como turbinar esse processo natural, o que apontaria um caminho novo para tratar a insuficiência cardíaca, hoje uma condição sem cura.</p>
+      <h2>Como eles descobriram</h2>
+
+      <p>O grande diferencial não foi um experimento em camundongos, onde esse tipo de regeneração já tinha sido observado, mas em tecido de corações humanos vivos. A equipe coletou amostras de pacientes que passavam por cirurgia de ponte de safena no Royal Prince Alfred Hospital, em Sydney, retirando tanto partes doentes quanto partes saudáveis do coração. O método para coletar esse tecido vivo foi desenvolvido pelos professores Paul Bannon e Sean Lal e é, em si, parte da novidade: permite estudar o coração humano de verdade, em vez de depender só de modelos animais.</p>
+
+      <p>Analisando esse material, os cientistas encontraram sinais de mitose, a divisão celular, nos cardiomiócitos, as células que fazem o coração bater, depois do dano, algo que até então só tinha sido visto em camundongos. Também identificaram <strong>várias proteínas</strong> já associadas à regeneração cardíaca em ratos, agora presentes no cenário humano. "Nossa pesquisa mostra que, embora o coração fique com cicatrizes depois de um infarto, ele produz novas células musculares", resumiu o Dr. Robert Hume, primeiro autor do estudo e pesquisador do Baird Institute.</p>
+
+      <h2>O tamanho real do achado</h2>
+
+      <p>Antes de qualquer empolgação, os próprios autores freiam. Essa produção natural de células novas é <strong>pequena demais</strong> para compensar o estrago: um infarto pode eliminar cerca de um terço das células do coração, e a resposta de reparo não dá conta nem de perto. É por isso que boa parte de quem sobrevive a um ataque cardíaco acaba desenvolvendo insuficiência cardíaca, uma condição que hoje só tem cura com transplante.</p>
+
+      <p>O valor da descoberta, portanto, não está em uma cura imediata, mas em uma prova de princípio: se o coração humano <em>tem</em> um mecanismo de reparo, por menor que seja, ele pode, em tese, ser estimulado. "No fim, o objetivo é usar essa descoberta para criar novas células cardíacas capazes de reverter a insuficiência cardíaca", disse o professor Sean Lal, autor sênior e cardiologista do Royal Prince Alfred Hospital.</p>
+
+      <p>A equipe já começou a levar para humanos as proteínas identificadas antes em camundongos, e defende que o modelo de tecido cardíaco humano vivo tende a gerar dados mais confiáveis do que os testes em animais para desenvolver futuros tratamentos. Não há prazo definido.</p>
 
       <h2>Por que isso importa no Brasil</h2>
 
-      <p>As doenças cardiovasculares são a principal causa de morte no Brasil, respondendo por centenas de milhares de óbitos por ano, e o infarto está no topo dessa lista. Quem sobrevive a um ataque cardíaco muitas vezes convive com um coração enfraquecido e com insuficiência cardíaca, uma das maiores fontes de internação no SUS. Um tratamento que consiga amplificar a capacidade do próprio coração de se reconstruir mudaria a vida de milhões de pessoas. Ainda é ciência básica, longe do consultório, mas é o tipo de descoberta que redefine o que é possível.</p>
+      <p>As doenças cardiovasculares são a principal causa de morte no Brasil, respondendo por centenas de milhares de óbitos por ano, e o infarto está no topo dessa lista. Quem sobrevive a um ataque cardíaco muitas vezes convive com um coração enfraquecido e com insuficiência cardíaca, uma das maiores causas de internação no SUS. Um tratamento capaz de amplificar a capacidade do próprio coração de se reconstruir mudaria a vida de milhões de pessoas. Ainda é ciência básica, longe do consultório, mas é o tipo de descoberta que redefine o que passa a ser possível.</p>
 
       <div class="attrib">
-        <b>Fonte:</b> com base em comunicado da <a href="https://www.sydney.edu.au/news-opinion/news/2026/01/20/human-heart-regrows-muscle-cells-after-heart-attack-world-first-study-shows.html" target="_blank" rel="noopener">Universidade de Sydney</a> sobre estudo publicado na revista Circulation Research, em parceria com o Baird Institute e o Royal Prince Alfred Hospital (2026).
+        <b>Fonte:</b> com base em comunicado da <a href="https://www.sydney.edu.au/news-opinion/news/2026/01/20/human-heart-regrows-muscle-cells-after-heart-attack-world-first-study-shows.html" target="_blank" rel="noopener">Universidade de Sydney</a> sobre estudo publicado na revista <em>Circulation Research</em>, conduzido em parceria com o Baird Institute for Applied Heart and Lung Research e o Royal Prince Alfred Hospital, com financiamento do R T Hall Trust (2026). Os autores declaram não haver conflitos de interesse.
         <span class="note">Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução.</span>
       </div>
+    </div>
+
+    <div class="ad-slot" data-ad="in-article-2">
+      <!-- Google AdSense (fim do artigo): mesma instrução do slot acima. -->
     </div>
 
         <section class="related-reads">
