@@ -56,6 +56,7 @@ O card tem este formato (copie um card EXISTENTE da mesma categoria para herdar 
 - **Na página da categoria (`CATEGORIA.html`, ex.: `ciencia.html`):** o container ali é `<div class="cat-grid">` (diferente da home, que usa `<div class="grid">`). Insira o card novo antes do primeiro `<a href=... class="card">` dentro dele.
 - **`sitemap.xml`:** acrescente `<url><loc>https://media.thewatermouse.com/SLUG.html</loc><lastmod>AAAA-MM-DD</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>` logo depois da entrada da home, e atualize o `lastmod` da home para hoje.
 - **`feed.xml` (RSS):** acrescente um `<item>` (title, link, guid, pubDate em RFC-822 com `-0300`, category, description) como PRIMEIRO item e atualize `<lastBuildDate>`.
+- **Página "link na bio" (`links/index.html`):** depois de atualizar o `feed.xml`, rode `python -I tools/build_links.py` na raiz do repo. Ela lista as 6 matérias mais recentes do feed (com UTM do Instagram) e é o link que está na bio do @watermousemedia (`https://media.thewatermouse.com/links`). Inclua `links/index.html` no commit.
 - Referência de implementação: o script que gerou a matéria de Kikai (clone do Encélado + regex nos campos + cards + sitemap + feed) é um bom modelo; os pontos de troca são exatamente os listados no passo b.
 
 ### e) Aprovação
