@@ -28,6 +28,9 @@ Responda sempre em **português do Brasil**. Peça a aprovação do Rodrigo **an
 - Defina: categoria, manchete (h1), linha-fina (dek), e a fonte (nome + URL).
 
 ### b) Criar o arquivo HTML da matéria
+
+> **Atalho (use este):** escreva um JSON de especificação e rode `python -I tools/build_article.py spec.json` na raiz do repo. Ele faz TUDO dos passos b, d e dos itens de sitemap/feed/link na bio abaixo (clona a matéria mais recente da mesma categoria, troca os campos, insere os cards, atualiza `sitemap.xml`, `feed.xml` e `links/index.html`). Os campos do JSON estão no cabeçalho do próprio script; o corpo vai em `body_html` com `<!--AD1-->` marcando o 1º anúncio do meio. Ele **não** faz commit nem push. Falta só a imagem (passo c, em `media/`) e a aprovação (passo e). Exemplo real: matéria `geleiras-suicas-perda-gelo-2026`. Os passos manuais abaixo ficam como referência do que o script faz.
+
 - **Clone uma matéria REAL já existente da MESMA categoria** como base (ex.: `encelado-oceano-vida-2026.html` para Ciência). Assim você herda `<head>` (GA, fontes, AdSense, estilos `.hero-fig`, slots de anúncio), header, rodapé e banner de cookies prontos. **Não** use `noticia-modelo.html` (ele tem `.hero-img` gradiente e tarja de exemplo).
 - Nome do arquivo: slug curto + `-2026.html` (ex.: `cidade-finlandesa-4-dias-2026.html`).
 - Troque **só** estes pontos (mantenha todo o resto igual, inclusive os dois `div.ad-slot` com os `data-ad-slot` 8356866030 e 7043784364):
