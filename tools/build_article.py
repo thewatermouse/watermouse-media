@@ -64,15 +64,18 @@ def main():
     t = (ROOT / base).read_text(encoding="utf-8")
 
     title, dek, og = html.escape(spec["title"], quote=False), spec["dek"], spec["og_desc"]
+    title_a, og_a = html.escape(spec["title"]), html.escape(spec["og_desc"])  # para atributos (aspas escapadas)
+    js = lambda s: json.dumps(s, ensure_ascii=False)[1:-1]  # para o JSON-LD
+    JSTR = r'"(?:[^"\\]|\\.)*"'  # string JSON, aceita aspas escapadas
     t = sub1(r"<title>.*?</title>", f"<title>{title} | Watermouse Media</title>", t, re.S)
     t = sub1(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">', t)
-    t = sub1(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{title}">', t)
-    t = sub1(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{og}">', t)
+    t = sub1(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{title_a}">', t)
+    t = sub1(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{og_a}">', t)
     t = sub1(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{url}">', t)
     t = sub1(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{img_abs}">', t)
-    t = sub1(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{og}">', t)
-    t = sub1(r'"headline": "[^"]*"', f'"headline": "{title}"', t)
-    t = sub1(r'"description": "[^"]*"', f'"description": "{og}"', t)
+    t = sub1(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{og_a}">', t)
+    t = sub1(r'"headline": ' + JSTR, f'"headline": "{js(spec["title"])}"', t)
+    t = sub1(r'"description": ' + JSTR, f'"description": "{js(spec["og_desc"])}"', t)
     t = sub1(r'"image": "[^"]*"', f'"image": "{img_abs}"', t)
     t = sub1(r'"datePublished": "[^"]*"', f'"datePublished": "{spec["date_iso"]}"', t)
     t = sub1(r'"dateModified": "[^"]*"', f'"dateModified": "{spec["date_iso"]}"', t)
