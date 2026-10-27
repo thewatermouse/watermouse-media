@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 12:40:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 12:10:00 -0300</lastBuildDate>
+    <item>
+      <title>Webb e Hubble: o que cada telescópio enxerga e por que o infravermelho muda a história do Universo</title>
+      <link>https://media.thewatermouse.com/guia-webb-hubble-infravermelho-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-webb-hubble-infravermelho-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 12:10:00 -0300</pubDate>
+      <category>Ciência</category>
+      <description>Por que o Webb olha em infravermelho, o que isso permite ver e por que ele complementa o Hubble em vez de substituí-lo.</description>
+    </item>
     <item>
       <title>Moeda única regional: o que o franco CFA e o euro ensinam sobre a ideia do eco</title>
       <link>https://media.thewatermouse.com/guia-moeda-regional-cfa-euro-eco-2026.html</link>
