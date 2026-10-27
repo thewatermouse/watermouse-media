@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 12:20:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 12:00:00 -0300</lastBuildDate>
+    <item>
+      <title>Como ler uma notícia de ciência: nove perguntas antes de acreditar e compartilhar</title>
+      <link>https://media.thewatermouse.com/guia-como-ler-noticia-de-ciencia-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-como-ler-noticia-de-ciencia-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 12:00:00 -0300</pubDate>
+      <category>Ciência</category>
+      <description>Nove perguntas simples para fazer a qualquer estudo noticiado: quem foi estudado, quantos, comparado com o quê e o que os autores admitem não saber.</description>
+    </item>
     <item>
       <title>Como funciona uma bateria de íon-lítio e por que o sódio entrou na conversa</title>
       <link>https://media.thewatermouse.com/guia-bateria-litio-sodio-2026.html</link>
