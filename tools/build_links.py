@@ -28,7 +28,7 @@ for it in items:
 art = (ROOT / "encelado-oceano-vida-2026.html").read_text(encoding="utf-8")
 mascot = re.search(r'<svg viewBox="0 0 220 200".*?</svg>', art, re.S).group(0)
 mascot = mascot.replace('width="38" height="35" class="wm-mascot"', 'width="84" height="76" class="wm-mascot"')
-ga = re.search(r"<!-- Google Analytics 4 .*?</script>", art, re.S).group(0)
+ga = re.search(r"<!-- Google (?:Analytics 4|Tag Manager) .*?</script>", art, re.S).group(0)
 cookie = re.search(r'<div id="wm-cookie".*?</script>', art, re.S).group(0)
 
 PAGE = f"""<!DOCTYPE html>
