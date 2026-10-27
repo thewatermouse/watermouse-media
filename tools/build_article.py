@@ -12,7 +12,8 @@ Spec (JSON):
   "cat_label": "Ciência",
   "title": "...", "dek": "...", "dek_card": "...", "og_desc": "...",
   "date_iso": "2026-10-24T12:00:00-03:00", "read_min": 4,
-  "source_url": "https://...",                # vai em isBasedOn
+  "source_url": "https://...",                # vai em isBasedOn (opcional: sem ele, guia/explicador proprio)
+  "note": "...",                              # opcional: troca a nota padrao do bloco de atribuicao
   "image": "media/arquivo.jpg", "image_alt": "...", "image_caption_html": "... Foto: ..., CC0, via Wikimedia Commons.",
   "body_html": "<p>...</p><!--AD1--><h2>...</h2><p>...</p>",   # <!--AD1--> = 1o anuncio do meio; sem travessao (em-dash)
   "attrib_html": "<b>Fonte:</b> com base em <a href=... target=\"_blank\" rel=\"noopener\">...</a> ..."
@@ -81,7 +82,13 @@ def main():
     t = sub1(r'"dateModified": "[^"]*"', f'"dateModified": "{spec["date_iso"]}"', t)
     t = sub1(r'"articleSection": "[^"]*"', f'"articleSection": "{label}"', t)
     t = sub1(r'"mainEntityOfPage": "[^"]*"', f'"mainEntityOfPage": "{url}"', t)
-    t = sub1(r'"isBasedOn": "[^"]*"', f'"isBasedOn": "{spec["source_url"]}"', t)
+    if spec.get("source_url"):
+        if '"isBasedOn"' not in t:  # materia-base era um guia sem fonte
+            t, n = re.subn(r'("mainEntityOfPage": "[^"]*")', lambda m: m.group(1) + ',\n  "isBasedOn": ""', t, count=1)
+            assert n == 1
+        t = sub1(r'"isBasedOn": "[^"]*"', f'"isBasedOn": "{spec["source_url"]}"', t)
+    elif '"isBasedOn"' in t:  # texto proprio (guia/explicador): sem fonte-base
+        t = sub1(r',\n  "isBasedOn": "[^"]*"', "", t)
     t = sub1(r'<div class="a-cat">.*?</div>', f'<div class="a-cat">{label}</div>', t, re.S)
     t = sub1(r"<h1>.*?</h1>", f"<h1>{title}</h1>", t, re.S)
     t = sub1(r'<p class="dek">.*?</p>', f'<p class="dek">{dek}</p>', t, re.S)
@@ -91,7 +98,7 @@ def main():
            f'      <figcaption>{spec["image_caption_html"]}</figcaption>\n    </figure>')
     t = sub1(r'<figure class="hero-fig">.*?</figure>', fig, t, re.S)
     body = spec["body_html"].replace("<!--AD1-->", SLOT1)
-    new_body = f'<div class="body">\n      {body}\n\n      <div class="attrib">\n        {spec["attrib_html"]}\n        <span class="note">Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução.</span>\n      </div>\n    </div>'
+    new_body = f'<div class="body">\n      {body}\n\n      <div class="attrib">\n        {spec["attrib_html"]}\n        <span class="note">{spec.get("note") or "Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução."}</span>\n      </div>\n    </div>'
     t = sub1(r'<div class="body">.*?</div>(?=\s*\n\s*<div class="ad-slot(?: live)?" data-ad="in-article-2">)', new_body, t, re.S)
     (ROOT / f"{slug}.html").write_text(t, encoding="utf-8")
 
