@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Como funciona uma bateria de íon-lítio e por que o sódio entrou na conversa | Watermouse Media</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/guia-bateria-litio-sodio-2026.html">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:title" content="Como funciona uma bateria de íon-lítio e por que o sódio entrou na conversa">
+<meta property="og:description" content="Guia sobre baterias de íon-lítio: como armazenam energia, por que perdem capacidade, a diferença entre as químicas NMC e LFP e por que as baterias de sódio despertam interesse.">
+<meta property="og:url" content="https://media.thewatermouse.com/guia-bateria-litio-sodio-2026.html">
+<meta property="og:image" content="https://media.thewatermouse.com/media/battery-cells.jpg">
+<meta name="description" content="Guia sobre baterias de íon-lítio: como armazenam energia, por que perdem capacidade, a diferença entre as químicas NMC e LFP e por que as baterias de sódio despertam interesse.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "Como funciona uma bateria de íon-lítio e por que o sódio entrou na conversa",
+  "description": "Guia sobre baterias de íon-lítio: como armazenam energia, por que perdem capacidade, a diferença entre as químicas NMC e LFP e por que as baterias de sódio despertam interesse.",
+  "image": "https://media.thewatermouse.com/media/battery-cells.jpg",
+  "datePublished": "2026-10-27T12:20:00-03:00",
+  "dateModified": "2026-10-27T12:20:00-03:00",
+  "inLanguage": "pt-BR",
+  "articleSection": "Tecnologia",
+  "author": { "@type": "Organization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/" },
+  "publisher": {
+    "@type": "NewsMediaOrganization",
+    "name": "Watermouse Media",
+    "logo": { "@type": "ImageObject", "url": "https://media.thewatermouse.com/media/solar-farm.jpg" }
+  },
+  "mainEntityOfPage": "https://media.thewatermouse.com/guia-bateria-litio-sodio-2026.html"
+}
+</script>
+<style>
+  :root{
+    --bg:#F8F8F9; --surface:#FFFFFF; --tint:#F1F1F3; --tint-sage:#ECEDEF;
+    --ink:#0D0D0F; --muted:#55585F; --faint:#8A8D94;
+    --sage:#2337FF; --sage-dark:#0D0D0F; --warm-deep:#D4A64A; --warm-dark:#6E717A;
+    --line:rgba(13,13,15,0.12); --line-soft:rgba(13,13,15,0.07);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Newsreader',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;font-weight:300;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .col{max-width:680px;margin:0 auto;padding:0 32px;}
+
+  header.mast{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:50;}
+  .mast-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand svg{color:var(--sage);}
+  .brand .word{font-family:'DM Serif Display',serif;font-size:21px;font-weight:300;letter-spacing:0.03em;color:var(--ink);white-space:nowrap;}
+  .brand .tag{font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-dark);border-left:1px solid var(--line);padding-left:10px;white-space:nowrap;}
+  .sub-link{font-size:13px;font-weight:500;color:var(--sage-dark);border:1px solid var(--line);border-radius:2px;padding:8px 16px;white-space:nowrap;flex-shrink:0;}
+  .sub-link:hover{border-color:var(--sage);}
+
+  article{padding:36px 0 20px;}
+  .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin-bottom:24px;}
+  .back:hover{color:var(--sage-dark);}
+  .a-cat{font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;}
+  h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,4.6vw,44px);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:18px;text-wrap:balance;}
+  .dek{font-size:19px;font-weight:300;line-height:1.55;color:var(--muted);margin-bottom:26px;}
+  .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--faint);padding-bottom:26px;border-bottom:1px solid var(--line-soft);margin-bottom:8px;}
+  .meta b{color:var(--ink);font-weight:500;}
+  .hero-fig{margin:26px 0;}
+  .hero-fig img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:2px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);}
+  .hero-fig figcaption{font-size:12.5px;line-height:1.5;color:var(--faint);margin-top:8px;}
+  .hero-fig figcaption a{color:inherit;text-decoration:underline;}
+  .body p{font-size:17px;line-height:1.75;color:#1A1A1E;margin-bottom:20px;}
+  .body h2{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
+  .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
+
+  .attrib{background:var(--tint-sage);border:1px solid var(--line-soft);border-left:3px solid var(--sage);border-radius:2px;padding:18px 20px;margin:34px 0;font-size:14.5px;line-height:1.6;color:var(--ink);}
+  .attrib b{color:var(--sage-dark);}
+  .attrib a{color:var(--sage-dark);font-weight:500;border-bottom:1px solid var(--line);}
+  .attrib .note{display:block;margin-top:8px;font-size:13px;color:var(--muted);}
+
+  .news{background:var(--ink);border-radius:2px;padding:30px 28px;margin:36px 0;text-align:center;}
+  .news h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:300;color:#F8F8F9;margin-bottom:8px;}
+  .news p{font-size:14px;color:rgba(248,248,249,0.6);margin-bottom:16px;}
+  .news a{display:inline-block;background:var(--sage);color:#fff;border-radius:2px;padding:12px 24px;font-size:14px;font-weight:500;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 56px;}
+  .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);}
+  .foot a{color:var(--sage-dark);}
+
+  .wm-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:680px;margin:0 auto;background:#08080A;color:#F8F8F9;border:1px solid rgba(248,248,249,0.16);border-radius:2px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);}
+  .wm-cookie[hidden]{display:none!important;}
+  .wm-cookie-text{font-size:13px;font-weight:300;line-height:1.5;color:rgba(248,248,249,0.82);flex:1;min-width:220px;}
+  .wm-cookie-text a{color:#8D98FF;}
+  .wm-cookie-actions{display:flex;gap:8px;flex-shrink:0;}
+  .wm-cookie-btn{font-family:inherit;font-size:13px;font-weight:500;border-radius:2px;padding:9px 18px;cursor:pointer;border:none;}
+  .wm-cookie-btn.ghost{background:transparent;color:rgba(248,248,249,0.72);border:1px solid rgba(248,248,249,0.24);}
+  .wm-cookie-btn.solid{background:#2337FF;color:#fff;}
+  @media(max-width:560px){
+    .mast-top{gap:10px;}
+    .brand{gap:8px;}
+    .brand .word{font-size:17px;}
+    .brand .tag{font-size:9.5px;padding-left:7px;letter-spacing:0.1em;}
+    .sub-link{padding:7px 13px;font-size:12px;}
+  }
+  @media(max-width:380px){.brand .tag{display:none;}.brand .word{font-size:15px;}}
+
+  .related-reads{margin:36px 0 0;padding-top:28px;border-top:1px solid var(--line);}
+  .related-reads h3{font-family:'DM Serif Display',serif;font-size:19px;font-weight:400;color:var(--ink);margin-bottom:12px;}
+  .related-reads a{display:block;padding:14px 0;border-bottom:1px solid var(--line-soft);line-height:1.3;transition:color .15s;}
+  .related-reads a:last-child{border-bottom:none;}
+  .related-reads a:hover .rr-title{color:var(--sage-dark);}
+  .related-reads .rr-cat{display:block;font-family:'Newsreader',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-dark);margin-bottom:5px;}
+  .related-reads .rr-title{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--ink);}
+</style>
+<style>/* WM brand v2 (media) */
+body{font-family:'Newsreader',Georgia,serif;font-weight:400;font-synthesis:none;}
+h1,h2,h3,.serif{font-family:'DM Serif Display','Times New Roman',serif !important;font-weight:400 !important;letter-spacing:-0.02em;}
+h1{line-height:1.02 !important;} h2,h3{line-height:1.06;}
+.brand{gap:10px !important;}
+.brand .word{font-family:'DM Serif Display','Times New Roman',serif !important;font-size:23px !important;font-weight:400 !important;letter-spacing:-0.02em !important;color:#0D0D0F !important;}
+.brand .word em{font-style:italic;} .brand .word i{font-style:normal;color:#2337FF;}
+.brand .wm-mascot{flex-shrink:0;}
+.chip,nav.cats a,.catnav a,.eyebrow,.a-cat,.src,.cat-count,.side-h,.k,.n,.meta,.byline,.constr,.wm-cookie-btn,.sub-link,.back{font-family:'IBM Plex Mono',ui-monospace,monospace !important;}
+.chip,nav.cats a,.catnav a,.eyebrow,.a-cat{font-weight:500 !important;letter-spacing:0.08em !important;}
+.sub-link{background:#0D0D0F !important;border-color:#0D0D0F !important;color:#F8F8F9 !important;font-size:12px !important;}
+.sub-link:hover{background:#2337FF !important;border-color:#2337FF !important;}
+.tagline p,.dek em,.kick{font-family:'Instrument Serif','Times New Roman',serif !important;font-style:italic;}
+.tagline p{font-size:clamp(19px,2.6vw,25px) !important;color:#0D0D0F !important;}
+article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+::selection{background:#2337FF;color:#F8F8F9;}
+@media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
+</style>
+<style>
+.ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+.ad-slot.live{display:block;}
+.ad-slot.live:has(ins.adsbygoogle[data-ad-status="unfilled"]){display:none;}
+
+.ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+</style>
+<!-- Google AdSense: quando a conta for aprovada, adicione UMA vez no <head> (com o ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + bloco <ins class="adsbygoogle">). -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3920760016147555" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-top">
+      <a href="/" class="brand"><svg viewBox="0 0 220 200" width="38" height="35" class="wm-mascot" aria-hidden="true"><circle cx="110" cy="100" r="100" fill="#F8F8F9"/><circle cx="110" cy="100" r="99" fill="none" stroke="rgba(13,13,15,0.14)" stroke-width="2"/><g transform="translate(110 100) scale(.86) translate(-114 -104)">
+  <g fill="#0D0D0F">
+    <path d="M70 128 C40 132 26 150 34 166 C38 174 46 176 52 172" fill="none" stroke="#0D0D0F" stroke-width="5" stroke-linecap="round"/>
+    <path d="M52 156 C52 156 43 167 43 172.5 A9 9 0 0 0 61 172.5 C61 167 52 156 52 156Z"/>
+    <path d="M96 146 L88 170 L100 171" fill="none" stroke="#0D0D0F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M124 144 L134 168 L146 168" fill="none" stroke="#0D0D0F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M66 122 C62 92 86 74 114 78 C138 82 150 102 146 126 C142 146 122 154 100 152 C80 150 68 140 66 122Z"/>
+    <circle cx="128" cy="64" r="15"/>
+    <circle cx="128" cy="64" r="8" fill="#2B2C33"/>
+    <path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/>
+    <circle cx="189" cy="80" r="4"/>
+    <g transform="translate(-2 6) rotate(8 156 50)">
+      <path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/>
+      <rect x="141" y="47" width="30" height="5" fill="#2337FF"/>
+      <rect x="128" y="54" width="56" height="5" rx="2.5"/>
+    </g>
+  </g>
+  <circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/>
+  <path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/>
+  <g transform="rotate(-14 150 118)">
+    <rect x="128" y="104" width="44" height="30" rx="2" fill="#2337FF"/>
+    <path d="M134 112h32M134 118h20M134 124h26" stroke="#F8F8F9" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <path d="M120 100 C130 108 138 116 146 118" fill="none" stroke="#0D0D0F" stroke-width="6" stroke-linecap="round"/>
+</g></svg><span class="word">Watermouse <em>Media</em><i>.</i></span>
+      </a>
+      <a href="/#newsletter" class="sub-link">Receber no e-mail</a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="col">
+    <a href="/" class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg> Todas as notícias</a>
+    <div class="a-cat">Tecnologia</div>
+    <h1>Como funciona uma bateria de íon-lítio e por que o sódio entrou na conversa</h1>
+    <p class="dek">Do celular ao carro elétrico, quase tudo que se recarrega usa o mesmo princípio. Entenda o que acontece dentro da bateria, por que ela envelhece e o que muda com as novas químicas, como a de sódio.</p>
+    <div class="meta"><span>Por <b>Redação Watermouse Media</b></span><span>27 de outubro de 2026</span><span>8 min de leitura</span></div>
+  </div>
+
+  <div class="col">
+    <figure class="hero-fig">
+      <img src="media/battery-cells.jpg" alt="Várias células de bateria cilíndricas lado a lado." loading="lazy">
+      <figcaption>Células de bateria, imagem ilustrativa. Foto: Sevenethics (<a href="https://creativecommons.org/publicdomain/zero/1.0" target="_blank" rel="noopener">CC0</a>).</figcaption>
+    </figure>
+
+    <div class="body">
+      <p>A bateria do celular, a do notebook e a do carro elétrico parecem tecnologias diferentes, mas seguem o mesmo princípio. A maioria delas é de íon-lítio, e entender como ela funciona ajuda a perceber por que o tema virou assunto de política industrial, de comércio internacional e até de planejamento da rede elétrica. Também ajuda a entender por que, de repente, as baterias de sódio começaram a aparecer nas notícias.</p>
+
+<div class="ad-slot live" data-ad="in-article-1">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3920760016147555" data-ad-slot="8356866030" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+<h2>O que há dentro de uma bateria</h2>
+
+<p>Uma célula de íon-lítio tem quatro partes principais. Os dois eletrodos guardam a energia: o <b>ânodo</b> (negativo), em geral feito de grafite, e o <b>cátodo</b> (positivo), feito de um óxido metálico que contém lítio. Entre os dois há um <b>separador</b>, uma membrana fina que impede o contato direto, e um <b>eletrólito</b>, líquido ou gel por onde os íons de lítio conseguem passar.</p>
+
+<h2>Como ela carrega e descarrega</h2>
+
+<p>Quando a bateria está sendo carregada, a energia da tomada empurra íons de lítio do cátodo, através do eletrólito, até o ânodo, onde eles ficam alojados entre as camadas do grafite. Quando o aparelho está em uso, o processo se inverte: os íons voltam espontaneamente ao cátodo, e os elétrons percorrem o circuito externo, alimentando o aparelho. Os íons são como passageiros que mudam de um prédio para outro, e os elétrons fazem o trabalho no caminho.</p>
+
+<p>Esse vai e vem se repete centenas ou milhares de vezes. O que determina quanta energia cabe na bateria, e quanto tempo ela dura, é a química dos materiais escolhidos.</p>
+
+<h2>Por que a bateria envelhece</h2>
+
+<p>Com o tempo, a capacidade cai. As causas principais são conhecidas:</p>
+
+<ul>
+<li><b>Formação de camadas no ânodo.</b> Parte do lítio reage com o eletrólito e forma uma película que consome íons que deixam de participar do processo.</li>
+<li><b>Desgaste dos materiais.</b> A cada ciclo, os eletrodos expandem e contraem um pouco, e isso provoca microfissuras.</li>
+<li><b>Calor.</b> Temperaturas altas aceleram todas as reações indesejadas. É por isso que deixar o celular no sol ou carregá-lo sob o travesseiro encurta a vida útil da bateria.</li>
+<li><b>Extremos de carga.</b> Manter a bateria sempre em 100% ou deixá-la zerar com frequência costuma desgastá-la mais do que usos intermediários.</li>
+</ul>
+
+<h2>As duas famílias mais comuns</h2>
+
+<p>Nos carros elétricos e nos eletrônicos, duas químicas de cátodo dominam o mercado.</p>
+
+<ul>
+<li><b>NMC (níquel, manganês e cobalto).</b> Guarda mais energia por quilo, o que significa mais autonomia para o mesmo peso. Em compensação, usa metais caros e de cadeia de suprimento sensível, como o cobalto.</li>
+<li><b>LFP (fosfato de ferro-lítio).</b> Guarda um pouco menos de energia por quilo, mas usa materiais baratos e abundantes, tende a durar mais ciclos e é considerada mais estável termicamente. Por isso tem ganhado espaço em carros de entrada e em armazenamento estacionário.</li>
+</ul>
+
+<h2>Por que o cobalto e o lítio viraram assunto geopolítico</h2>
+
+<p>A maior parte do cobalto do mundo vem da República Democrática do Congo, em condições de mineração que são alvo frequente de críticas. O lítio é extraído em salares no Chile e na Argentina e em minas de rocha na Austrália, e boa parte do refino acontece na China. O Brasil também tem reservas, em especial no Vale do Jequitinhonha, em Minas Gerais. Quando uma indústria depende de poucos fornecedores, qualquer tensão comercial afeta o preço, e é por isso que governos e empresas procuram alternativas e reciclagem.</p>
+
+<h2>Onde entra o sódio</h2>
+
+<p>O sódio é um elemento vizinho do lítio na tabela periódica e se comporta de forma parecida. A diferença é que ele é muito mais abundante: está no sal de cozinha e na água do mar. Uma bateria de íons de sódio troca o lítio por sódio e dispensa o cobalto e, em muitos projetos, o níquel. As vantagens prometidas são custo menor, menor dependência de materiais críticos e bom desempenho em temperaturas baixas.</p>
+
+<p>O ponto fraco é que o íon de sódio é maior e mais pesado, e as baterias costumam guardar menos energia por quilo do que as de lítio. Por isso, a tendência é que o sódio brilhe primeiro em usos em que o peso importa menos, como armazenamento fixo, veículos urbanos e equipamentos de menor autonomia. Vale conferir a <a href="bateria-sodio-hyundai-2026.html">matéria sobre o movimento da Hyundai em baterias de sódio</a> para acompanhar como a indústria vem testando essa ideia.</p>
+
+<h2>Da bateria do carro à rede elétrica</h2>
+
+<p>Uma bateria não serve só para movimentar um veículo. Ligada à rede, ela pode armazenar energia quando há sobra, por exemplo em horas de muito sol, e devolvê-la quando a demanda aperta. É o conceito por trás do <a href="everything-to-grid-2026.html">"everything-to-grid"</a>, em que carros elétricos e prédios participam do equilíbrio da rede. Para esse tipo de aplicação, a durabilidade e o custo importam mais do que a densidade de energia, o que dá espaço tanto para as químicas LFP quanto para o sódio.</p>
+
+<h2>Dicas práticas para cuidar da sua bateria</h2>
+
+<ul>
+<li>Evite deixar aparelhos em locais quentes, como carros estacionados ao sol.</li>
+<li>Se puder, mantenha a carga entre cerca de 20% e 80% no dia a dia, e deixe a carga cheia para quando precisar.</li>
+<li>Use carregadores de boa procedência, que respeitem as especificações do aparelho.</li>
+<li>Se a bateria estiver inchada, não use e não carregue: leve a um ponto de descarte ou à assistência técnica.</li>
+<li>Descarte as pilhas e baterias em pontos de coleta, nunca no lixo comum.</li>
+</ul>
+
+<p>No fim, nenhuma química resolve tudo. A pergunta útil, quando surge uma notícia sobre "a bateria do futuro", é: para qual uso ela serve? Autonomia máxima, custo baixo, carga rápida e longa vida útil raramente andam juntas, e cada aplicação escolhe a combinação que lhe convém.</p>
+
+      <div class="attrib">
+        <b>Sobre este guia:</b> texto original da Redação Watermouse Media, sem fonte-base única. Veja <a href="politica-editorial.html">como trabalhamos</a> e <a href="contato.html">como apontar um erro</a>.
+        <span class="note">Guia original da Redação Watermouse Media, escrito para explicar conceitos que aparecem com frequência nas notícias. Não é cobertura de um fato específico; datas e números vêm de fontes públicas amplamente documentadas.</span>
+      </div>
+    </div>
+
+                <div class="ad-slot live" data-ad="in-article-2">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3920760016147555" data-ad-slot="7043784364" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+        <section class="related-reads">
+      <h3>Leia também</h3>
+      <a href="computacao-quantica-mil-vezes-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">Operações quânticas 1.000 vezes mais rápidas: o avanço de Chalmers</span></a>
+      <a href="everything-to-grid-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">Carros e casas que devolvem energia à rede: o &#x27;everything-to-grid&#x27;</span></a>
+      <a href="india-deep-tech-espacial-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">A Índia vira potência de deep tech e espaço, com US$ 1,6 bi em 2025</span></a>
+    </section>
+
+<section class="news">
+      <h2 class="serif">Gostou? Receba as próximas.</h2>
+      <p>As notícias internacionais que importam, em português, uma vez por semana.</p>
+      <a href="/#newsletter">Assinar a newsletter</a>
+    </section>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+    <span><a href="/sobre.html">Sobre</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+  </div>
+</footer>
+
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+</body>
+</html>
