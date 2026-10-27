@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 12:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 12:30:00 -0300</lastBuildDate>
+    <item>
+      <title>Como se decifra uma escrita antiga: da Pedra de Roseta ao Linear B</title>
+      <link>https://media.thewatermouse.com/guia-como-se-decifra-escrita-antiga-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-como-se-decifra-escrita-antiga-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 12:30:00 -0300</pubDate>
+      <category>Cultura</category>
+      <description>O que é preciso para ler uma escrita perdida, como funcionaram os casos do egípcio e do Linear B e como avaliar alegações de novas decifrações.</description>
+    </item>
     <item>
       <title>Como ler uma notícia de ciência: nove perguntas antes de acreditar e compartilhar</title>
       <link>https://media.thewatermouse.com/guia-como-ler-noticia-de-ciencia-2026.html</link>
