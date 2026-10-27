@@ -422,13 +422,13 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var email=document.getElementById('nl-email').value.trim();
-    if(!email){return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){var s0=document.getElementById('nl-email');s0.focus();return;}
     if(f.querySelector('[name="_honey"]').value){return;}
     var btn=document.getElementById('nl-btn'); btn.disabled=true; btn.textContent="Enviando...";
     fetch(EP,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
       body:JSON.stringify({email:email,"Consentimento":"Assinou a newsletter (e-mail)",_subject:"Nova assinatura, Watermouse Media newsletter",_template:"table",_captcha:"false"})})
-      .then(function(r){return r.json();})
-      .then(function(){var s=document.getElementById('nl-status');f.hidden=true;s.hidden=false;s.textContent="Pronto! Você está na lista. 📨";})
+      .then(function(r){if(!r.ok){throw new Error("http");}return r.json();})
+      .then(function(d){if(!d||String(d.success)!=="true"){throw new Error("rejected");}var s=document.getElementById('nl-status');f.hidden=true;s.hidden=false;s.textContent="Pronto! Você está na lista. 📨";})
       .catch(function(){window.location.href="mailto:digo@thewatermouse.com?subject="+encodeURIComponent("Assinatura Watermouse Media")+"&body="+encodeURIComponent("E-mail: "+email);})
       .finally(function(){btn.disabled=false;btn.textContent="Assinar";});
   });
