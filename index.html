@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<!-- Google Analytics 4 (consent-gated), loads only after cookie consent. -->
+<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
 <script>
 (function(){
-  var GA_ID = 'G-RSR83B38QN';
+  var GTM_ID = 'GTM-T665625S';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   window.loadWatermouseGA = function(){
     if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
     document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', GA_ID, { anonymize_ip: true });
   };
   document.addEventListener('DOMContentLoaded', function(){
     try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
@@ -428,7 +427,7 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
     var btn=document.getElementById('nl-btn'); btn.disabled=true; btn.textContent="Enviando...";
     fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({email:email,origem:"media-home"})})
       .then(function(r){if(!r.ok){throw new Error("http");}return r.json();})
-      .then(function(d){if(!d||String(d.success)!=="true"){throw new Error("rejected");}var s=document.getElementById('nl-status');f.hidden=true;s.hidden=false;s.textContent="Quase lá! Enviamos um e-mail para você confirmar a inscrição. Olhe também a caixa de spam. 📨";})
+      .then(function(d){if(!d||String(d.success)!=="true"){throw new Error("rejected");}window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'newsletter_signup',origem:'media-home'});var s=document.getElementById('nl-status');f.hidden=true;s.hidden=false;s.textContent="Quase lá! Enviamos um e-mail para você confirmar a inscrição. Olhe também a caixa de spam. 📨";})
       .catch(function(){window.location.href="mailto:digo@thewatermouse.com?subject="+encodeURIComponent("Assinatura Watermouse Media")+"&body="+encodeURIComponent("E-mail: "+email);})
       .finally(function(){btn.disabled=false;btn.textContent="Assinar";});
   });

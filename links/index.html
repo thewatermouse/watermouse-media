@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex,follow">
-<!-- Google Analytics 4 (consent-gated), loads only after cookie consent. -->
+<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
 <script>
 (function(){
-  var GA_ID = 'G-RSR83B38QN';
+  var GTM_ID = 'GTM-T665625S';
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   window.loadWatermouseGA = function(){
     if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
     var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
     document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', GA_ID, { anonymize_ip: true });
   };
   document.addEventListener('DOMContentLoaded', function(){
     try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
