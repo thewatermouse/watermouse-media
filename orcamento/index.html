@@ -58,12 +58,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: editorial ledger. Left = the budget as a list of lines you edit; right = a sticky "gabinete" panel with the consequences. */
+/* Layout: editorial ledger. Left = the budget as a list of lines you edit; right = the consequences panel; bottom = a fixed scoreboard that follows the scroll. */
 :root{
   --paper:#F8F8F9; --surface:#FFFFFF; --tint:#EEEFF3; --ink:#0D0D0F; --muted:#55585F; --faint:#8A8D94;
   --cobalt:#2337FF; --cobalt-soft:#E4E7FF; --line:rgba(13,13,15,.12); --line-soft:rgba(13,13,15,.06);
   --locked:#0D0D0F; --floor:#6E717A; --free:#2337FF;
   --good:#0E7C66; --warn:#B8862B; --bad:#C8322B;
+  --bar:#0D0D0F; --bar-fg:#F8F8F9; --bar-muted:rgba(248,248,249,.62);
   --f-display:"DM Serif Display", Georgia, "Times New Roman", serif;
   --f-kicker:"Instrument Serif", Georgia, serif;
   --f-body:"Newsreader", Georgia, serif;
@@ -72,14 +73,16 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --paper:#0F1013; --surface:#16171C; --tint:#1E2027; --ink:#EDEDF0; --muted:#A4A7B0; --faint:#6E717A;
   --cobalt:#7D8BFF; --cobalt-soft:#1E2340; --line:rgba(237,237,240,.14); --line-soft:rgba(237,237,240,.07);
-  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60; color-scheme:dark}}
+  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60;
+  --bar:#1E2027; --bar-fg:#EDEDF0; --bar-muted:rgba(237,237,240,.6); color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#0F1013; --surface:#16171C; --tint:#1E2027; --ink:#EDEDF0; --muted:#A4A7B0; --faint:#6E717A;
   --cobalt:#7D8BFF; --cobalt-soft:#1E2340; --line:rgba(237,237,240,.14); --line-soft:rgba(237,237,240,.07);
-  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60; color-scheme:dark}
+  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60;
+  --bar:#1E2027; --bar-fg:#EDEDF0; --bar-muted:rgba(237,237,240,.6); color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5;padding-bottom:calc(86px + env(safe-area-inset-bottom,0px))}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .label{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -107,6 +110,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,78px);l
 .splitlegend i{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px}
 .friend{margin-top:22px;border:1px solid var(--cobalt);background:var(--cobalt-soft);padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .friend p{margin:0;flex:1 1 280px}
+.howto{margin-top:16px;font-size:15px;color:var(--muted);max-width:70ch}
 
 /* main grid */
 .grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;padding-block:10px 60px;align-items:start}
@@ -117,41 +121,62 @@ h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,78px);l
 .group .gsub{color:var(--muted);font-size:15.5px;margin:4px 0 10px;max-width:60ch}
 .grouphead{border-top:2px solid var(--ink);padding-top:12px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
 
-.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding-block:14px;border-bottom:1px solid var(--line)}
-.line .nm{font-weight:600;font-size:17.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.line .val{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap}
-.line .val b{font-weight:500;font-size:17px}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding-block:14px;border-bottom:1px solid var(--line)}
+.line .nm{font-weight:600;font-size:17.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
 .line .note{grid-column:1/-1;color:var(--muted);font-size:14.5px;margin:0}
 .line .ctl{grid-column:1/-1;display:flex;align-items:center;gap:10px}
+.nums{display:flex;align-items:center;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+.field{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--surface);font-family:var(--f-mono);font-size:14px;height:34px}
+.field:focus-within{border-color:var(--cobalt)}
+.field span{color:var(--muted);padding-inline:7px;font-size:12.5px}
+.field input{border:0;background:transparent;color:var(--ink);font:inherit;font-variant-numeric:tabular-nums;width:76px;text-align:right;padding:0 2px;height:100%;outline:none}
+.field.pct input{width:52px}
+.field.pct{color:var(--muted)}
+.field.pct.up input{color:var(--good)} .field.pct.down input{color:var(--bad)}
+.field.locked{background:transparent;border-style:dashed}
 .chip{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;font-weight:500}
 .chip.k-locked{color:var(--muted)}
 .chip.k-pec{color:var(--bad)}
 .chip.k-lei{color:var(--warn)}
-.delta{font-family:var(--f-mono);font-size:13px}
 .up{color:var(--good)} .down{color:var(--bad)}
 .lock{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
-.stepbtn{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-mono);font-size:16px;line-height:1;flex:none}
+.stepbtn{width:34px;height:34px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-mono);font-size:16px;line-height:1;flex:none}
 .stepbtn:hover{border-color:var(--ink)}
+.rev{font-family:var(--f-mono);font-size:13px}
+@media (max-width:560px){
+  .line{grid-template-columns:minmax(0,1fr)}
+  .nums{justify-content:flex-start}
+}
 
-input[type=range]{flex:1;min-width:0;-webkit-appearance:none;appearance:none;height:28px;background:transparent}
+input[type=range]{flex:1;min-width:0;-webkit-appearance:none;appearance:none;height:30px;background:transparent}
 input[type=range]::-webkit-slider-runnable-track{height:4px;background:linear-gradient(to right,var(--ink) var(--fl,0%),var(--line) var(--fl,0%))}
 input[type=range]::-moz-range-track{height:4px;background:linear-gradient(to right,var(--ink) var(--fl,0%),var(--line) var(--fl,0%))}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);margin-top:-8px;box-shadow:0 0 0 1px var(--cobalt)}
-input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--cobalt)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);margin-top:-9px;box-shadow:0 0 0 1px var(--cobalt)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--cobalt)}
 .trackwrap{position:relative;flex:1;min-width:0;display:flex}
-.basemark{position:absolute;top:4px;width:2px;height:20px;background:var(--faint);pointer-events:none}
+.basemark{position:absolute;top:5px;width:2px;height:20px;background:var(--faint);pointer-events:none}
 
-.levers .line .val{min-width:90px}
+/* expandable sub-groups (Demais áreas, isenções) */
+.sub{border-bottom:1px solid var(--line)}
+.sub > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding-block:14px;align-items:center}
+.sub > summary::-webkit-details-marker{display:none}
+.sub > summary .nm{font-weight:600;font-size:17.5px;display:flex;align-items:center;gap:8px}
+.sub > summary .nm::before{content:"+";font-family:var(--f-mono);font-weight:500;width:22px;height:22px;display:inline-grid;place-items:center;border:1px solid var(--ink);font-size:14px;flex:none}
+.sub[open] > summary .nm::before{content:"−"}
+.sub > summary .tot{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;text-align:right;white-space:nowrap}
+.sub > summary .note{grid-column:1/-1;color:var(--muted);font-size:14.5px;margin:0}
+.sub .kids{border-left:2px solid var(--ink);padding-left:16px;margin:0 0 14px 10px}
+.sub .kids .line:last-child{border-bottom:0}
+.sub .kids .nm{font-size:16.5px}
 
 /* panel */
-.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);display:flex;flex-direction:column;gap:18px}
-@media (max-width:960px){.panel{position:static}}
+.panel{display:flex;flex-direction:column;gap:18px}
 .box{background:var(--surface);border:1px solid var(--line);padding:16px 18px}
 .box h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 10px;line-height:1.15}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
 .stat .big{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:22px;font-weight:500;line-height:1.2}
-.stat .sub{font-size:13.5px;color:var(--muted);line-height:1.35}
-.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;color:var(--paper);font-weight:500}
+.stat .sub2{font-size:13.5px;color:var(--muted);line-height:1.35}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;color:#fff;font-weight:500}
 .pill.good{background:var(--good)} .pill.warn{background:var(--warn)} .pill.bad{background:var(--bad)}
 .arche{border:1px solid var(--ink);background:var(--surface);padding:18px}
 .arche .tag{font-family:var(--f-kicker);font-style:italic;color:var(--cobalt);font-size:19px}
@@ -170,12 +195,20 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
 .btnrow{display:flex;flex-wrap:wrap;gap:8px}
 .btn{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:9px 14px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.03em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .btn.ghost{background:transparent;color:var(--ink)}
+.btn.cobalt{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
 .btn:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
-.cardimg{width:100%;border:1px solid var(--line);display:block;margin-bottom:10px;background:var(--tint);aspect-ratio:4/5}
+.btn.wide{width:100%;justify-content:center;padding-block:12px;font-size:13.5px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.cards figure{margin:0}
+.cards figcaption{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-top:4px}
+.cardimg{width:100%;border:1px solid var(--line);display:block;background:var(--tint)}
+.cardimg.feed{aspect-ratio:4/5}
+.cardimg.story{aspect-ratio:9/16}
 .hint{font-size:13px;color:var(--muted);margin:8px 0 0}
 .linkbox{display:flex;gap:6px;margin-top:10px}
 .linkbox input{flex:1;min-width:0;font-family:var(--f-mono);font-size:12px;padding:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
 .vs td.n.me{color:var(--cobalt)}
+.storymsg{border:1px solid var(--cobalt);background:var(--cobalt-soft);padding:10px 12px;font-size:14px;margin-top:10px}
 
 .foot{border-top:1px solid var(--ink);padding-block:24px 40px;font-size:14px;color:var(--muted)}
 .foot h4{font-family:var(--f-mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin:0 0 6px}
@@ -184,19 +217,29 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
 .soon{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .soon span{border:1px dashed var(--line);padding:5px 10px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 
-/* mobile dock */
-.dock{display:none}
-@media (max-width:960px){
-  .dock{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--paper);
-    padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
-    justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:12px}
-  .dock b{font-weight:500;font-size:14px;display:block}
-  .dock a{color:var(--paper)}
-  body{padding-bottom:70px}
+/* fixed scoreboard */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--bar);color:var(--bar-fg);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  box-shadow:0 -8px 24px rgba(0,0,0,.18)}
+.dock .in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.3fr repeat(4,1fr) auto;gap:6px 18px;align-items:center}
+.dock .c{min-width:0}
+.dock .k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--bar-muted);display:block;white-space:nowrap}
+.dock .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.dock .v.name{font-family:var(--f-display);font-weight:400;font-size:19px;overflow:hidden;text-overflow:ellipsis}
+.dock .dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.good{background:var(--good)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)}
+.dock a.go{font-family:var(--f-mono);font-size:12px;color:var(--bar-fg);border:1px solid var(--bar-muted);padding:8px 12px;text-decoration:none;white-space:nowrap}
+.dock a.go:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+@media (max-width:760px){
+  .dock .in{grid-template-columns:repeat(4,auto);justify-content:space-between;gap:4px 8px}
+  .dock .c.perfil,.dock a.go{display:none}
+  .dock .v{font-size:12.5px;gap:5px}
+  .dock .dot{width:7px;height:7px}
+  .dock .k{font-size:9.5px;letter-spacing:.04em}
 }
 @media (prefers-reduced-motion:no-preference){.splitbar span,.mini span{transition:flex-basis .25s ease}}
 
-.wm-cookie{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:680px;margin:0 auto;background:#08080A;color:#F8F8F9;border:1px solid rgba(248,248,249,0.16);border-radius:2px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);font-family:var(--f-body)}
+.wm-cookie{position:fixed;left:16px;right:16px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:680px;margin:0 auto;background:#08080A;color:#F8F8F9;border:1px solid rgba(248,248,249,0.16);border-radius:2px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);font-family:var(--f-body)}
 .wm-cookie-text{font-size:13px;line-height:1.5;color:rgba(248,248,249,0.82);flex:1;min-width:220px}
 .wm-cookie-text a{color:#8D98FF}
 .wm-cookie-actions{display:flex;gap:8px;flex-shrink:0}
@@ -228,6 +271,7 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
       <div class="splitbar" id="splitbar"></div>
       <div class="splitlegend" id="splitlegend"></div>
     </div>
+    <p class="howto">Arraste a barrinha, use − e +, ou digite o valor em R$ bilhões ou a variação em %. O placar no rodapé acompanha você pela página toda.</p>
     <div class="friend" id="friendBanner" hidden>
       <p><strong>Alguém te mandou o orçamento dele.</strong> Monte o seu e compare lado a lado no painel.</p>
       <button class="btn ghost" id="friendView">Ver o orçamento recebido</button>
@@ -271,9 +315,14 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
 
     <div class="box" id="share">
       <h3>Compartilhe e desafie</h3>
-      <img class="cardimg" id="cardimg" alt="Card do seu orçamento para compartilhar">
-      <div class="btnrow">
-        <button class="btn" id="dl">Baixar imagem</button>
+      <div class="cards">
+        <figure><img class="cardimg story" id="storyimg" alt="Imagem vertical do seu orçamento para Stories e TikTok"><figcaption>Stories e TikTok · 9:16</figcaption></figure>
+        <figure><img class="cardimg feed" id="cardimg" alt="Imagem do seu orçamento para o feed"><figcaption>Feed · 4:5</figcaption></figure>
+      </div>
+      <button class="btn cobalt wide" id="storyShare">Postar nos Stories ou no TikTok</button>
+      <p class="storymsg" id="storymsg" hidden></p>
+      <div class="btnrow" style="margin-top:8px">
+        <button class="btn ghost" id="dl">Baixar imagem do feed</button>
         <button class="btn ghost" id="nativeShare" hidden>Compartilhar</button>
         <a class="btn ghost" id="wa" target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn ghost" id="xpost" target="_blank" rel="noopener">X</a>
@@ -304,12 +353,12 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
       <li>Valor de cada linha: dotação inicial da LOA 2026 por ação orçamentária, <a href="https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa" target="_blank" rel="noopener">Portal da Transparência</a> (base baixada em 28/10/2026).</li>
       <li>Total de despesas primárias da LOA 2026 sancionada (R$ 2.625,3 bi) e emendas parlamentares: <a href="https://www12.senado.leg.br/ifi/pdf/raf108_jan2026.pdf/@@download/file/RAF108_JAN2026.pdf" target="_blank" rel="noopener">IFI/Senado, RAF nº 108</a>, tabelas 7 e 8.</li>
       <li>Meta fiscal, PIB, juros e famílias no Bolsa Família: <a href="https://static.poder360.com.br/2025/08/leia-integra-orcamento-apresentacao-29ago2025.pdf" target="_blank" rel="noopener">MPO, apresentação do PLOA 2026</a>.</li>
-      <li>Governos anteriores: <a href="https://www.tesourotransparente.gov.br/ckan/dataset/resultado-do-tesouro-nacional" target="_blank" rel="noopener">Tesouro Nacional, Resultado do Tesouro Nacional, série histórica</a> (julho/2026).</li>
-      <li>Gastos tributários de 2026 (R$ 612,8 bi): demonstrativo do PLOA 2026, via <a href="https://monitormercantil.com.br/governo-e-mercado-divergem-em-numeros-da-economia-aponta-nota-tecnica/" target="_blank" rel="noopener">Monitor Mercantil</a>. Dívida bruta de 79,0% do PIB no fim de 2025: IFI, RAF nº 108.</li>
+      <li>Isenções fiscais (R$ 612,8 bi) e cada item: <a href="https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/relatorios/renuncia/gastos-tributarios-ploa" target="_blank" rel="noopener">Receita Federal, Demonstrativo dos Gastos Tributários do PLOA 2026</a>, quadro X.</li>
+      <li>Governos anteriores: <a href="https://www.tesourotransparente.gov.br/ckan/dataset/resultado-do-tesouro-nacional" target="_blank" rel="noopener">Tesouro Nacional, Resultado do Tesouro Nacional, série histórica</a> (julho/2026). Dívida bruta de 79,0% do PIB no fim de 2025: IFI, RAF nº 108.</li>
     </ul>
     <h4>Como o simulador calcula</h4>
-    <p>As linhas do Executivo somam as ações do orçamento de 2026 por área, sem salários (que ficam em Servidores), sem empréstimos e sem repasses automáticos a estados e municípios. A linha dos outros Poderes é a diferença entre o total da LOA (R$ 2.625,3 bi, menos R$ 19,9 bi que o governo paga a si mesmo como contribuição previdenciária) e o Executivo. As emendas aparecem em linha própria: R$ 7 bi já vêm identificados como transferências especiais, metade das emendas individuais sai da saúde, como manda a Constituição, e o resto sai proporcionalmente de saúde, educação, obras e demais áreas. Essa divisão das emendas é uma estimativa.</p>
-    <p>O resultado primário parte da meta oficial (superávit de R$ 34,3 bi, 0,25% do PIB) e soma suas mudanças. A meta tem tolerância de 0,25 ponto do PIB para cima ou para baixo. O limite do arcabouço fiscal é o orçamento real: gastar mais do que ele, mesmo com receita nova, estoura o limite. Cortar isenções rende cerca de um terço do valor nominal porque parte delas é constitucional (Simples, Zona Franca). Dívida: juros implícitos de 11,5% em 2026 caindo para 9% em 2029, PIB nominal crescendo 6,2% ao ano.</p>
+    <p>As linhas do Executivo somam as ações do orçamento de 2026 por área, sem salários (que ficam em Servidores), sem empréstimos e sem repasses automáticos a estados e municípios. A linha dos outros Poderes é a diferença entre o total da LOA (R$ 2.625,3 bi, menos R$ 19,9 bi que o governo paga a si mesmo como contribuição previdenciária) e o Executivo. As emendas aparecem em linha própria: R$ 7 bi já vêm identificados como transferências especiais, metade das emendas individuais sai da saúde, como manda a Constituição, e o resto sai proporcionalmente de saúde, educação, obras e das áreas menores (assistência, agricultura, cultura, administração). Essa divisão das emendas é uma estimativa.</p>
+    <p>O resultado primário parte da meta oficial (superávit de R$ 34,3 bi, 0,25% do PIB) e soma suas mudanças. A meta tem tolerância de 0,25 ponto do PIB para cima ou para baixo. O limite do arcabouço fiscal é o orçamento real: gastar mais do que ele, mesmo com receita nova, estoura o limite. Cortar uma isenção rende 70% do valor dela, porque empresas e pessoas mudam de comportamento quando passam a pagar o imposto. Dívida: juros implícitos de 11,5% em 2026 caindo para 9% em 2029, PIB nominal crescendo 6,2% ao ano.</p>
     <div class="sitelinks">
       <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
       <span><a href="/">Notícias</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
@@ -317,7 +366,7 @@ svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
   </div>
 </footer>
 
-<div class="dock" id="dock"></div>
+<div class="dock" id="dock" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -325,15 +374,18 @@ const PIB = 13826.3;          // PIB nominal 2026, R$ bi (PLOA 2026)
 const RL = 2590.6;            // receita líquida 2026, R$ bi (PLOA + reestimativa do Congresso)
 const META = 34.3;            // meta de resultado primário 2026, R$ bi
 const TOL = 0.0025 * PIB;     // banda de tolerância da meta
-const GT = 612.8;             // gastos tributários 2026, R$ bi
+const YIELD = 0.7;            // share of a removed tax break that turns into revenue
 const POP = 213.4;            // população, milhões
 const SHARE_BASE = /thewatermouse\.com$/.test(location.hostname) ? location.href.split('#')[0] : 'https://media.thewatermouse.com/orcamento/';
 
-const fmtBi = v => 'R$ ' + (Math.abs(v) >= 1000 ? (v/1000).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' tri' : v.toLocaleString('pt-BR',{minimumFractionDigits:v<20?1:0,maximumFractionDigits:1}) + ' bi');
-const sgn = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + fmtBi(Math.abs(v)).replace('R$ ','R$ ');
-const pct = (v,d=1) => v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}) + '%';
+const fmtNum = (v,d=1) => v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtBi = v => 'R$ ' + (Math.abs(v) >= 1000 ? fmtNum(v/1000,2) + ' tri' : v.toLocaleString('pt-BR',{minimumFractionDigits:v<20?1:0,maximumFractionDigits:1}) + ' bi');
+const sgn = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + fmtBi(Math.abs(v));
+const pct = (v,d=1) => fmtNum(v,d) + '%';
+const parseNum = s => { s = String(s).trim().replace(/\s|R\$|%|bi/gi,'').replace('−','-'); if(s.includes(',')) s = s.replace(/\./g,'').replace(',','.'); const n = parseFloat(s); return isFinite(n) ? n : null; };
 
 // kind: locked | pec | lei | null  (what it takes to go below `floor`)
+// sub: id of an expandable sub-group the line belongs to
 const AREAS = [
  {id:'prev', g:0, name:'Previdência (INSS)', base:1073.7, lo:950, hi:1250, step:1, floor:1073.7, kind:'pec',
   note:'Aposentadorias e pensões de cerca de 40 milhões de pessoas. O valor segue regras da Constituição e o salário mínimo.',
@@ -341,9 +393,9 @@ const AREAS = [
  {id:'pess', g:0, name:'Servidores do Executivo', base:339.7, lo:300, hi:420, step:1, floor:339.7, kind:'pec',
   note:'Salários, aposentadorias e pensões de servidores civis e militares do governo federal. Salário de servidor não pode ser reduzido.',
   imp:v=>v>339.7?'Folga para reajustes e concursos':v<339.7?'Exige congelar salários e cortar quadros':'Folha atual'},
- {id:'bpc', g:0, name:'BPC (idosos e pessoas com deficiência)', base:123.2, lo:90, hi:190, step:1, floor:123.2, kind:'pec',
-  note:'Um salário mínimo por mês para idosos e pessoas com deficiência de baixa renda. Garantido pela Constituição.',
-  imp:v=>`≈ ${(v/123.2*6.6).toLocaleString('pt-BR',{maximumFractionDigits:1})} mi de beneficiários no valor atual`},
+ {id:'bpc', g:0, name:'BPC: benefício a idosos e pessoas com deficiência', base:123.2, lo:90, hi:190, step:1, floor:123.2, kind:'pec',
+  note:'Benefício de Prestação Continuada. Paga um salário mínimo por mês a idosos com 65 anos ou mais e a pessoas com deficiência, de famílias de baixa renda, mesmo que nunca tenham contribuído para o INSS. Garantido pela Constituição.',
+  imp:v=>`≈ ${fmtNum(v/123.2*6.6)} mi de beneficiários no valor atual`},
  {id:'abono', g:0, name:'Abono salarial e seguro-desemprego', base:97.0, lo:50, hi:130, step:1, floor:97.0, kind:'pec',
   note:'Seguro-desemprego (R$ 63,4 bi) e abono do PIS/Pasep (R$ 33,6 bi). O abono está na Constituição; mudar quem recebe exige emenda.', imp:null},
  {id:'poderes', g:0, name:'Congresso, Judiciário e Ministério Público', base:93.0, lo:70, hi:120, step:0.5, floor:93.0, kind:'pec',
@@ -361,7 +413,7 @@ const AREAS = [
   imp:v=>`R$ ${Math.round(v*1e3/POP).toLocaleString('pt-BR')} por habitante/ano`},
  {id:'bf', g:1, name:'Bolsa Família', base:158.6, lo:0, hi:260, step:1, floor:158.6, kind:'lei',
   note:'19,9 milhões de famílias em 2026. Cortar exige mudar a lei do programa.',
-  imp:v=>`≈ ${(19.9*v/158.6).toLocaleString('pt-BR',{maximumFractionDigits:1})} mi de famílias no valor atual`},
+  imp:v=>`≈ ${fmtNum(19.9*v/158.6)} mi de famílias no valor atual`},
  {id:'infra', g:1, name:'Obras e infraestrutura', base:32.7, lo:10, hi:150, step:1, floor:32.7, kind:'lei',
   note:'Rodovias, portos, saneamento, mobilidade urbana e Minha Casa Minha Vida. O arcabouço fiscal fixa um piso de investimento.',
   imp:v=>`R$ ${Math.round(v*1e3/POP).toLocaleString('pt-BR')} por habitante/ano`},
@@ -372,26 +424,73 @@ const AREAS = [
   note:'Juros mais baixos para o agro, Pronaf, seguro rural e conta de energia, pagos pelo Tesouro.', imp:null},
  {id:'seg', g:2, name:'Segurança pública', base:7.5, lo:0, hi:40, step:0.5, floor:0, kind:null,
   note:'Polícia Federal, PRF, Força Nacional e Fundo Nacional de Segurança Pública, sem salários.',
-  imp:v=>v>7.5?`${(v/7.5).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
+  imp:v=>v>7.5?`${fmtNum(v/7.5)}× o orçamento atual`:null},
  {id:'def', g:2, name:'Defesa', base:28.2, lo:0, hi:60, step:0.5, floor:0, kind:null,
   note:'Equipamentos, operação e custeio das Forças Armadas. Salários e aposentadorias de militares estão em Servidores.', imp:null},
  {id:'ct', g:2, name:'Ciência e tecnologia', base:9.5, lo:0, hi:40, step:0.5, floor:0, kind:null,
   note:'FNDCT, bolsas do CNPq e institutos de pesquisa (sem empréstimos a empresas).',
-  imp:v=>v>9.5?`${(v/9.5).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
+  imp:v=>v>9.5?`${fmtNum(v/9.5)}× o orçamento atual`:null},
  {id:'amb', g:2, name:'Meio ambiente', base:4.8, lo:0, hi:20, step:0.5, floor:0, kind:null,
   note:'Ibama, ICMBio, fiscalização do desmatamento e combate a incêndios (sem os empréstimos do Fundo Clima).',
-  imp:v=>v>4.8?`${(v/4.8).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
- {id:'demais', g:2, name:'Demais áreas do governo', base:73.8, lo:40, hi:120, step:0.5, floor:50, kind:'lei',
-  note:'Agricultura, assistência social, cultura, esporte, auxílio gás, fundo eleitoral e a administração dos ministérios. Abaixo de R$ 50 bi, só mudando leis.', imp:null},
+  imp:v=>v>4.8?`${fmtNum(v/4.8)}× o orçamento atual`:null},
+
+ {id:'d_adm', g:2, sub:'demais', name:'Administração dos ministérios', base:16.2, lo:0, hi:40, step:0.5, floor:0, kind:null,
+  note:'Custeio, sistemas, prédios, IBGE e censos, atendimento do INSS, Advocacia-Geral da União.', imp:null},
+ {id:'d_res', g:2, sub:'demais', name:'Reserva para imprevistos', base:13.2, lo:0, hi:40, step:0.5, floor:0, kind:null,
+  note:'Dinheiro guardado sem destino definido, para cobrir gastos que surgem ao longo do ano.', imp:null},
+ {id:'d_enc', g:2, sub:'demais', name:'Outras obrigações da União', base:10.0, lo:5, hi:20, step:0.5, floor:10.0, kind:'lei',
+  note:'Garantias de financiamentos, indenizações previstas em lei, pagamentos a bancos que operam programas federais.', imp:null},
+ {id:'d_assist', g:2, sub:'demais', name:'Assistência social (fora Bolsa Família e BPC)', base:6.4, lo:0, hi:25, step:0.5, floor:0, kind:null,
+  note:'Rede de CRAS e CREAS, compra de alimentos da agricultura familiar, apoio a estados e municípios.', imp:null},
+ {id:'d_fefc', g:2, sub:'demais', name:'Fundo eleitoral', base:5.0, lo:0, hi:10, step:0.1, floor:5.0, kind:'lei',
+  note:'Dinheiro público para campanhas de partidos e candidatos. O valor é definido em lei a cada eleição.', imp:null},
+ {id:'d_agro', g:2, sub:'demais', name:'Agricultura e reforma agrária', base:4.9, lo:0, hi:20, step:0.1, floor:0, kind:null,
+  note:'Embrapa, defesa agropecuária, Incra e assentamentos (sem os subsídios do Plano Safra).', imp:null},
+ {id:'d_eco', g:2, sub:'demais', name:'Turismo, indústria, comércio e comunicações', base:4.9, lo:0, hi:20, step:0.1, floor:0, kind:null,
+  note:'Embratur, apoio à indústria e ao comércio exterior, telecomunicações e energia.', imp:null},
+ {id:'d_gas', g:2, sub:'demais', name:'Auxílio Gás', base:4.7, lo:0, hi:15, step:0.1, floor:0, kind:null,
+  note:'Ajuda para famílias de baixa renda comprarem botijão de gás.', imp:v=>v>0?`≈ ${fmtNum(v/4.7*5.1)} mi de famílias, se o valor por família não mudar`:null},
+ {id:'d_cult', g:2, sub:'demais', name:'Cultura e esporte', base:3.2, lo:0, hi:15, step:0.1, floor:0, kind:null,
+  note:'Fomento à cultura, patrimônio histórico, Lei Rouanet (só a parte orçamentária) e programas de esporte.', imp:null},
+ {id:'d_ext', g:2, sub:'demais', name:'Relações exteriores', base:3.2, lo:0, hi:10, step:0.1, floor:0, kind:null,
+  note:'Embaixadas, consulados e contribuições a organismos internacionais.', imp:null},
+ {id:'d_dh', g:2, sub:'demais', name:'Direitos humanos e cidadania', base:2.1, lo:0, hi:10, step:0.1, floor:0, kind:null,
+  note:'Programas para mulheres, igualdade racial, povos indígenas, pessoas idosas e com deficiência.', imp:null},
 ];
+const SUBS = {
+  demais: {name:'Demais áreas do governo', note:'Onze áreas menores que, somadas, chegam a R$ 73,8 bi. Abra para mexer em cada uma.'},
+  isen: {name:'Cortar isenções fiscais', note:'O governo deixa de arrecadar R$ 612,8 bi por ano com isenções e regimes especiais. Escolha quanto cortar de cada uma (0% = mantém, 100% = acaba).'},
+};
+// Tax expenditures 2026 (Receita Federal, DGT PLOA 2026, quadro X). Value = % of the break removed.
 const LEVERS = [
- {id:'isen', name:'Cortar isenções fiscais', lo:0, hi:30, step:1, unit:'%',
-  note:'O governo deixa de arrecadar R$ 612,8 bi por ano com isenções e regimes especiais.',
-  rev:v=>v/100*GT*0.32},
- {id:'carga', name:'Mudar a carga de impostos', lo:-5, hi:5, step:0.5, unit:'%',
-  note:'Aumenta ou reduz toda a arrecadação federal em uma porcentagem.',
-  rev:v=>v/100*RL},
+ {id:'t_simples', sub:'isen', name:'Simples Nacional', gt:134.3, kind:'pec',
+  note:'Imposto menor e simplificado para pequenas empresas, com faturamento de até R$ 4,8 mi por ano. O tratamento diferenciado está na Constituição.'},
+ {id:'t_agro', sub:'isen', name:'Agricultura e cesta básica', gt:79.3, kind:'lei',
+  note:'Alimentos da cesta básica, adubos, sementes, defensivos e agroindústria pagam menos imposto.'},
+ {id:'t_irisento', sub:'isen', name:'Rendimentos isentos do IR', gt:63.2, kind:'lei',
+  note:'Rendas que não pagam Imposto de Renda, como a parcela isenta de aposentados com mais de 65 anos, aposentadorias por doença grave e indenizações.'},
+ {id:'t_entidades', sub:'isen', name:'Igrejas, filantrópicas e entidades sem fins lucrativos', gt:55.9, kind:'pec',
+  note:'Templos, partidos, sindicatos, escolas e hospitais filantrópicos. A maior parte é imunidade prevista na Constituição.'},
+ {id:'t_deducoes', sub:'isen', name:'Deduções do IR (saúde, educação, dependentes)', gt:41.7, kind:'lei',
+  note:'O que a pessoa abate do Imposto de Renda com médico, escola e dependentes.'},
+ {id:'t_lci', sub:'isen', name:'Poupança, LCI e LCA', gt:36.9, kind:'lei',
+  note:'Aplicações isentas de IR que financiam imóveis e o agronegócio.'},
+ {id:'t_zfm', sub:'isen', name:'Zona Franca de Manaus', gt:36.0, kind:'pec',
+  note:'Incentivos para indústrias em Manaus e áreas de livre comércio. Garantidos pela Constituição até 2073.'},
+ {id:'t_regional', sub:'isen', name:'Incentivos ao Norte e Nordeste (Sudam e Sudene)', gt:27.1, kind:'lei',
+  note:'Desconto no Imposto de Renda de empresas que investem nessas regiões.'},
+ {id:'t_trab', sub:'isen', name:'Benefícios do trabalhador', gt:24.3, kind:'lei',
+  note:'Benefícios pagos a empregados, como alimentação, que têm tratamento tributário especial.'},
+ {id:'t_saude', sub:'isen', name:'Remédios e equipamentos médicos', gt:22.4, kind:'lei',
+  note:'Medicamentos, produtos farmacêuticos e equipamentos médicos com imposto reduzido.'},
+ {id:'t_mei', sub:'isen', name:'MEI', gt:11.3, kind:'lei',
+  note:'Microempreendedor individual: paga um valor fixo por mês em vez dos impostos normais.'},
+ {id:'t_outras', sub:'isen', name:'Outras isenções', gt:80.4, kind:'lei',
+  note:'Mais de 50 benefícios menores: informática, Prouni, livros, cultura, desoneração da folha, carros para pessoas com deficiência, entre outros.'},
+ {id:'carga', name:'Mudar a carga de impostos', lo:-5, hi:5, step:0.5,
+  note:'Aumenta ou reduz toda a arrecadação federal em uma porcentagem.'},
 ];
+LEVERS.forEach(x=>{ if(x.sub==='isen'){ x.lo=0; x.hi=100; x.step=5; x.unit='% cortado'; x.rev=v=>v/100*x.gt*YIELD; } else { x.unit='%'; x.rev=v=>v/100*RL; } });
 const GROUPS = [
  ['Travado pela lei','Gasto definido por regras da Constituição, leis ou decisões judiciais. Dá para mexer, mas abaixo do valor atual você precisa do Congresso.'],
  ['Pisos e programas','Áreas com piso obrigatório ou programas criados por lei. Acima do piso, a decisão é sua.'],
@@ -425,9 +524,9 @@ let friend = null;
 function fresh(){ const v={}; AREAS.forEach(a=>v[a.id]=a.base); const l={}; LEVERS.forEach(x=>l[x.id]=0); return {v,l}; }
 
 // ---------- encoding (hash-safe: digits . - o) ----------
-function encode(s){ return 'o1.' + AREAS.map(a=>Math.round((s.v[a.id]-a.base)*10)).concat(LEVERS.map(x=>Math.round(s.l[x.id]*10))).join('.'); }
+function encode(s){ return 'o2.' + AREAS.map(a=>Math.round((s.v[a.id]-a.base)*10)).concat(LEVERS.map(x=>Math.round(s.l[x.id]*10))).join('.'); }
 function decode(tok){
-  const m = /o1\.([-0-9.]+)/.exec(tok||''); if(!m) return null;
+  const m = /o2\.([-0-9.]+)/.exec(tok||''); if(!m) return null;
   const n = m[1].split('.').map(Number); if(n.length !== AREAS.length + LEVERS.length || n.some(isNaN)) return null;
   const s = fresh();
   AREAS.forEach((a,i)=>s.v[a.id]=clamp(a.base + n[i]/10, a.lo, a.hi));
@@ -444,6 +543,7 @@ function calc(s){
   const prim = META - dS + dR;
   const reforms = {pec:0, lei:0};
   AREAS.forEach(a=>{ if(a.kind && a.kind!=='locked' && s.v[a.id] < a.floor - 0.05) reforms[a.kind]++; });
+  LEVERS.forEach(x=>{ if(x.kind && s.l[x.id] > 0) reforms[x.kind]++; });
   const debt = debtPath((dR - dS)/PIB*100);
   const d = id => s.v[id] - AREAS.find(a=>a.id===id).base;
   // Map the simulator lines onto the Tesouro's categories so they compare with GOVS:
@@ -486,41 +586,70 @@ function nearestGov(c){
 
 // ---------- render: lines ----------
 const linesEl = document.getElementById('lines');
+function trackHTML(id,lo,hi,base,step,label){
+  const bp=(base-lo)/(hi-lo||1)*100;
+  return `<div class="trackwrap"><span class="basemark" style="left:calc(${bp}% + ${(0.5-bp/100)*22}px - 1px)"></span>
+    <input type="range" id="R-${id}" min="${lo}" max="${hi}" step="${step}" value="${base}" aria-label="${label}"></div>`;
+}
+function areaHTML(a){
+  const locked = a.kind==='locked';
+  return `<div class="line" id="L-${a.id}">
+    <div class="nm">${a.name} <span class="chipslot"></span></div>
+    <div class="nums">${locked
+      ? `<span class="field locked"><span>R$</span><input id="N-${a.id}" disabled aria-label="${a.name} em R$ bilhões"><span>bi</span></span>`
+      : `<label class="field"><span>R$</span><input id="N-${a.id}" inputmode="decimal" aria-label="${a.name} em R$ bilhões"><span>bi</span></label>
+         <label class="field pct"><input id="P-${a.id}" inputmode="decimal" aria-label="${a.name}, variação em %"><span>%</span></label>`}</div>
+    ${locked ? `<div class="ctl"><span class="lock">Valor fixo · não editável</span></div>` :
+    `<div class="ctl"><button class="stepbtn" data-id="${a.id}" data-dir="-1" aria-label="Diminuir ${a.name}">−</button>
+      ${trackHTML(a.id,a.lo,a.hi,a.base,a.step,a.name)}
+      <button class="stepbtn" data-id="${a.id}" data-dir="1" aria-label="Aumentar ${a.name}">+</button></div>`}
+    <p class="note">${a.note} <span class="imp"></span></p>
+  </div>`;
+}
+function leverHTML(x){
+  const isT = x.sub==='isen';
+  return `<div class="line" id="L-${x.id}">
+    <div class="nm">${x.name}${isT?` <span class="mono" style="font-weight:400;font-size:13px;color:var(--muted)">${fmtBi(x.gt)}/ano</span>`:''} <span class="chipslot"></span></div>
+    <div class="nums"><label class="field pct"><input id="P-${x.id}" inputmode="decimal" aria-label="${x.name}, ${isT?'porcentagem cortada':'variação em %'}"><span>${isT?'% cortado':'%'}</span></label>
+      <span class="rev"></span></div>
+    <div class="ctl"><button class="stepbtn" data-lev="${x.id}" data-dir="-1" aria-label="Diminuir">−</button>
+      ${trackHTML(x.id,x.lo,x.hi,0,isT?1:x.step,x.name)}
+      <button class="stepbtn" data-lev="${x.id}" data-dir="1" aria-label="Aumentar">+</button></div>
+    <p class="note">${x.note}</p></div>`;
+}
+function subHTML(key, inner){
+  const S=SUBS[key];
+  return `<details class="sub" id="S-${key}"><summary><span class="nm">${S.name}</span><span class="tot" id="ST-${key}"></span><p class="note">${S.note}</p></summary><div class="kids">${inner}</div></details>`;
+}
 function buildLines(){
   let html='';
   GROUPS.forEach((g,gi)=>{
     html += `<section class="group"><div class="grouphead"><h2>${g[0]}</h2><span class="label" id="gt${gi}"></span></div><p class="gsub">${g[1]}</p>`;
+    const done = new Set();
     AREAS.filter(a=>a.g===gi).forEach(a=>{
-      const locked = a.kind==='locked';
-      const bp = (a.base-a.lo)/(a.hi-a.lo||1)*100;
-      html += `<div class="line" id="L-${a.id}">
-        <div class="nm">${a.name} <span class="chipslot"></span></div>
-        <div class="val"><b class="v"></b> <span class="delta"></span></div>
-        ${locked ? `<div class="ctl"><span class="lock">Valor fixo · não editável</span></div>` :
-        `<div class="ctl"><button class="stepbtn" data-id="${a.id}" data-dir="-1" aria-label="Diminuir ${a.name}">−</button>
-          <div class="trackwrap"><span class="basemark" style="left:calc(${bp}% + ${(0.5-bp/100)*20}px - 1px)"></span>
-          <input type="range" id="R-${a.id}" min="${a.lo}" max="${a.hi}" step="${a.step}" value="${a.base}" aria-label="${a.name}"></div>
-          <button class="stepbtn" data-id="${a.id}" data-dir="1" aria-label="Aumentar ${a.name}">+</button></div>`}
-        <p class="note">${a.note} <span class="imp"></span></p>
-      </div>`;
+      if(!a.sub){ html += areaHTML(a); return; }
+      if(done.has(a.sub)) return; done.add(a.sub);
+      html += subHTML(a.sub, AREAS.filter(z=>z.sub===a.sub).map(areaHTML).join(''));
     });
     html += `</section>`;
   });
-  html += `<section class="group levers"><div class="grouphead"><h2>Do lado da receita</h2></div><p class="gsub">Gastar mais sem arrecadar mais aumenta a dívida. Aqui você mexe na arrecadação.</p>`;
-  LEVERS.forEach(x=>{
-    html += `<div class="line" id="L-${x.id}">
-      <div class="nm">${x.name}</div><div class="val"><b class="v"></b> <span class="delta"></span></div>
-      <div class="ctl"><button class="stepbtn" data-lev="${x.id}" data-dir="-1" aria-label="Diminuir">−</button>
-      <div class="trackwrap"><span class="basemark" style="left:calc(${(0-x.lo)/(x.hi-x.lo)*100}% + ${(0.5-(0-x.lo)/(x.hi-x.lo))*20}px - 1px)"></span>
-      <input type="range" id="R-${x.id}" min="${x.lo}" max="${x.hi}" step="${x.step}" value="0" aria-label="${x.name}"></div>
-      <button class="stepbtn" data-lev="${x.id}" data-dir="1" aria-label="Aumentar">+</button></div>
-      <p class="note">${x.note}</p></div>`;
-  });
+  html += `<section class="group levers"><div class="grouphead"><h2>Do lado da receita</h2><span class="label" id="gtrev"></span></div><p class="gsub">Gastar mais sem arrecadar mais aumenta a dívida. Aqui você mexe na arrecadação.</p>`;
+  html += subHTML('isen', LEVERS.filter(x=>x.sub==='isen').map(leverHTML).join(''));
+  LEVERS.filter(x=>!x.sub).forEach(x=>html+=leverHTML(x));
   html += `</section>`;
   linesEl.innerHTML = html;
 
-  AREAS.forEach(a=>{ const r=document.getElementById('R-'+a.id); if(r) r.addEventListener('input',()=>{state.v[a.id]=+r.value; update();}); });
-  LEVERS.forEach(x=>{ const r=document.getElementById('R-'+x.id); r.addEventListener('input',()=>{state.l[x.id]=+r.value; update();}); });
+  AREAS.forEach(a=>{
+    const r=document.getElementById('R-'+a.id); if(!r) return;
+    r.addEventListener('input',()=>{state.v[a.id]=+r.value; update();});
+    bindField('N-'+a.id, n=>{ state.v[a.id]=clamp(n,a.lo,a.hi); });
+    bindField('P-'+a.id, n=>{ state.v[a.id]=clamp(Math.round(a.base*(1+n/100)*10)/10,a.lo,a.hi); });
+  });
+  LEVERS.forEach(x=>{
+    const r=document.getElementById('R-'+x.id);
+    r.addEventListener('input',()=>{state.l[x.id]=+r.value; update();});
+    bindField('P-'+x.id, n=>{ state.l[x.id]=clamp(n,x.lo,x.hi); });
+  });
   linesEl.addEventListener('click',e=>{
     const b=e.target.closest('.stepbtn'); if(!b) return;
     const dir=+b.dataset.dir;
@@ -529,14 +658,23 @@ function buildLines(){
     update();
   });
 }
+// Typed values update the model live; the field itself is only rewritten when it loses focus.
+function bindField(id, apply){
+  const el=document.getElementById(id); if(!el) return;
+  el.addEventListener('input',()=>{ const n=parseNum(el.value); if(n===null) return; apply(n); update(); });
+  el.addEventListener('focus',()=>el.select());
+  el.addEventListener('keydown',e=>{ if(e.key==='Enter') el.blur(); });
+  el.addEventListener('blur',()=>update());
+}
+function setField(id, text){ const el=document.getElementById(id); if(el && document.activeElement!==el) el.value=text; }
+const signed = (v,d=0) => (v>0.05?'+':'') + fmtNum(v, Math.abs(v)<10 && Math.round(v)!==v ? 1 : d);
 
 function renderLines(){
   AREAS.forEach(a=>{
-    const el=document.getElementById('L-'+a.id), v=state.v[a.id], d=v-a.base;
-    el.querySelector('.v').textContent = fmtBi(v);
-    const de = el.querySelector('.delta');
-    de.textContent = Math.abs(d)<0.05 ? '' : (d>0?'+':'−') + pct(Math.abs(d)/a.base*100,0);
-    de.className = 'delta ' + (d>0?'up':'down');
+    const el=document.getElementById('L-'+a.id), v=state.v[a.id], d=v-a.base, dp=d/a.base*100;
+    setField('N-'+a.id, fmtNum(v));
+    setField('P-'+a.id, Math.abs(dp)<0.05?'0':signed(dp));
+    const pf=document.getElementById('P-'+a.id); if(pf) pf.parentElement.className='field pct'+(dp>0.05?' up':dp<-0.05?' down':'');
     const r=document.getElementById('R-'+a.id);
     if(r){ r.value=v; r.style.setProperty('--fl', ((v-a.lo)/(a.hi-a.lo)*100)+'%'); }
     let chip='';
@@ -548,14 +686,22 @@ function renderLines(){
   });
   LEVERS.forEach(x=>{
     const el=document.getElementById('L-'+x.id), v=state.l[x.id], rv=x.rev(v);
-    el.querySelector('.v').textContent = (v>0?'+':v<0?'−':'') + Math.abs(v).toLocaleString('pt-BR') + x.unit;
-    const de=el.querySelector('.delta'); de.textContent = Math.abs(rv)<0.05?'':sgn(rv)+'/ano'; de.className='delta '+(rv>0?'up':'down');
+    setField('P-'+x.id, x.sub ? fmtNum(v,0) : (Math.abs(v)<0.05?'0':signed(v,1)));
+    const pf=document.getElementById('P-'+x.id); pf.parentElement.className='field pct'+(rv>0.05?' up':rv<-0.05?' down':'');
+    const re=el.querySelector('.rev'); re.textContent = Math.abs(rv)<0.05?'':sgn(rv)+'/ano'; re.className='rev '+(rv>0?'up':'down');
     const r=document.getElementById('R-'+x.id); r.value=v; r.style.setProperty('--fl', ((v-x.lo)/(x.hi-x.lo)*100)+'%');
+    el.querySelector('.chipslot').innerHTML = x.kind && v>0 ? (x.kind==='pec' ? '<span class="chip k-pec">Exige PEC</span>' : '<span class="chip k-lei">Exige lei</span>') : '';
   });
   GROUPS.forEach((g,gi)=>{
     const t=AREAS.filter(a=>a.g===gi).reduce((s,a)=>s+state.v[a.id],0);
     document.getElementById('gt'+gi).textContent = fmtBi(t) + ' · ' + pct(t/BASE_TOTAL*100,0) + ' do total real';
   });
+  const dem = AREAS.filter(a=>a.sub==='demais'), dv = dem.reduce((s,a)=>s+state.v[a.id],0), db = dem.reduce((s,a)=>s+a.base,0);
+  document.getElementById('ST-demais').innerHTML = `${fmtBi(dv)}${Math.abs(dv-db)>0.05?` <span class="${dv>db?'up':'down'}" style="font-size:13px">${sgn(dv-db)}</span>`:''}`;
+  const isr = LEVERS.filter(x=>x.sub==='isen').reduce((s,x)=>s+x.rev(state.l[x.id]),0);
+  document.getElementById('ST-isen').innerHTML = isr>0.05 ? `<span class="up">${sgn(isr)}/ano</span>` : fmtBi(612.8);
+  const tr = LEVERS.reduce((s,x)=>s+x.rev(state.l[x.id]),0);
+  document.getElementById('gtrev').textContent = Math.abs(tr)<0.05 ? 'sem mudança na receita' : sgn(tr)+' por ano';
 }
 
 function renderSplit(){
@@ -572,30 +718,34 @@ function renderSplit(){
     `<span><i style="background:var(--locked)"></i>Travado pela lei: ${pct(fixed/T*100,0)}</span><span><i style="background:var(--floor)"></i>Pisos e programas: ${pct(floor/T*100,0)}</span><span><i style="background:var(--free)"></i><strong style="color:var(--ink)">Escolha livre, sem mudar lei: ${pct(free/T*100,1)} (${fmtBi(free)})</strong></span>`;
 }
 
+function status(r){
+  const meta = r.prim < META - TOL ? ['bad','Descumpre a meta'] : r.prim > META + TOL ? ['good','Acima da meta'] : ['good','Cumpre a meta'];
+  const teto = r.dS > 0.5 ? ['bad','Estoura o limite'] : ['good','Dentro do limite'];
+  const d30 = r.debt[4], b30 = BASEDEBT[4];
+  const debt = d30 > b30 + 1 ? ['bad','Piora'] : d30 < b30 - 1 ? ['good','Melhora'] : ['warn','Igual ao real'];
+  const ref = r.reforms.pec + r.reforms.lei;
+  const cong = ref===0 ? ['good','Nenhuma'] : [r.reforms.pec?'bad':'warn', `${ref} mudança${ref>1?'s':''}`];
+  return {meta,teto,debt,cong,d30,b30};
+}
+const pillHTML = p => `<span class="pill ${p[0]}">${p[1]}</span>`;
+
 function renderPanel(r){
   const ak = archetype(state,r), A = ARCH[ak];
   const gov = nearestGov(r.comp);
+  const st = status(r);
   document.getElementById('arche').innerHTML = `<div class="tag">Seu perfil de presidente</div><div class="name">${A[0]}</div><p>${A[1]} Seu orçamento se parece mais com o de <strong style="color:var(--ink)">${gov.n} (${gov.y})</strong>.</p>`;
-
   const primPct = r.prim/PIB*100;
-  let metaPill = r.prim < META - TOL ? '<span class="pill bad">Descumpre a meta</span>' : r.prim > META + TOL ? '<span class="pill good">Acima da meta</span>' : '<span class="pill good">Cumpre a meta</span>';
-  const over = r.dS;
-  const tetoPill = over > 0.5 ? '<span class="pill bad">Estoura o limite</span>' : '<span class="pill good">Dentro do limite</span>';
-  const ref = r.reforms.pec + r.reforms.lei;
-  const refPill = ref===0 ? '<span class="pill good">Nenhuma</span>' : `<span class="pill ${r.reforms.pec?'bad':'warn'}">${ref} mudança${ref>1?'s':''}</span>`;
-  const d30 = r.debt[4], b30 = BASEDEBT[4];
-  const debtPill = d30 > b30 + 1 ? '<span class="pill bad">Piora</span>' : d30 < b30 - 1 ? '<span class="pill good">Melhora</span>' : '<span class="pill warn">Igual ao real</span>';
   document.getElementById('stats').innerHTML = `
-    <div class="stat"><div class="label">Resultado primário</div><div class="big">${r.prim>=0?'+':'−'}${fmtBi(Math.abs(r.prim)).replace('R$ ','R$ ')}</div><div class="sub">${pct(primPct,2)} do PIB/ano</div>${metaPill}</div>
-    <div class="stat"><div class="label">Teto do arcabouço</div><div class="big">${over>0.5?'+'+fmtBi(over):'OK'}</div><div class="sub">${over>0.5?'acima do limite de gastos':'gasto dentro do limite legal'}</div>${tetoPill}</div>
-    <div class="stat"><div class="label">Dívida em 2030</div><div class="big">${pct(d30,1)}</div><div class="sub">do PIB · real: ${pct(b30,1)}</div>${debtPill}</div>
-    <div class="stat"><div class="label">Precisa do Congresso</div><div class="big">${r.reforms.pec} PEC · ${r.reforms.lei} lei</div><div class="sub">${r.reforms.pec?'emenda constitucional exige 3/5 nas duas Casas':'mudanças de lei: maioria simples'}</div>${refPill}</div>
-    <div class="stat" style="grid-column:1/-1;border-top:1px solid var(--line-soft);padding-top:10px"><div class="label">E os juros?</div><div class="sub">Além disso tudo, o governo paga cerca de <strong style="color:var(--ink)">R$ 644 bi</strong> de juros da dívida em 2026. Você não escolhe esse número: ele depende da dívida e da taxa Selic.</div></div>`;
+    <div class="stat"><div class="label">Resultado primário</div><div class="big">${r.prim>=0?'+':'−'}${fmtBi(Math.abs(r.prim))}</div><div class="sub2">${pct(primPct,2)} do PIB/ano</div>${pillHTML(st.meta)}</div>
+    <div class="stat"><div class="label">Teto do arcabouço</div><div class="big">${r.dS>0.5?'+'+fmtBi(r.dS):'OK'}</div><div class="sub2">${r.dS>0.5?'acima do limite de gastos':'gasto dentro do limite legal'}</div>${pillHTML(st.teto)}</div>
+    <div class="stat"><div class="label">Dívida em 2030</div><div class="big">${pct(st.d30,1)}</div><div class="sub2">do PIB · real: ${pct(st.b30,1)}</div>${pillHTML(st.debt)}</div>
+    <div class="stat"><div class="label">Precisa do Congresso</div><div class="big">${r.reforms.pec} PEC · ${r.reforms.lei} lei</div><div class="sub2">${r.reforms.pec?'emenda constitucional exige 3/5 nas duas Casas':'mudanças de lei: maioria simples'}</div>${pillHTML(st.cong)}</div>
+    <div class="stat" style="grid-column:1/-1;border-top:1px solid var(--line-soft);padding-top:10px"><div class="label">E os juros?</div><div class="sub2">Além disso tudo, o governo paga cerca de <strong style="color:var(--ink)">R$ 644 bi</strong> de juros da dívida em 2026. Você não escolhe esse número: ele depende da dívida e da taxa Selic.</div></div>`;
 
   renderDebt(r.debt);
   renderGov(r.comp, gov);
   renderVs(r);
-  renderDock(r, metaPill, d30);
+  renderDock(r, st, A[0]);
   return {ak, gov};
 }
 
@@ -637,42 +787,44 @@ function renderVs(r){
   let h = `<tr><th>Área</th><th style="text-align:right">Você</th><th style="text-align:right">Amigo</th></tr>`;
   const rows = AREAS.filter(a=>a.kind!=='locked').map(a=>({a, me:state.v[a.id]-a.base, fr:friend.v[a.id]-a.base}))
     .filter(x=>Math.abs(x.me)>0.05||Math.abs(x.fr)>0.05).sort((p,q)=>Math.abs(q.me-q.fr)-Math.abs(p.me-p.fr)).slice(0,8);
-  if(!rows.length) h += `<tr><td colspan="3">Vocês dois deixaram tudo como está.</td></tr>`;
+  if(!rows.length) h += `<tr><td colspan="3">Vocês dois deixaram os gastos como estão.</td></tr>`;
   rows.forEach(x=>{ h += `<tr><td>${x.a.name}</td><td class="n me">${Math.abs(x.me)<0.05?'—':sgn(x.me)}</td><td class="n">${Math.abs(x.fr)<0.05?'—':sgn(x.fr)}</td></tr>`; });
+  h += `<tr class="you"><td>Receita nova</td><td class="n me">${Math.abs(r.dR)<0.05?'—':sgn(r.dR)}</td><td class="n">${Math.abs(fr.dR)<0.05?'—':sgn(fr.dR)}</td></tr>`;
   h += `<tr class="you"><td>Perfil</td><td class="n me">${ARCH[archetype(state,r)][0]}</td><td class="n">${ARCH[archetype(friend,fr)][0]}</td></tr>`;
   h += `<tr class="you"><td>Dívida 2030</td><td class="n me">${pct(r.debt[4])}</td><td class="n">${pct(fr.debt[4])}</td></tr>`;
   document.getElementById('vstable').innerHTML = h;
 }
 
-function renderDock(r, metaPill, d30){
-  document.getElementById('dock').innerHTML =
-    `<div><span>Primário</span><b>${r.prim>=0?'+':'−'}${fmtBi(Math.abs(r.prim))}</b></div>
-     <div><span>Dívida 2030</span><b>${pct(d30)}</b></div>
-     <div><span>Congresso</span><b>${r.reforms.pec} PEC · ${r.reforms.lei} lei</b></div>
-     <a href="#panel">Resultado ↓</a>`;
+function renderDock(r, st, perfil){
+  const cell=(cls,k,v,dot)=>`<div class="c ${cls}"><span class="k">${k}</span><span class="v${cls==='perfil'?' name':''}">${dot?`<i class="dot ${dot}"></i>`:''}${v}</span></div>`;
+  document.getElementById('dock').innerHTML = `<div class="in">
+    ${cell('perfil','Seu perfil',perfil)}
+    ${cell('','Resultado/ano',(r.prim>=0?'+':'−')+fmtBi(Math.abs(r.prim)).replace('R$ ',''),st.meta[0])}
+    ${cell('','Teto',r.dS>0.5?'+'+fmtBi(r.dS).replace('R$ ',''):'OK',st.teto[0])}
+    ${cell('','Dívida 2030',pct(st.d30,0),st.debt[0])}
+    ${cell('','Congresso',`${r.reforms.pec} PEC · ${r.reforms.lei} lei`,st.cong[0])}
+    <a class="go" href="#panel">Ver resultado ↓</a></div>`;
 }
 
-// ---------- share card ----------
-let cardTimer=null, lastCardURL='';
+// ---------- share cards ----------
+let cardTimer=null, feedURL='', storyURL='';
 function topChanges(s){
-  const ch = AREAS.map(a=>({n:a.name, d:s.v[a.id]-a.base})).filter(x=>Math.abs(x.d)>=0.5);
+  const ch = AREAS.map(a=>({n:a.name.replace(/:.*$/,''), d:s.v[a.id]-a.base})).filter(x=>Math.abs(x.d)>=0.5);
   const ups = ch.filter(x=>x.d>0).sort((a,b)=>b.d-a.d).slice(0,3);
   const downs = ch.filter(x=>x.d<0).sort((a,b)=>a.d-b.d).slice(0,3);
   return {ups,downs};
 }
-function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
-async function drawCard(r, meta){
-  try{ await Promise.all(['48px "DM Serif Display"','italic 40px "Instrument Serif"','600 30px "Newsreader"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f))); }catch(e){}
-  const c=document.createElement('canvas'); c.width=1080; c.height=1350; const g=c.getContext('2d');
-  const P='#F8F8F9', I='#0D0D0F', C='#2337FF', M='#55585F', G='#0E7C66', R='#C8322B';
-  g.fillStyle=P; g.fillRect(0,0,1080,1350);
-  g.fillStyle=I; g.fillRect(0,0,1080,14);
-  g.fillStyle=C; g.font='italic 46px "Instrument Serif", Georgia, serif'; g.fillText('Se eu fosse presidente…',72,120);
+async function loadFonts(){ try{ await Promise.all(['48px "DM Serif Display"','italic 40px "Instrument Serif"','600 30px "Newsreader"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f))); }catch(e){} }
+const P='#F8F8F9', I='#0D0D0F', C='#2337FF', M='#55585F', G='#0E7C66', R='#C8322B';
+// Draws the 1080x1350 body of the card at vertical offset oy; `footer` toggles the bottom band.
+function drawBody(g, r, meta, oy, footer){
+  g.fillStyle=C; g.font='italic 46px "Instrument Serif", Georgia, serif'; g.fillText('Se eu fosse presidente…',72,oy+120);
   g.fillStyle=I; g.font='112px "DM Serif Display", Georgia, serif';
-  wrapText(g, ARCH[meta.ak][0], 72, 250, 940, 110);
+  const nm = ARCH[meta.ak][0]; wrapText(g, nm, 72, oy+250, 940, 110);
+  const long = nm.length>16;
   g.fillStyle=M; g.font='34px "Newsreader", Georgia, serif';
-  g.fillText(`Meu orçamento se parece com o de ${meta.gov.n} (${meta.gov.y}).`,72, ARCH[meta.ak][0].length>16?470:370);
-  let y = ARCH[meta.ak][0].length>16?560:460;
+  g.fillText(`Meu orçamento se parece com o de ${meta.gov.n} (${meta.gov.y}).`,72, oy+(long?470:370));
+  let y = oy+(long?560:460);
   const {ups,downs}=topChanges(state);
   const col=(title,arr,x,color,sign)=>{
     g.fillStyle=M; g.font='500 22px "IBM Plex Mono", monospace'; g.fillText(title,x,y);
@@ -689,23 +841,44 @@ async function drawCard(r, meta){
   y += 70+3*92+30;
   g.fillStyle=I; g.fillRect(72,y,936,2);
   const stat=(lab,val,x)=>{ g.fillStyle=M; g.font='500 21px "IBM Plex Mono", monospace'; g.fillText(lab,x,y+52); g.fillStyle=I; g.font='500 40px "IBM Plex Mono", monospace'; g.fillText(val,x,y+104); };
-  const mOk = r.prim >= META - TOL;
-  stat('META FISCAL', mOk?'cumpre':'descumpre', 72);
+  stat('META FISCAL', r.prim >= META - TOL ? 'cumpre' : 'descumpre', 72);
   stat('DÍVIDA 2030', pct(r.debt[4],0)+' PIB', 400);
   stat('PECs', String(r.reforms.pec), 780);
-  g.fillStyle=I; g.fillRect(0,1230,1080,120);
-  g.fillStyle=P; g.font='34px "DM Serif Display", Georgia, serif'; g.fillText('E você, faria o quê?',72,1300);
-  g.font='500 22px "IBM Plex Mono", monospace'; g.textAlign='right'; g.fillText('media.thewatermouse.com',1008,1298); g.textAlign='left';
+  if(footer){
+    g.fillStyle=I; g.fillRect(0,oy+1230,1080,120);
+    g.fillStyle=P; g.font='34px "DM Serif Display", Georgia, serif'; g.fillText('E você, faria o quê?',72,oy+1300);
+    g.font='500 22px "IBM Plex Mono", monospace'; g.textAlign='right'; g.fillText('media.thewatermouse.com',1008,oy+1298); g.textAlign='left';
+  }
+}
+function drawFeed(r, meta){
+  const c=document.createElement('canvas'); c.width=1080; c.height=1350; const g=c.getContext('2d');
+  g.fillStyle=P; g.fillRect(0,0,1080,1350); g.fillStyle=I; g.fillRect(0,0,1080,14);
+  drawBody(g,r,meta,0,true); return c;
+}
+// 9:16 story: top and bottom ~250px stay free of text for the Instagram/TikTok interface.
+function drawStory(r, meta){
+  const c=document.createElement('canvas'); c.width=1080; c.height=1920; const g=c.getContext('2d');
+  g.fillStyle=P; g.fillRect(0,0,1080,1920);
+  g.fillStyle=I; g.fillRect(0,0,1080,14);
+  g.fillStyle=M; g.font='500 24px "IBM Plex Mono", monospace'; g.fillText('WATERMOUSE MEDIA · SIMULADOR',72,250);
+  drawBody(g,r,meta,250,false);
+  g.fillStyle=I; g.fillRect(0,1500,1080,420);
+  g.fillStyle=P; g.font='64px "DM Serif Display", Georgia, serif'; g.fillText('E você, faria o quê?',72,1610);
+  g.fillStyle='#8D98FF'; g.font='500 30px "IBM Plex Mono", monospace'; g.fillText('Monte o seu no link →',72,1675);
+  g.fillStyle=P; g.font='500 28px "IBM Plex Mono", monospace'; g.fillText('media.thewatermouse.com/orcamento',72,1725);
   return c;
 }
 function wrapText(g,t,x,y,w,lh){ const words=t.split(' '); let line=''; for(const wd of words){ const test=line?line+' '+wd:wd; if(g.measureText(test).width>w && line){ g.fillText(line,x,y); line=wd; y+=lh; } else line=test; } g.fillText(line,x,y); }
 function shorten(g,t,w){ if(g.measureText(t).width<=w) return t; while(t.length>4 && g.measureText(t+'…').width>w) t=t.slice(0,-1); return t+'…'; }
+const toBlob = c => new Promise(res=>c.toBlob(res,'image/png'));
 
 function scheduleCard(r,meta){
   clearTimeout(cardTimer);
   cardTimer=setTimeout(async()=>{
-    const c=await drawCard(r,meta);
-    c.toBlob(b=>{ if(!b) return; if(lastCardURL) URL.revokeObjectURL(lastCardURL); lastCardURL=URL.createObjectURL(b); document.getElementById('cardimg').src=lastCardURL; window.__cardBlob=b; },'image/png');
+    await loadFonts();
+    const [fb, sb] = await Promise.all([toBlob(drawFeed(r,meta)), toBlob(drawStory(r,meta))]);
+    if(fb){ if(feedURL) URL.revokeObjectURL(feedURL); feedURL=URL.createObjectURL(fb); document.getElementById('cardimg').src=feedURL; window.__cardBlob=fb; }
+    if(sb){ if(storyURL) URL.revokeObjectURL(storyURL); storyURL=URL.createObjectURL(sb); document.getElementById('storyimg').src=storyURL; window.__storyBlob=sb; }
   },250);
 }
 
@@ -731,6 +904,9 @@ function update(){
   scheduleCard(r,meta);
 }
 
+function saveBlob(blob, url, name){
+  const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+}
 document.getElementById('reset').addEventListener('click',()=>{ state=fresh(); update(); });
 document.getElementById('copy').addEventListener('click',()=>{
   const inp=document.getElementById('sharelink'), b=document.getElementById('copy');
@@ -740,8 +916,23 @@ document.getElementById('copy').addEventListener('click',()=>{
 document.getElementById('dl').addEventListener('click',()=>{
   if(!window.__cardBlob) return;
   track('baixar_imagem');
-  const a=document.createElement('a'); a.href=lastCardURL; a.download='meu-orcamento-presidente.png'; document.body.appendChild(a); a.click(); a.remove();
+  saveBlob(window.__cardBlob, feedURL, 'meu-orcamento-presidente.png');
   document.querySelector('#share .hint').textContent='Se o download não começar, toque e segure a imagem para salvar.';
+});
+// Stories/TikTok: neither app accepts posts from a website, so on phones we hand the 9:16 image to the
+// system share sheet (Instagram and TikTok appear there) and copy the link for the link sticker.
+document.getElementById('storyShare').addEventListener('click',async()=>{
+  const msg=document.getElementById('storymsg'); msg.hidden=false;
+  try{ await navigator.clipboard.writeText(window.__shareLink); }catch(e){}
+  const blob=window.__storyBlob; if(!blob) return;
+  const file=new File([blob],'meu-orcamento-stories.png',{type:'image/png'});
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    try{ await navigator.share({files:[file]}); track('stories'); msg.textContent='Escolha Instagram (Stories) ou TikTok. O link do seu orçamento foi copiado: cole no adesivo de link.'; }
+    catch(e){ msg.textContent='Compartilhamento cancelado. Toque de novo quando quiser.'; }
+  } else {
+    track('stories_download'); saveBlob(blob, storyURL, 'meu-orcamento-stories.png');
+    msg.textContent='A imagem vertical foi baixada e o link foi copiado. No celular, abra o Instagram ou o TikTok, crie um Story ou post com a imagem e cole o link no adesivo de link.';
+  }
 });
 const ns=document.getElementById('nativeShare');
 if(navigator.canShare){ ns.hidden=false; ns.addEventListener('click',async()=>{

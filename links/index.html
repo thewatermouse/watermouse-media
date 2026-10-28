@@ -42,6 +42,11 @@
   .btn{display:block;text-align:center;border-radius:2px;padding:15px 18px;margin-bottom:10px;font-family:'IBM Plex Mono',monospace;font-size:13.5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--ink);}
   .btn.solid{background:var(--ink);color:#F8F8F9;} .btn.solid:active,.btn.solid:hover{background:var(--cobalt);border-color:var(--cobalt);}
   .btn.ghost{background:transparent;color:var(--ink);} .btn.ghost:hover{border-color:var(--cobalt);color:var(--cobalt);}
+  .hero{display:block;background:var(--cobalt);color:#fff;border-radius:2px;padding:18px 18px 16px;margin-bottom:12px;}
+  .hero .k{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8;margin-bottom:6px;}
+  .hero .t{display:block;font-family:'DM Serif Display',serif;font-size:24px;line-height:1.1;}
+  .hero .d{display:block;font-size:14px;opacity:.88;margin-top:6px;}
+  .hero:hover{background:var(--ink);}
   .lbl{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:30px 0 10px;}
   .item{display:block;background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:14px 16px;margin-bottom:9px;}
   .item:hover{border-color:var(--cobalt);}
@@ -91,8 +96,17 @@
     <p class="tag">As notícias do mundo que não chegam aqui.</p>
   </header>
 
+  <a class="hero" href="https://media.thewatermouse.com/orcamento/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio"><span class="k">Simulador</span><span class="t">Se eu fosse presidente: monte o orçamento</span><span class="d">R$ 2,61 trilhões. Onde você poria o dinheiro?</span></a>
   <a class="btn solid" href="https://media.thewatermouse.com/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio">Todas as notícias</a>
   <a class="btn ghost" href="https://media.thewatermouse.com/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio#newsletter">Receber no e-mail</a>
+
+  <div class="lbl">Ferramentas</div>
+  <nav>
+      <a class="item" href="https://media.thewatermouse.com/mais-ou-menos/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio"><span class="cat">Jogo diário</span><span class="ttl">Mais ou menos? Dez rodadas de números do mundo</span></a>
+      <a class="item" href="https://media.thewatermouse.com/brasil-em-100/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio"><span class="cat">Explicador</span><span class="ttl">O Brasil em 100 pessoas (e onde você aparece)</span></a>
+      <a class="item" href="https://media.thewatermouse.com/comparar/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio"><span class="cat">Comparador</span><span class="ttl">Compare dois países em 21 indicadores</span></a>
+      <a class="item" href="https://media.thewatermouse.com/orcamento/?utm_source=instagram&utm_medium=bio&utm_campaign=link_na_bio"><span class="cat">Simulador</span><span class="ttl">Se eu fosse presidente: monte o orçamento federal</span></a>
+  </nav>
 
   <div class="lbl">Últimas matérias</div>
   <nav>
