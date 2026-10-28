@@ -74,3 +74,30 @@
   wm.wa = function(text, url, ferr){ wm.track('ferramenta_share',{metodo:'whatsapp',ferramenta:ferr}); window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url),'_blank','noopener'); };
   wm.xp = function(text, url, ferr){ wm.track('ferramenta_share',{metodo:'x',ferramenta:ferr}); window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url),'_blank','noopener'); };
 })();
+
+/* ===== contagens anonimas (Cloudflare Worker + KV): wm.hist(k) le, wm.hit(k,b) soma 1 ao balde b ===== */
+(function(){
+  var wm = window.wm; wm.API = 'https://wm-stats.rodrigokato.workers.dev/v1/h';
+  wm.hist = function(k){ return fetch(wm.API+'?k='+encodeURIComponent(k)).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); };
+  wm.hit = function(k, b){ return fetch(wm.API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({k:k, b:String(b)}), keepalive:true}).then(function(r){ return r.ok ? r.json() : null; }).catch(function(){ return null; }); };
+  /* porcentagem de jogadores com pontuacao menor (e metade dos empatados) */
+  wm.below = function(h, score){ if (!h || !h.t) return null; var lt = 0, eq = 0; Object.keys(h.b).forEach(function(k){ var v = +k; if (v < score) lt += h.b[k]; else if (v === score) eq += h.b[k]; }); return Math.round((lt + eq/2) * 100 / h.t); };
+  wm.once = function(key){ var s = wm.store.get('sent', {}); if (s[key]) return false; s[key] = 1; var ks = Object.keys(s); if (ks.length > 300) delete s[ks[0]]; wm.store.set('sent', s); return true; };
+
+  /* enquete: <div class="poll" data-id="..." data-q="Pergunta" data-opts="a|Rotulo A;b|Rotulo B"> */
+  wm.poll = function(el){
+    var id = el.dataset.id, key = 'poll:' + id, opts = el.dataset.opts.split(';').map(function(s){ var p = s.split('|'); return {k:p[0], l:p[1]}; });
+    function showRes(h){
+      var t = (h && h.t) || 0, out = '<div class="pq">'+wm.esc(el.dataset.q)+'</div>';
+      opts.forEach(function(o){ var n = h && h.b[o.k] || 0, pc = t ? Math.round(n*100/t) : 0; out += '<div class="pr"><span class="pl">'+wm.esc(o.l)+'</span><span class="pb"><i style="width:'+pc+'%"></i></span><span class="pp num">'+pc+'%</span></div>'; });
+      out += '<div class="pn label">'+t+' voto'+(t===1?'':'s')+' · anônimo</div>'; el.innerHTML = out;
+    }
+    function ask(){
+      var out = '<div class="pq">'+wm.esc(el.dataset.q)+'</div><div class="po">';
+      opts.forEach(function(o){ out += '<button type="button" class="btn ghost small" data-o="'+o.k+'">'+wm.esc(o.l)+'</button>'; });
+      el.innerHTML = out + '</div><div class="pn label">Voto anônimo, sem cadastro</div>';
+      el.querySelectorAll('[data-o]').forEach(function(b){ b.addEventListener('click', function(){ wm.store.set('poll_'+id, b.dataset.o); wm.track('enquete_voto',{enquete:id,opcao:b.dataset.o}); wm.hit(key, b.dataset.o).then(function(h){ showRes(h); }); }); });
+    }
+    if (wm.store.get('poll_'+id, null)) wm.hist(key).then(showRes); else ask();
+  };
+})();

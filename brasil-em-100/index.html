@@ -245,6 +245,15 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
     h += '<p class="mesum">Você está no grupo <b>mais comum</b> em <b>'+maj+' de '+n+'</b> traços'+(maj===n?'. Um brasileiro bem típico.':'.')+'</p>';
     out.innerHTML = h; $('meshare').hidden = false; CARD = null; buildCard(maj, n);
     wm.track('ferramenta_perfil',{ferramenta:'brasil_em_100',maioria:maj,tracos:n});
+    /* contagem anonima: so quando os 5 traços estão marcados, uma vez por aparelho */
+    if (n === ME.length){
+      var key = 'b100:tipico', done = function(hh){
+        if (!hh || hh.t < 10) return;
+        var same = hh.b['m'+maj] || 0;
+        out.insertAdjacentHTML('beforeend', '<p class="stat">'+Math.round(same*100/hh.t)+'% dos <b>'+hh.t+'</b> leitores que fizeram o teste também estão na maioria em '+maj+' de '+n+' traços.</p>');
+      };
+      if (wm.once('b100tip')) wm.hit(key, 'm'+maj).then(done); else wm.hist(key).then(done);
+    }
   }
   function meText(){ var maj = meLines.filter(function(l){return l.max;}).length; return 'No retrato do Brasil em 100 pessoas, estou no grupo mais comum em '+maj+' de '+meLines.length+' traços ('+meLines.map(function(l){return l.r.toLowerCase();}).join(', ')+').'; }
   function buildCard(maj, n){

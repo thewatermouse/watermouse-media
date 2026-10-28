@@ -93,3 +93,14 @@ h3{font-family:var(--f-display);font-weight:400;font-size:21px;line-height:1.15;
 .wm-cookie-btn.ghost{background:transparent;color:rgba(248,248,249,0.72);border:1px solid rgba(248,248,249,0.24)}
 .wm-cookie-btn.solid{background:#2337FF;color:#fff}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* enquetes */
+.poll{border:1px solid var(--ink);background:var(--surface);padding:18px 20px;margin-top:28px}
+.poll .pq{font-family:var(--f-display);font-size:24px;line-height:1.15;margin-bottom:12px}
+.poll .po{display:flex;flex-wrap:wrap;gap:8px}
+.poll .pr{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 44px;gap:10px;align-items:center;padding:6px 0;font-size:15.5px}
+.poll .pb{height:9px;background:var(--line-soft);display:block}.poll .pb i{display:block;height:100%;background:var(--cobalt)}
+.poll .pp{text-align:right;font-size:13px}.poll .pn{margin-top:10px}
+.stat{font-family:var(--f-mono);font-size:13px;color:var(--muted);margin-top:12px}
+.stat b{color:var(--ink)}
+@media (max-width:640px){.poll .pr{grid-template-columns:1fr 70px 40px}}

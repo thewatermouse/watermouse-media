@@ -81,6 +81,8 @@
     <div><h3>Sem opinião escondida</h3><p>As ferramentas mostram números e deixam a conclusão com você. Quando há estimativa, a página diz qual é.</p></div>
     <div><h3>Feito para compartilhar</h3><p>Todo resultado vira um cartão para o WhatsApp ou as redes. Se achar um erro, <a href="/contato.html">avise a gente</a>.</p></div>
   </div>
+  <div class="poll" data-id="proxima-ferramenta" data-q="Qual ferramenta a gente faz a seguir?" data-opts="gov|Se eu fosse governador;pref|Se eu fosse prefeito;quiz|Quiz semanal sobre as notícias;tempo|Linha do tempo interativa;estados|Compare estados e cidades"></div>
+  <p class="label" style="margin-top:22px">As ferramentas guardam apenas contagens anônimas (por exemplo, quantos jogadores fizeram cada pontuação). Não coletamos nome, e-mail nem identificadores.</p>
 </main>
 
 <footer class="foot">
@@ -105,6 +107,6 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
 (function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
 </script>
 <script src="/assets/ferr.js"></script>
-<script></script>
+<script>document.querySelectorAll('.poll').forEach(wm.poll);</script>
 </body>
 </html>

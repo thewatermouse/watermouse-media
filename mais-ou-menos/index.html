@@ -130,6 +130,7 @@
     <div class="big" id="endbig"></div>
     <div class="grid" id="endgrid"></div>
     <div class="msg" id="endmsg"></div>
+    <div class="stat" id="endstat" aria-live="polite"></div>
     <div class="sharebox" style="text-align:left">
       <span class="label">Compartilhar o resultado</span>
       <button type="button" class="btn cobalt small" id="shWa">WhatsApp</button>
@@ -261,6 +262,12 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
     $('fb').className = 'fb ' + (ok ? 'ok' : 'no');
     $('fb').textContent = (ok ? 'Acertou. ' : 'Errou. ') + rd.B.n + ' tem ' + (rd.more ? 'mais' : 'menos') + ': ' + m.f(rd.B.v[rd.k]) + ' contra ' + m.f(rd.A.v[rd.k]) + '.';
     S.answers.push(ok?1:0);
+    if (S.mode==='dia'){  /* contagem anonima por rodada: so na primeira vez que a rodada e jogada neste aparelho */
+      var ri = S.answers.length-1, dk = wm.today();
+      if (wm.once('mmr-'+dk+'-'+ri)) wm.hit('mm:r:'+dk+':'+ri, ok?1:0).then(function(h){
+        if (h && h.t>=10){ var pc = Math.round((h.b['1']||0)*100/h.t); $('fb').textContent += ' '+pc+'% dos jogadores acertaram esta.'; }
+      });
+    }
     if (ok){ S.score++; S.streak++; }
     if (S.mode!=='dia' && ok){ var b0 = wm.store.get('mm_best',0); if (S.streak>b0) wm.store.set('mm_best', S.streak); }
     status();
@@ -303,6 +310,16 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
     $('again').hidden = dia;
     wm.track('jogo_fim', {jogo:'mais_ou_menos', modo:S.mode, pontos:(dia?S.score:S.streak)});
     buildCard();
+    $('endstat').textContent = '';
+    if (dia){
+      var dk = wm.today(), sc = S.score;
+      var show = function(h){
+        if (!h || h.t < 10){ $('endstat').textContent = 'Você está entre os primeiros a jogar o desafio de hoje.'; return; }
+        var tot = 0; Object.keys(h.b).forEach(function(k){ tot += (+k)*h.b[k]; });
+        $('endstat').innerHTML = 'Você fez <b>'+sc+'</b>. Média de hoje: <b>'+wm.fmt(tot/h.t,1)+'</b> acertos. Melhor que <b>'+wm.below(h,sc)+'%</b> dos <b>'+h.t+'</b> jogadores.';
+      };
+      if (wm.once('mmd-'+dk)) wm.hit('mm:d:'+dk, sc).then(show); else wm.hist('mm:d:'+dk).then(show);
+    }
   }
   function buildCard(){
     var dia = S.mode==='dia', score = dia ? S.score : S.streak, ans = S.answers.slice(), day = dayNo();

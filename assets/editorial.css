@@ -1,0 +1,41 @@
+/* Watermouse Media · acabamento editorial (jornal de dados) para matérias e guias. Carregado depois do CSS inline de cada página. */
+.col h1,.col .a-title{font-size:clamp(34px,5.6vw,56px)!important;line-height:1.03!important;letter-spacing:-.015em!important;text-wrap:balance}
+.a-cat{font-family:'Instrument Serif',Georgia,serif!important;font-style:italic;font-size:22px!important;font-weight:400!important;letter-spacing:0!important;text-transform:none!important;color:var(--sage)!important;margin-bottom:8px!important}
+.dek{font-family:'Newsreader',Georgia,serif;font-size:21px!important;line-height:1.45!important;color:var(--muted)!important}
+.meta{font-family:'IBM Plex Mono',ui-monospace,monospace!important;font-size:12px!important;letter-spacing:.02em;text-transform:none}
+.meta b{font-weight:500}
+
+/* foto de abertura mais larga que a coluna de texto, com legenda em mono */
+@media (min-width:900px){
+  .hero-fig{width:min(940px,calc(100vw - 64px));margin-left:50%!important;transform:translateX(-50%)}
+  .hero-fig img{aspect-ratio:2/1!important}
+}
+.hero-fig figcaption{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px!important;letter-spacing:.01em;border-top:1px solid var(--line);padding-top:7px}
+
+/* corpo: capitular, filetes de seção e listas */
+.body p.dropcap::first-letter{font-family:'DM Serif Display',Georgia,serif;float:left;font-size:4.6em;line-height:.82;padding:.05em .1em 0 0;color:var(--ink)}
+.body p{font-family:'Newsreader',Georgia,serif;font-size:18px!important;line-height:1.7!important}
+.body h2{border-top:2px solid var(--ink);padding-top:12px;margin-top:44px!important;font-size:28px!important;line-height:1.1}
+.body a{color:var(--sage);border-bottom:1px solid currentColor}
+.body ul:not([style]){list-style:none;padding:0;margin:0 0 22px}
+.body ul:not([style]) li{position:relative;padding:8px 0 8px 22px;border-bottom:1px solid var(--line-soft);font-size:17px;line-height:1.55}
+.body ul:not([style]) li::before{content:"";position:absolute;left:2px;top:17px;width:8px;height:8px;background:var(--sage)}
+
+/* componentes dos guias */
+.keypoints{border:1px solid var(--ink);background:var(--surface);margin:8px 0 30px;padding:0}
+.keypoints .kp-h{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:#F8F8F9;padding:7px 14px}
+.keypoints ol{list-style:none;counter-reset:kp;margin:0;padding:6px 14px 8px}
+.keypoints li{counter-increment:kp;display:grid;grid-template-columns:30px 1fr;gap:6px;padding:10px 0;border-bottom:1px solid var(--line-soft);font-size:17px;line-height:1.45}
+.keypoints li:last-child{border-bottom:0}
+.keypoints li::before{content:counter(kp,decimal-leading-zero);font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:var(--sage);padding-top:4px}
+.statrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink);border-bottom:1px solid var(--line);margin:30px 0}
+.statrow>div{padding:16px 14px 14px;border-right:1px solid var(--line)}
+.statrow>div:last-child{border-right:0}
+.statrow .n{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(34px,6vw,52px);line-height:1;color:var(--sage)}
+.statrow .l{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.03em;color:var(--muted);margin-top:8px;line-height:1.4}
+@media (max-width:560px){.statrow{grid-template-columns:1fr}.statrow>div{border-right:0;border-bottom:1px solid var(--line)}.statrow>div:last-child{border-bottom:0}}
+
+/* guias: caixa de ferramentas relacionadas */
+.related{border:1px solid var(--ink);margin:36px 0;padding:16px 18px;background:var(--surface)}
+.related .rl{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.related a{font-family:'DM Serif Display',Georgia,serif;font-size:21px;border-bottom:0!important;color:var(--ink)!important}

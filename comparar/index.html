@@ -129,6 +129,7 @@
     <button type="button" class="btn ghost small" id="shCopy">Copiar texto</button>
     <button type="button" class="btn ghost small" id="shImg">Baixar imagem</button>
   </div>
+  <section id="pop" class="otherpairs" hidden><h3>Mais comparados pelos leitores</h3><div class="chips" id="poplist" style="margin-top:8px"></div></section>
   <div class="static" id="static"></div>
   
 </main>
@@ -256,7 +257,22 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
   }
   function textShare(){ var pa = byIso[A], pb = byIso[B]; return pa.nome+' x '+pb.nome+': comparação com dados do Banco Mundial.'; }
   function url(){ return location.origin + '/comparar/#'+A+'-'+B; }
-  function set(a, b, quiet){ A = a; B = b; if (!quiet) history.replaceState(null,'','#'+A+'-'+B); render(); if (!quiet) wm.track('ferramenta_comparacao',{ferramenta:'comparar_paises',a:A,b:B}); }
+  function set(a, b, quiet){
+    A = a; B = b; if (!quiet) history.replaceState(null,'','#'+A+'-'+B); render();
+    if (!quiet){
+      wm.track('ferramenta_comparacao',{ferramenta:'comparar_paises',a:A,b:B});
+      var pair = [A,B].sort().join('-'); if (wm.once('cmp-'+pair)) wm.hit('cmp:pares', pair);   /* contagem anonima de pares */
+    }
+  }
+  function loadPop(){
+    wm.hist('cmp:pares').then(function(h){
+      if (!h || h.t < 20 || !$('pop')) return;
+      var top = Object.keys(h.b).sort(function(x,y){ return h.b[y]-h.b[x]; }).slice(0,8), out = '';
+      top.forEach(function(k){ var m = k.split('-'); if (byIso[m[0]] && byIso[m[1]]) out += '<button type="button" class="chip" data-pair="'+k+'">'+wm.esc(byIso[m[0]].nome)+' x '+wm.esc(byIso[m[1]].nome)+'</button>'; });
+      if (!out) return; $('poplist').innerHTML = out; $('pop').hidden = false;
+      $('poplist').querySelectorAll('[data-pair]').forEach(function(b){ b.addEventListener('click', function(){ var m = b.dataset.pair.split('-'); set(m[0], m[1]); window.scrollTo({top:0,behavior:'smooth'}); }); });
+    });
+  }
   $('selA').addEventListener('change', function(){ set(this.value, B); });
   $('selB').addEventListener('change', function(){ set(A, this.value); });
   $('swap').addEventListener('click', function(){ set(B, A); });
@@ -268,7 +284,7 @@ function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'
   $('shNative').addEventListener('click', function(){ wm.share({text:textShare(), url:url(), blob:CARD&&CARD.blob, name:'comparar.png', ferramenta:'comparar_paises'}); });
   if (!navigator.share) $('shNative').hidden = true;
   window.addEventListener('hashchange', function(){ readHash(); render(); });
-  readHash(); render(); $('static') && ($('static').hidden = true);
+  readHash(); render(); $('static') && ($('static').hidden = true); loadPop();
   wm.track('ferramenta_inicio',{ferramenta:'comparar_paises'});
 })();
 </script>
