@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Se eu fosse presidente: monte o orçamento federal | Watermouse Media</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/orcamento/">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta name="description" content="Simulador do orçamento federal: R$ 2,61 trilhões, regras reais e consequências reais. Mexa em cada área, veja a meta fiscal, o teto de gastos e a dívida até 2030 e compare com governos anteriores.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Se eu fosse presidente: monte o orçamento federal">
+<meta property="og:description" content="Simulador do orçamento federal: R$ 2,61 trilhões, regras reais e consequências reais. Mexa em cada área, veja a meta fiscal, o teto de gastos e a dívida até 2030 e compare com governos anteriores.">
+<meta property="og:url" content="https://media.thewatermouse.com/orcamento/">
+<meta property="og:image" content="https://media.thewatermouse.com/orcamento/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.thewatermouse.com/orcamento/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Se eu fosse presidente",
+  "description": "Simulador do orçamento federal: R$ 2,61 trilhões, regras reais e consequências reais. Mexa em cada área, veja a meta fiscal, o teto de gastos e a dívida até 2030 e compare com governos anteriores.",
+  "url": "https://media.thewatermouse.com/orcamento/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": true,
+  "image": "https://media.thewatermouse.com/orcamento/og.png",
+  "publisher": {"@type": "NewsMediaOrganization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/",
+    "logo": {"@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png"}}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial ledger. Left = the budget as a list of lines you edit; right = a sticky "gabinete" panel with the consequences. */
+:root{
+  --paper:#F8F8F9; --surface:#FFFFFF; --tint:#EEEFF3; --ink:#0D0D0F; --muted:#55585F; --faint:#8A8D94;
+  --cobalt:#2337FF; --cobalt-soft:#E4E7FF; --line:rgba(13,13,15,.12); --line-soft:rgba(13,13,15,.06);
+  --locked:#0D0D0F; --floor:#6E717A; --free:#2337FF;
+  --good:#0E7C66; --warn:#B8862B; --bad:#C8322B;
+  --f-display:"DM Serif Display", Georgia, "Times New Roman", serif;
+  --f-kicker:"Instrument Serif", Georgia, serif;
+  --f-body:"Newsreader", Georgia, serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0F1013; --surface:#16171C; --tint:#1E2027; --ink:#EDEDF0; --muted:#A4A7B0; --faint:#6E717A;
+  --cobalt:#7D8BFF; --cobalt-soft:#1E2340; --line:rgba(237,237,240,.14); --line-soft:rgba(237,237,240,.07);
+  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1013; --surface:#16171C; --tint:#1E2027; --ink:#EDEDF0; --muted:#A4A7B0; --faint:#6E717A;
+  --cobalt:#7D8BFF; --cobalt-soft:#1E2340; --line:rgba(237,237,240,.14); --line-soft:rgba(237,237,240,.07);
+  --locked:#EDEDF0; --floor:#8A8D94; --free:#7D8BFF; --good:#3CC2A0; --warn:#E0B458; --bad:#F06A60; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.label{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+a{color:var(--cobalt)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+
+/* masthead */
+.mast{border-bottom:1px solid var(--ink);padding-block:14px}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-size:20px;color:var(--ink);text-decoration:none}
+.brand svg{width:34px;height:34px;border-radius:50%;background:var(--ink)}
+.proto{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:4px 8px;color:var(--muted)}
+
+/* hero */
+.hero{padding-block:40px 28px}
+.kicker{font-family:var(--f-kicker);font-style:italic;font-size:21px;color:var(--cobalt)}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,78px);line-height:.98;letter-spacing:-.01em;margin:.15em 0 .25em;text-wrap:balance}
+.lede{max-width:62ch;font-size:19px;color:var(--muted);margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+.split{margin-top:26px}
+.splitbar{display:flex;height:34px;border:1px solid var(--ink)}
+.splitbar span{display:block;height:100%}
+.splitlegend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:10px;font-size:14px;color:var(--muted)}
+.splitlegend i{display:inline-block;width:11px;height:11px;margin-right:6px;vertical-align:-1px}
+.friend{margin-top:22px;border:1px solid var(--cobalt);background:var(--cobalt-soft);padding:14px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.friend p{margin:0;flex:1 1 280px}
+
+/* main grid */
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;padding-block:10px 60px;align-items:start}
+@media (max-width:960px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.group{margin-bottom:34px}
+.group h2{font-family:var(--f-display);font-weight:400;font-size:28px;margin:0;line-height:1.1}
+.group .gsub{color:var(--muted);font-size:15.5px;margin:4px 0 10px;max-width:60ch}
+.grouphead{border-top:2px solid var(--ink);padding-top:12px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding-block:14px;border-bottom:1px solid var(--line)}
+.line .nm{font-weight:600;font-size:17.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.line .val{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap}
+.line .val b{font-weight:500;font-size:17px}
+.line .note{grid-column:1/-1;color:var(--muted);font-size:14.5px;margin:0}
+.line .ctl{grid-column:1/-1;display:flex;align-items:center;gap:10px}
+.chip{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border:1px solid currentColor;font-weight:500}
+.chip.k-locked{color:var(--muted)}
+.chip.k-pec{color:var(--bad)}
+.chip.k-lei{color:var(--warn)}
+.delta{font-family:var(--f-mono);font-size:13px}
+.up{color:var(--good)} .down{color:var(--bad)}
+.lock{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.stepbtn{width:32px;height:32px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--f-mono);font-size:16px;line-height:1;flex:none}
+.stepbtn:hover{border-color:var(--ink)}
+
+input[type=range]{flex:1;min-width:0;-webkit-appearance:none;appearance:none;height:28px;background:transparent}
+input[type=range]::-webkit-slider-runnable-track{height:4px;background:linear-gradient(to right,var(--ink) var(--fl,0%),var(--line) var(--fl,0%))}
+input[type=range]::-moz-range-track{height:4px;background:linear-gradient(to right,var(--ink) var(--fl,0%),var(--line) var(--fl,0%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);margin-top:-8px;box-shadow:0 0 0 1px var(--cobalt)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--cobalt);border:3px solid var(--paper);box-shadow:0 0 0 1px var(--cobalt)}
+.trackwrap{position:relative;flex:1;min-width:0;display:flex}
+.basemark{position:absolute;top:4px;width:2px;height:20px;background:var(--faint);pointer-events:none}
+
+.levers .line .val{min-width:90px}
+
+/* panel */
+.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);display:flex;flex-direction:column;gap:18px}
+@media (max-width:960px){.panel{position:static}}
+.box{background:var(--surface);border:1px solid var(--line);padding:16px 18px}
+.box h3{font-family:var(--f-display);font-weight:400;font-size:22px;margin:0 0 10px;line-height:1.15}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.stat .big{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:22px;font-weight:500;line-height:1.2}
+.stat .sub{font-size:13.5px;color:var(--muted);line-height:1.35}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;color:var(--paper);font-weight:500}
+.pill.good{background:var(--good)} .pill.warn{background:var(--warn)} .pill.bad{background:var(--bad)}
+.arche{border:1px solid var(--ink);background:var(--surface);padding:18px}
+.arche .tag{font-family:var(--f-kicker);font-style:italic;color:var(--cobalt);font-size:19px}
+.arche .name{font-family:var(--f-display);font-size:34px;line-height:1.05;margin:2px 0 6px}
+.arche p{margin:0;color:var(--muted);font-size:15.5px}
+svg text{fill:var(--muted);font-family:var(--f-mono);font-size:11px}
+.cmp{width:100%;border-collapse:collapse;font-size:13.5px}
+.cmp th,.cmp td{padding:6px 0;border-bottom:1px solid var(--line-soft);text-align:left;vertical-align:middle}
+.cmp th{font-family:var(--f-mono);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cmp td.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:8px}
+.cmp tr.you td{font-weight:600}
+.cmp tr.best td:first-child::after{content:"  ← mais parecido";font-family:var(--f-mono);font-size:10.5px;color:var(--cobalt);font-weight:500;white-space:nowrap}
+.mini{display:flex;height:10px;width:100%;min-width:90px}
+.mini span{display:block;height:100%}
+
+.btnrow{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:9px 14px;font-family:var(--f-mono);font-size:12.5px;letter-spacing:.03em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{background:var(--cobalt);border-color:var(--cobalt);color:#fff}
+.cardimg{width:100%;border:1px solid var(--line);display:block;margin-bottom:10px;background:var(--tint);aspect-ratio:4/5}
+.hint{font-size:13px;color:var(--muted);margin:8px 0 0}
+.linkbox{display:flex;gap:6px;margin-top:10px}
+.linkbox input{flex:1;min-width:0;font-family:var(--f-mono);font-size:12px;padding:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+.vs td.n.me{color:var(--cobalt)}
+
+.foot{border-top:1px solid var(--ink);padding-block:24px 40px;font-size:14px;color:var(--muted)}
+.foot h4{font-family:var(--f-mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin:0 0 6px}
+.foot ul{margin:0 0 14px;padding-left:18px}
+.foot p{max-width:80ch}
+.soon{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.soon span{border:1px dashed var(--line);padding:5px 10px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+
+/* mobile dock */
+.dock{display:none}
+@media (max-width:960px){
+  .dock{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--ink);color:var(--paper);
+    padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+    justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:12px}
+  .dock b{font-weight:500;font-size:14px;display:block}
+  .dock a{color:var(--paper)}
+  body{padding-bottom:70px}
+}
+@media (prefers-reduced-motion:no-preference){.splitbar span,.mini span{transition:flex-basis .25s ease}}
+
+.wm-cookie{position:fixed;left:16px;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:680px;margin:0 auto;background:#08080A;color:#F8F8F9;border:1px solid rgba(248,248,249,0.16);border-radius:2px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);font-family:var(--f-body)}
+.wm-cookie-text{font-size:13px;line-height:1.5;color:rgba(248,248,249,0.82);flex:1;min-width:220px}
+.wm-cookie-text a{color:#8D98FF}
+.wm-cookie-actions{display:flex;gap:8px;flex-shrink:0}
+.wm-cookie-btn{font-family:var(--f-mono);font-size:13px;font-weight:500;border-radius:2px;padding:9px 18px;cursor:pointer;border:none}
+.wm-cookie-btn.ghost{background:transparent;color:rgba(248,248,249,0.72);border:1px solid rgba(248,248,249,0.24)}
+.wm-cookie-btn.solid{background:#2337FF;color:#fff}
+.foot .sitelinks{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+</style>
+</head>
+<body>
+
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg viewBox="106 18 100 100" aria-hidden="true"><circle cx="156" cy="68" r="50" fill="#F8F8F9"/><g transform="translate(156 68) scale(1.05) translate(-158 -68)"><g fill="#0D0D0F"><circle cx="128" cy="64" r="15"/><circle cx="128" cy="64" r="8" fill="#2B2C33"/><path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/><circle cx="189" cy="80" r="4"/><g transform="translate(-2 6) rotate(8 156 50)"><path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/><rect x="141" y="47" width="30" height="5" fill="#2337FF"/><rect x="128" y="54" width="56" height="5" rx="2.5"/></g></g><circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/><path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/></g></svg>
+      Watermouse Media
+    </a>
+    <a class="proto" href="/" style="text-decoration:none">← Todas as notícias</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Simulador · Orçamento federal</div>
+    <h1>Se eu fosse presidente</h1>
+    <p class="lede">O orçamento de 2026 prevê <strong>R$ 2,61 trilhões</strong> em gastos primários. Ficam de fora os juros da dívida, os R$ 598 bi que vão automaticamente para estados e municípios e os empréstimos que voltam ao caixa. Você assume em 2027 com esse orçamento na mesa. Mexa em cada linha e veja o que acontece com a meta fiscal, o teto de gastos e a dívida até o fim do mandato, em 2030.</p>
+    <div class="split" aria-label="Quanto do orçamento é escolha livre">
+      <div class="splitbar" id="splitbar"></div>
+      <div class="splitlegend" id="splitlegend"></div>
+    </div>
+    <div class="friend" id="friendBanner" hidden>
+      <p><strong>Alguém te mandou o orçamento dele.</strong> Monte o seu e compare lado a lado no painel.</p>
+      <button class="btn ghost" id="friendView">Ver o orçamento recebido</button>
+    </div>
+  </div>
+</section>
+
+<main class="wrap grid">
+  <div id="lines"></div>
+
+  <aside class="panel" id="panel">
+    <div class="arche" id="arche"></div>
+
+    <div class="box">
+      <h3>O que acontece</h3>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="box">
+      <h3>Dívida pública até 2030</h3>
+      <div id="debtchart"></div>
+      <p class="hint">Dívida bruta do governo geral, % do PIB. Linha cinza: orçamento real. Azul: o seu. Modelo simplificado, com juros caindo aos poucos.</p>
+    </div>
+
+    <div class="box">
+      <h3>Seu orçamento lembra qual governo?</h3>
+      <table class="cmp" id="govtable"></table>
+      <div class="splitlegend" style="font-size:12.5px">
+        <span><i style="background:var(--locked)"></i>Previdência</span>
+        <span><i style="background:var(--floor)"></i>Servidores</span>
+        <span><i style="background:var(--free)"></i>Proteção social</span>
+        <span><i style="background:var(--line)"></i>Resto</span>
+      </div>
+      <p class="hint">Fatia de cada grupo no gasto primário, no último ano de cada mandato (2025 para o atual). Fonte: Tesouro Nacional. Em 2010, o gasto inclui a capitalização da Petrobras.</p>
+    </div>
+
+    <div class="box" id="vsbox" hidden>
+      <h3>Você × quem te mandou</h3>
+      <table class="cmp vs" id="vstable"></table>
+    </div>
+
+    <div class="box" id="share">
+      <h3>Compartilhe e desafie</h3>
+      <img class="cardimg" id="cardimg" alt="Card do seu orçamento para compartilhar">
+      <div class="btnrow">
+        <button class="btn" id="dl">Baixar imagem</button>
+        <button class="btn ghost" id="nativeShare" hidden>Compartilhar</button>
+        <a class="btn ghost" id="wa" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" id="xpost" target="_blank" rel="noopener">X</a>
+        <a class="btn ghost" id="threads" target="_blank" rel="noopener">Threads</a>
+      </div>
+      <div class="linkbox">
+        <input id="sharelink" readonly aria-label="Link do seu orçamento">
+        <button class="btn ghost" id="copy">Copiar</button>
+      </div>
+      <p class="hint">Quem abrir o link vê o seu orçamento e pode montar o dele para comparar.</p>
+      <div class="linkbox">
+        <input id="pastelink" placeholder="Cole aqui o link de um amigo" aria-label="Link de um amigo">
+        <button class="btn ghost" id="loadfriend">Comparar</button>
+      </div>
+      <p class="hint" id="pastemsg"></p>
+    </div>
+
+    <div class="btnrow"><button class="btn ghost" id="reset">Voltar ao orçamento real</button></div>
+  </aside>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h4>Em breve</h4>
+    <div class="soon"><span>Se eu fosse governador · 27 estados</span><span>Se eu fosse prefeito · capitais</span><span>O que os leitores fariam</span></div>
+    <h4 style="margin-top:20px">Fontes</h4>
+    <ul>
+      <li>Valor de cada linha: dotação inicial da LOA 2026 por ação orçamentária, <a href="https://portaldatransparencia.gov.br/download-de-dados/orcamento-despesa" target="_blank" rel="noopener">Portal da Transparência</a> (base baixada em 28/10/2026).</li>
+      <li>Total de despesas primárias da LOA 2026 sancionada (R$ 2.625,3 bi) e emendas parlamentares: <a href="https://www12.senado.leg.br/ifi/pdf/raf108_jan2026.pdf/@@download/file/RAF108_JAN2026.pdf" target="_blank" rel="noopener">IFI/Senado, RAF nº 108</a>, tabelas 7 e 8.</li>
+      <li>Meta fiscal, PIB, juros e famílias no Bolsa Família: <a href="https://static.poder360.com.br/2025/08/leia-integra-orcamento-apresentacao-29ago2025.pdf" target="_blank" rel="noopener">MPO, apresentação do PLOA 2026</a>.</li>
+      <li>Governos anteriores: <a href="https://www.tesourotransparente.gov.br/ckan/dataset/resultado-do-tesouro-nacional" target="_blank" rel="noopener">Tesouro Nacional, Resultado do Tesouro Nacional, série histórica</a> (julho/2026).</li>
+      <li>Gastos tributários de 2026 (R$ 612,8 bi): demonstrativo do PLOA 2026, via <a href="https://monitormercantil.com.br/governo-e-mercado-divergem-em-numeros-da-economia-aponta-nota-tecnica/" target="_blank" rel="noopener">Monitor Mercantil</a>. Dívida bruta de 79,0% do PIB no fim de 2025: IFI, RAF nº 108.</li>
+    </ul>
+    <h4>Como o simulador calcula</h4>
+    <p>As linhas do Executivo somam as ações do orçamento de 2026 por área, sem salários (que ficam em Servidores), sem empréstimos e sem repasses automáticos a estados e municípios. A linha dos outros Poderes é a diferença entre o total da LOA (R$ 2.625,3 bi, menos R$ 19,9 bi que o governo paga a si mesmo como contribuição previdenciária) e o Executivo. As emendas aparecem em linha própria: R$ 7 bi já vêm identificados como transferências especiais, metade das emendas individuais sai da saúde, como manda a Constituição, e o resto sai proporcionalmente de saúde, educação, obras e demais áreas. Essa divisão das emendas é uma estimativa.</p>
+    <p>O resultado primário parte da meta oficial (superávit de R$ 34,3 bi, 0,25% do PIB) e soma suas mudanças. A meta tem tolerância de 0,25 ponto do PIB para cima ou para baixo. O limite do arcabouço fiscal é o orçamento real: gastar mais do que ele, mesmo com receita nova, estoura o limite. Cortar isenções rende cerca de um terço do valor nominal porque parte delas é constitucional (Simples, Zona Franca). Dívida: juros implícitos de 11,5% em 2026 caindo para 9% em 2029, PIB nominal crescendo 6,2% ao ano.</p>
+    <div class="sitelinks">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="/">Notícias</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" id="dock"></div>
+
+<script>
+(function(){
+const PIB = 13826.3;          // PIB nominal 2026, R$ bi (PLOA 2026)
+const RL = 2590.6;            // receita líquida 2026, R$ bi (PLOA + reestimativa do Congresso)
+const META = 34.3;            // meta de resultado primário 2026, R$ bi
+const TOL = 0.0025 * PIB;     // banda de tolerância da meta
+const GT = 612.8;             // gastos tributários 2026, R$ bi
+const POP = 213.4;            // população, milhões
+const SHARE_BASE = /thewatermouse\.com$/.test(location.hostname) ? location.href.split('#')[0] : 'https://media.thewatermouse.com/orcamento/';
+
+const fmtBi = v => 'R$ ' + (Math.abs(v) >= 1000 ? (v/1000).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' tri' : v.toLocaleString('pt-BR',{minimumFractionDigits:v<20?1:0,maximumFractionDigits:1}) + ' bi');
+const sgn = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + fmtBi(Math.abs(v)).replace('R$ ','R$ ');
+const pct = (v,d=1) => v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d}) + '%';
+
+// kind: locked | pec | lei | null  (what it takes to go below `floor`)
+const AREAS = [
+ {id:'prev', g:0, name:'Previdência (INSS)', base:1073.7, lo:950, hi:1250, step:1, floor:1073.7, kind:'pec',
+  note:'Aposentadorias e pensões de cerca de 40 milhões de pessoas. O valor segue regras da Constituição e o salário mínimo.',
+  imp:v=>`≈ ${Math.round(v*1e3/40.4).toLocaleString('pt-BR')} reais por benefício/ano`},
+ {id:'pess', g:0, name:'Servidores do Executivo', base:339.7, lo:300, hi:420, step:1, floor:339.7, kind:'pec',
+  note:'Salários, aposentadorias e pensões de servidores civis e militares do governo federal. Salário de servidor não pode ser reduzido.',
+  imp:v=>v>339.7?'Folga para reajustes e concursos':v<339.7?'Exige congelar salários e cortar quadros':'Folha atual'},
+ {id:'bpc', g:0, name:'BPC (idosos e pessoas com deficiência)', base:123.2, lo:90, hi:190, step:1, floor:123.2, kind:'pec',
+  note:'Um salário mínimo por mês para idosos e pessoas com deficiência de baixa renda. Garantido pela Constituição.',
+  imp:v=>`≈ ${(v/123.2*6.6).toLocaleString('pt-BR',{maximumFractionDigits:1})} mi de beneficiários no valor atual`},
+ {id:'abono', g:0, name:'Abono salarial e seguro-desemprego', base:97.0, lo:50, hi:130, step:1, floor:97.0, kind:'pec',
+  note:'Seguro-desemprego (R$ 63,4 bi) e abono do PIS/Pasep (R$ 33,6 bi). O abono está na Constituição; mudar quem recebe exige emenda.', imp:null},
+ {id:'poderes', g:0, name:'Congresso, Judiciário e Ministério Público', base:93.0, lo:70, hi:120, step:0.5, floor:93.0, kind:'pec',
+  note:'Orçamento dos outros Poderes, quase todo em salários. Eles têm autonomia: o presidente não corta sozinho.', imp:null},
+ {id:'fcdf', g:0, name:'Fundo Constitucional do DF', base:28.0, lo:20, hi:40, step:0.5, floor:28.0, kind:'pec',
+  note:'A União paga polícia, bombeiros, saúde e educação do Distrito Federal. Está na Constituição.', imp:null},
+ {id:'prec', g:0, name:'Precatórios e sentenças judiciais', base:120.1, lo:120.1, hi:120.1, step:1, floor:120.1, kind:'locked',
+  note:'Dívidas que a Justiça mandou pagar. Não há como escolher não pagar.', imp:null},
+
+ {id:'saude', g:1, name:'Saúde (SUS)', base:210.5, lo:170, hi:340, step:1, floor:210.5, kind:'pec',
+  note:'Atenção básica, hospitais, remédios e vacinas, sem salários e sem emendas. Somando os dois, o gasto cumpre o piso constitucional de 15% da receita corrente líquida.',
+  imp:v=>`R$ ${Math.round(v*1e3/POP).toLocaleString('pt-BR')} por habitante/ano`},
+ {id:'educ', g:1, name:'Educação', base:121.4, lo:90, hi:220, step:1, floor:100, kind:'pec',
+  note:'Complemento da União ao Fundeb (R$ 70 bi), Pé-de-Meia, merenda e custeio das universidades. Salários de professores federais estão em Servidores.',
+  imp:v=>`R$ ${Math.round(v*1e3/POP).toLocaleString('pt-BR')} por habitante/ano`},
+ {id:'bf', g:1, name:'Bolsa Família', base:158.6, lo:0, hi:260, step:1, floor:158.6, kind:'lei',
+  note:'19,9 milhões de famílias em 2026. Cortar exige mudar a lei do programa.',
+  imp:v=>`≈ ${(19.9*v/158.6).toLocaleString('pt-BR',{maximumFractionDigits:1})} mi de famílias no valor atual`},
+ {id:'infra', g:1, name:'Obras e infraestrutura', base:32.7, lo:10, hi:150, step:1, floor:32.7, kind:'lei',
+  note:'Rodovias, portos, saneamento, mobilidade urbana e Minha Casa Minha Vida. O arcabouço fiscal fixa um piso de investimento.',
+  imp:v=>`R$ ${Math.round(v*1e3/POP).toLocaleString('pt-BR')} por habitante/ano`},
+ {id:'emendas', g:1, name:'Emendas parlamentares', base:49.9, lo:0, hi:90, step:1, floor:37.8, kind:'pec',
+  note:'Dinheiro que deputados e senadores direcionam. Os R$ 37,8 bi de emendas individuais e de bancada são de pagamento obrigatório pela Constituição.', imp:null},
+
+ {id:'subs', g:2, name:'Subsídios (Plano Safra e outros)', base:33.8, lo:0, hi:70, step:1, floor:0, kind:null,
+  note:'Juros mais baixos para o agro, Pronaf, seguro rural e conta de energia, pagos pelo Tesouro.', imp:null},
+ {id:'seg', g:2, name:'Segurança pública', base:7.5, lo:0, hi:40, step:0.5, floor:0, kind:null,
+  note:'Polícia Federal, PRF, Força Nacional e Fundo Nacional de Segurança Pública, sem salários.',
+  imp:v=>v>7.5?`${(v/7.5).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
+ {id:'def', g:2, name:'Defesa', base:28.2, lo:0, hi:60, step:0.5, floor:0, kind:null,
+  note:'Equipamentos, operação e custeio das Forças Armadas. Salários e aposentadorias de militares estão em Servidores.', imp:null},
+ {id:'ct', g:2, name:'Ciência e tecnologia', base:9.5, lo:0, hi:40, step:0.5, floor:0, kind:null,
+  note:'FNDCT, bolsas do CNPq e institutos de pesquisa (sem empréstimos a empresas).',
+  imp:v=>v>9.5?`${(v/9.5).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
+ {id:'amb', g:2, name:'Meio ambiente', base:4.8, lo:0, hi:20, step:0.5, floor:0, kind:null,
+  note:'Ibama, ICMBio, fiscalização do desmatamento e combate a incêndios (sem os empréstimos do Fundo Clima).',
+  imp:v=>v>4.8?`${(v/4.8).toLocaleString('pt-BR',{maximumFractionDigits:1})}× o orçamento atual`:null},
+ {id:'demais', g:2, name:'Demais áreas do governo', base:73.8, lo:40, hi:120, step:0.5, floor:50, kind:'lei',
+  note:'Agricultura, assistência social, cultura, esporte, auxílio gás, fundo eleitoral e a administração dos ministérios. Abaixo de R$ 50 bi, só mudando leis.', imp:null},
+];
+const LEVERS = [
+ {id:'isen', name:'Cortar isenções fiscais', lo:0, hi:30, step:1, unit:'%',
+  note:'O governo deixa de arrecadar R$ 612,8 bi por ano com isenções e regimes especiais.',
+  rev:v=>v/100*GT*0.32},
+ {id:'carga', name:'Mudar a carga de impostos', lo:-5, hi:5, step:0.5, unit:'%',
+  note:'Aumenta ou reduz toda a arrecadação federal em uma porcentagem.',
+  rev:v=>v/100*RL},
+];
+const GROUPS = [
+ ['Travado pela lei','Gasto definido por regras da Constituição, leis ou decisões judiciais. Dá para mexer, mas abaixo do valor atual você precisa do Congresso.'],
+ ['Pisos e programas','Áreas com piso obrigatório ou programas criados por lei. Acima do piso, a decisão é sua.'],
+ ['Onde você escolhe de verdade','Gasto discricionário: o governo decide quanto vai para cada área todo ano.'],
+];
+const BASE_TOTAL = AREAS.reduce((s,a)=>s+a.base,0);
+
+// Tesouro Nacional, RTN série histórica (tabela 2.2-A): share of primary spending and total primary spending as % of GDP.
+// soc = abono e seguro-desemprego + BPC + Bolsa Família/Auxílio Brasil.
+const GOVS = [
+ {n:'Lula 2', y:2010, tot:18.2, prev:36.0, pess:23.8, soc:9.3},
+ {n:'Dilma 1', y:2014, tot:18.1, prev:37.7, pess:21.2, soc:11.4},
+ {n:'Temer', y:2018, tot:19.3, prev:43.4, pess:22.0, soc:10.4},
+ {n:'Bolsonaro', y:2022, tot:18.0, prev:44.0, pess:18.7, soc:12.8},
+ {n:'Lula 3', y:2025, tot:18.8, prev:42.9, pess:16.8, soc:15.6},
+];
+
+const ARCH = {
+ cont:['Continuísta','Você mexeu pouco. O orçamento que já existe é, em boa parte, o seu.'],
+ social:['Rede de proteção','Sua prioridade foi transferência de renda, saúde e educação.'],
+ obras:['Canteiro de obras','Você apostou em investimento: infraestrutura e ciência.'],
+ ordem:['Ordem e soberania','Segurança pública e defesa ganharam espaço no seu governo.'],
+ verde:['Agenda verde','Meio ambiente subiu na sua lista de prioridades.'],
+ tesoura:['Tesoura afiada','Você cortou mais do que gastou e reforçou o caixa.'],
+ aberta:['Mão aberta','Você ampliou gastos sem cobrir a conta. A dívida sente.'],
+ reform:['Reformista','Seu plano depende de mudar a Constituição em várias frentes.'],
+};
+
+let state = fresh();
+let friend = null;
+function fresh(){ const v={}; AREAS.forEach(a=>v[a.id]=a.base); const l={}; LEVERS.forEach(x=>l[x.id]=0); return {v,l}; }
+
+// ---------- encoding (hash-safe: digits . - o) ----------
+function encode(s){ return 'o1.' + AREAS.map(a=>Math.round((s.v[a.id]-a.base)*10)).concat(LEVERS.map(x=>Math.round(s.l[x.id]*10))).join('.'); }
+function decode(tok){
+  const m = /o1\.([-0-9.]+)/.exec(tok||''); if(!m) return null;
+  const n = m[1].split('.').map(Number); if(n.length !== AREAS.length + LEVERS.length || n.some(isNaN)) return null;
+  const s = fresh();
+  AREAS.forEach((a,i)=>s.v[a.id]=clamp(a.base + n[i]/10, a.lo, a.hi));
+  LEVERS.forEach((x,i)=>s.l[x.id]=clamp(n[AREAS.length+i]/10, x.lo, x.hi));
+  return s;
+}
+const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+
+// ---------- model ----------
+function calc(s){
+  const spend = AREAS.reduce((t,a)=>t+s.v[a.id],0);
+  const dS = spend - BASE_TOTAL;
+  const dR = LEVERS.reduce((t,x)=>t+x.rev(s.l[x.id]),0);
+  const prim = META - dS + dR;
+  const reforms = {pec:0, lei:0};
+  AREAS.forEach(a=>{ if(a.kind && a.kind!=='locked' && s.v[a.id] < a.floor - 0.05) reforms[a.kind]++; });
+  const debt = debtPath((dR - dS)/PIB*100);
+  const d = id => s.v[id] - AREAS.find(a=>a.id===id).base;
+  // Map the simulator lines onto the Tesouro's categories so they compare with GOVS:
+  // RTN pensions include pension court orders (~37% of precatórios); RTN payroll includes the other Powers' payroll (~86% of their budget) and the DF fund's payroll (~22 of 28).
+  const comp = {
+    prev: (s.v.prev + 0.37*s.v.prec)/spend*100,
+    pess: (s.v.pess + 0.86*s.v.poderes + s.v.fcdf*22/28)/spend*100,
+    soc: (s.v.bf+s.v.bpc+s.v.abono)/spend*100, tot: spend/PIB*100
+  };
+  comp.rest = 100-comp.prev-comp.pess-comp.soc;
+  return {spend,dS,dR,prim,reforms,debt,d,comp};
+}
+function debtPath(extra){
+  const i=[11.5,10.5,9.5,9.0,9.0], g=6.2; let d=79.0; const out=[];
+  for(let k=0;k<5;k++){ const pb = -0.2 + (k>0?extra:0); d = d*(1+i[k]/100)/(1+g/100) - pb; out.push(d); }
+  return out; // 2026..2030
+}
+const BASEDEBT = debtPath(0);
+
+function archetype(s,r){
+  const tot = AREAS.reduce((t,a)=>t+Math.abs(s.v[a.id]-a.base),0) + Math.abs(r.dR);
+  if(tot < 8) return 'cont';
+  if(r.reforms.pec >= 3) return 'reform';
+  if(r.prim < META - 120) return 'aberta';
+  const sc = {
+    social: r.d('bf')+r.d('bpc')+r.d('abono')+r.d('saude')+r.d('educ'),
+    obras: (r.d('infra')+r.d('ct'))*1.5,
+    ordem: (r.d('seg')+r.d('def'))*2.5,
+    verde: r.d('amb')*8,
+    tesoura: (r.prim-META)*0.8,
+  };
+  let best='cont', bv=6; for(const k in sc){ if(sc[k]>bv){bv=sc[k];best=k;} }
+  return best;
+}
+function nearestGov(c){
+  let best=null,bd=1e9;
+  GOVS.forEach(g=>{ const dd = (c.prev-g.prev)**2+(c.pess-g.pess)**2+(c.soc-g.soc)**2+4*(c.tot-g.tot)**2; if(dd<bd){bd=dd;best=g;} });
+  return best;
+}
+
+// ---------- render: lines ----------
+const linesEl = document.getElementById('lines');
+function buildLines(){
+  let html='';
+  GROUPS.forEach((g,gi)=>{
+    html += `<section class="group"><div class="grouphead"><h2>${g[0]}</h2><span class="label" id="gt${gi}"></span></div><p class="gsub">${g[1]}</p>`;
+    AREAS.filter(a=>a.g===gi).forEach(a=>{
+      const locked = a.kind==='locked';
+      const bp = (a.base-a.lo)/(a.hi-a.lo||1)*100;
+      html += `<div class="line" id="L-${a.id}">
+        <div class="nm">${a.name} <span class="chipslot"></span></div>
+        <div class="val"><b class="v"></b> <span class="delta"></span></div>
+        ${locked ? `<div class="ctl"><span class="lock">Valor fixo · não editável</span></div>` :
+        `<div class="ctl"><button class="stepbtn" data-id="${a.id}" data-dir="-1" aria-label="Diminuir ${a.name}">−</button>
+          <div class="trackwrap"><span class="basemark" style="left:calc(${bp}% + ${(0.5-bp/100)*20}px - 1px)"></span>
+          <input type="range" id="R-${a.id}" min="${a.lo}" max="${a.hi}" step="${a.step}" value="${a.base}" aria-label="${a.name}"></div>
+          <button class="stepbtn" data-id="${a.id}" data-dir="1" aria-label="Aumentar ${a.name}">+</button></div>`}
+        <p class="note">${a.note} <span class="imp"></span></p>
+      </div>`;
+    });
+    html += `</section>`;
+  });
+  html += `<section class="group levers"><div class="grouphead"><h2>Do lado da receita</h2></div><p class="gsub">Gastar mais sem arrecadar mais aumenta a dívida. Aqui você mexe na arrecadação.</p>`;
+  LEVERS.forEach(x=>{
+    html += `<div class="line" id="L-${x.id}">
+      <div class="nm">${x.name}</div><div class="val"><b class="v"></b> <span class="delta"></span></div>
+      <div class="ctl"><button class="stepbtn" data-lev="${x.id}" data-dir="-1" aria-label="Diminuir">−</button>
+      <div class="trackwrap"><span class="basemark" style="left:calc(${(0-x.lo)/(x.hi-x.lo)*100}% + ${(0.5-(0-x.lo)/(x.hi-x.lo))*20}px - 1px)"></span>
+      <input type="range" id="R-${x.id}" min="${x.lo}" max="${x.hi}" step="${x.step}" value="0" aria-label="${x.name}"></div>
+      <button class="stepbtn" data-lev="${x.id}" data-dir="1" aria-label="Aumentar">+</button></div>
+      <p class="note">${x.note}</p></div>`;
+  });
+  html += `</section>`;
+  linesEl.innerHTML = html;
+
+  AREAS.forEach(a=>{ const r=document.getElementById('R-'+a.id); if(r) r.addEventListener('input',()=>{state.v[a.id]=+r.value; update();}); });
+  LEVERS.forEach(x=>{ const r=document.getElementById('R-'+x.id); r.addEventListener('input',()=>{state.l[x.id]=+r.value; update();}); });
+  linesEl.addEventListener('click',e=>{
+    const b=e.target.closest('.stepbtn'); if(!b) return;
+    const dir=+b.dataset.dir;
+    if(b.dataset.id){ const a=AREAS.find(z=>z.id===b.dataset.id); const st=a.step*(a.hi-a.lo>100?5:2); state.v[a.id]=clamp(Math.round((state.v[a.id]+dir*st)*10)/10,a.lo,a.hi); }
+    else { const x=LEVERS.find(z=>z.id===b.dataset.lev); state.l[x.id]=clamp(state.l[x.id]+dir*x.step,x.lo,x.hi); }
+    update();
+  });
+}
+
+function renderLines(){
+  AREAS.forEach(a=>{
+    const el=document.getElementById('L-'+a.id), v=state.v[a.id], d=v-a.base;
+    el.querySelector('.v').textContent = fmtBi(v);
+    const de = el.querySelector('.delta');
+    de.textContent = Math.abs(d)<0.05 ? '' : (d>0?'+':'−') + pct(Math.abs(d)/a.base*100,0);
+    de.className = 'delta ' + (d>0?'up':'down');
+    const r=document.getElementById('R-'+a.id);
+    if(r){ r.value=v; r.style.setProperty('--fl', ((v-a.lo)/(a.hi-a.lo)*100)+'%'); }
+    let chip='';
+    if(a.kind==='locked') chip='<span class="chip k-locked">Fixo</span>';
+    else if(a.kind && v < a.floor-0.05) chip = a.kind==='pec' ? '<span class="chip k-pec">Exige PEC</span>' : '<span class="chip k-lei">Exige lei</span>';
+    el.querySelector('.chipslot').innerHTML = chip;
+    const imp = a.imp ? a.imp(v) : null;
+    el.querySelector('.imp').textContent = imp ? '→ ' + imp + '.' : '';
+  });
+  LEVERS.forEach(x=>{
+    const el=document.getElementById('L-'+x.id), v=state.l[x.id], rv=x.rev(v);
+    el.querySelector('.v').textContent = (v>0?'+':v<0?'−':'') + Math.abs(v).toLocaleString('pt-BR') + x.unit;
+    const de=el.querySelector('.delta'); de.textContent = Math.abs(rv)<0.05?'':sgn(rv)+'/ano'; de.className='delta '+(rv>0?'up':'down');
+    const r=document.getElementById('R-'+x.id); r.value=v; r.style.setProperty('--fl', ((v-x.lo)/(x.hi-x.lo)*100)+'%');
+  });
+  GROUPS.forEach((g,gi)=>{
+    const t=AREAS.filter(a=>a.g===gi).reduce((s,a)=>s+state.v[a.id],0);
+    document.getElementById('gt'+gi).textContent = fmtBi(t) + ' · ' + pct(t/BASE_TOTAL*100,0) + ' do total real';
+  });
+}
+
+function renderSplit(){
+  // Real budget: what is fixed by law, what sits on a floor, what is free choice without changing laws
+  let fixed=0, floor=0, free=0;
+  AREAS.forEach(a=>{
+    if(a.g===0) fixed+=a.base;
+    else { floor+=Math.min(a.floor,a.base); free+=Math.max(0,a.base-a.floor); }
+  });
+  const T=fixed+floor+free;
+  document.getElementById('splitbar').innerHTML =
+    `<span style="flex-basis:${fixed/T*100}%;background:var(--locked)"></span><span style="flex-basis:${floor/T*100}%;background:var(--floor)"></span><span style="flex-basis:${free/T*100}%;background:var(--free)"></span>`;
+  document.getElementById('splitlegend').innerHTML =
+    `<span><i style="background:var(--locked)"></i>Travado pela lei: ${pct(fixed/T*100,0)}</span><span><i style="background:var(--floor)"></i>Pisos e programas: ${pct(floor/T*100,0)}</span><span><i style="background:var(--free)"></i><strong style="color:var(--ink)">Escolha livre, sem mudar lei: ${pct(free/T*100,1)} (${fmtBi(free)})</strong></span>`;
+}
+
+function renderPanel(r){
+  const ak = archetype(state,r), A = ARCH[ak];
+  const gov = nearestGov(r.comp);
+  document.getElementById('arche').innerHTML = `<div class="tag">Seu perfil de presidente</div><div class="name">${A[0]}</div><p>${A[1]} Seu orçamento se parece mais com o de <strong style="color:var(--ink)">${gov.n} (${gov.y})</strong>.</p>`;
+
+  const primPct = r.prim/PIB*100;
+  let metaPill = r.prim < META - TOL ? '<span class="pill bad">Descumpre a meta</span>' : r.prim > META + TOL ? '<span class="pill good">Acima da meta</span>' : '<span class="pill good">Cumpre a meta</span>';
+  const over = r.dS;
+  const tetoPill = over > 0.5 ? '<span class="pill bad">Estoura o limite</span>' : '<span class="pill good">Dentro do limite</span>';
+  const ref = r.reforms.pec + r.reforms.lei;
+  const refPill = ref===0 ? '<span class="pill good">Nenhuma</span>' : `<span class="pill ${r.reforms.pec?'bad':'warn'}">${ref} mudança${ref>1?'s':''}</span>`;
+  const d30 = r.debt[4], b30 = BASEDEBT[4];
+  const debtPill = d30 > b30 + 1 ? '<span class="pill bad">Piora</span>' : d30 < b30 - 1 ? '<span class="pill good">Melhora</span>' : '<span class="pill warn">Igual ao real</span>';
+  document.getElementById('stats').innerHTML = `
+    <div class="stat"><div class="label">Resultado primário</div><div class="big">${r.prim>=0?'+':'−'}${fmtBi(Math.abs(r.prim)).replace('R$ ','R$ ')}</div><div class="sub">${pct(primPct,2)} do PIB/ano</div>${metaPill}</div>
+    <div class="stat"><div class="label">Teto do arcabouço</div><div class="big">${over>0.5?'+'+fmtBi(over):'OK'}</div><div class="sub">${over>0.5?'acima do limite de gastos':'gasto dentro do limite legal'}</div>${tetoPill}</div>
+    <div class="stat"><div class="label">Dívida em 2030</div><div class="big">${pct(d30,1)}</div><div class="sub">do PIB · real: ${pct(b30,1)}</div>${debtPill}</div>
+    <div class="stat"><div class="label">Precisa do Congresso</div><div class="big">${r.reforms.pec} PEC · ${r.reforms.lei} lei</div><div class="sub">${r.reforms.pec?'emenda constitucional exige 3/5 nas duas Casas':'mudanças de lei: maioria simples'}</div>${refPill}</div>
+    <div class="stat" style="grid-column:1/-1;border-top:1px solid var(--line-soft);padding-top:10px"><div class="label">E os juros?</div><div class="sub">Além disso tudo, o governo paga cerca de <strong style="color:var(--ink)">R$ 644 bi</strong> de juros da dívida em 2026. Você não escolhe esse número: ele depende da dívida e da taxa Selic.</div></div>`;
+
+  renderDebt(r.debt);
+  renderGov(r.comp, gov);
+  renderVs(r);
+  renderDock(r, metaPill, d30);
+  return {ak, gov};
+}
+
+function renderDebt(path){
+  const W=340,H=170,pl=34,pr=40,pt=12,pb=24;
+  const yrs=[2025,2026,2027,2028,2029,2030];
+  const user=[79,...path], base=[79,...BASEDEBT];
+  const all=user.concat(base); let lo=Math.floor(Math.min(...all)/5)*5, hi=Math.ceil(Math.max(...all)/5)*5; if(hi-lo<15) hi=lo+15;
+  const x=i=>pl+i*(W-pl-pr)/5, y=v=>pt+(hi-v)/(hi-lo)*(H-pt-pb);
+  const line=a=>a.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' ');
+  let grid=''; for(let v=lo; v<=hi; v+=5){ grid+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line-soft)"/><text x="${pl-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`; }
+  const xl=yrs.map((t,i)=>`<text x="${x(i)}" y="${H-6}" text-anchor="middle">${i===0||i===5||i===2?t:"'"+String(t).slice(2)}</text>`).join('');
+  const area = line(user)+` L${x(5)} ${y(lo)} L${x(0)} ${y(lo)} Z`;
+  document.getElementById('debtchart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Dívida bruta em % do PIB de 2025 a 2030">
+    ${grid}${xl}
+    <rect x="${x(1)}" y="${pt}" width="${x(5)-x(1)}" height="${H-pt-pb}" fill="var(--cobalt-soft)" opacity=".35"/>
+    <text x="${x(3)}" y="${pt+11}" text-anchor="middle" style="font-size:10px">seu mandato</text>
+    <path d="${line(base)}" fill="none" stroke="var(--faint)" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="${area}" fill="var(--cobalt)" opacity=".08"/>
+    <path d="${line(user)}" fill="none" stroke="var(--cobalt)" stroke-width="2.5"/>
+    <circle cx="${x(5)}" cy="${y(user[5])}" r="4" fill="var(--cobalt)"/>
+    <text x="${x(5)+6}" y="${y(user[5])+4}" style="fill:var(--cobalt);font-weight:500">${Math.round(user[5])}%</text>
+    ${Math.abs(user[5]-base[5])>1.5?`<text x="${x(5)+6}" y="${y(base[5])+4}">${Math.round(base[5])}%</text>`:''}
+  </svg>`;
+}
+
+function mini(c){ return `<div class="mini"><span style="flex-basis:${c.prev}%;background:var(--locked)"></span><span style="flex-basis:${c.pess}%;background:var(--floor)"></span><span style="flex-basis:${c.soc}%;background:var(--free)"></span><span style="flex-basis:${100-c.prev-c.pess-c.soc}%;background:var(--line)"></span></div>`; }
+function renderGov(c, best){
+  let h = `<tr><th>Governo</th><th style="width:44%">Composição</th><th style="text-align:right">Gasto/PIB</th></tr>`;
+  h += `<tr class="you"><td>Você (2027–30)</td><td>${mini(c)}</td><td class="n">${pct(c.tot)}</td></tr>`;
+  GOVS.slice().reverse().forEach(g=>{ h += `<tr class="${g===best?'best':''}"><td>${g.n} <span class="mono" style="color:var(--faint);font-size:11px">${g.y}</span></td><td>${mini(g)}</td><td class="n">${pct(g.tot)}</td></tr>`; });
+  document.getElementById('govtable').innerHTML = h;
+}
+
+function renderVs(r){
+  const box=document.getElementById('vsbox'); if(!friend){ box.hidden=true; return; }
+  box.hidden=false;
+  const fr = calc(friend);
+  let h = `<tr><th>Área</th><th style="text-align:right">Você</th><th style="text-align:right">Amigo</th></tr>`;
+  const rows = AREAS.filter(a=>a.kind!=='locked').map(a=>({a, me:state.v[a.id]-a.base, fr:friend.v[a.id]-a.base}))
+    .filter(x=>Math.abs(x.me)>0.05||Math.abs(x.fr)>0.05).sort((p,q)=>Math.abs(q.me-q.fr)-Math.abs(p.me-p.fr)).slice(0,8);
+  if(!rows.length) h += `<tr><td colspan="3">Vocês dois deixaram tudo como está.</td></tr>`;
+  rows.forEach(x=>{ h += `<tr><td>${x.a.name}</td><td class="n me">${Math.abs(x.me)<0.05?'—':sgn(x.me)}</td><td class="n">${Math.abs(x.fr)<0.05?'—':sgn(x.fr)}</td></tr>`; });
+  h += `<tr class="you"><td>Perfil</td><td class="n me">${ARCH[archetype(state,r)][0]}</td><td class="n">${ARCH[archetype(friend,fr)][0]}</td></tr>`;
+  h += `<tr class="you"><td>Dívida 2030</td><td class="n me">${pct(r.debt[4])}</td><td class="n">${pct(fr.debt[4])}</td></tr>`;
+  document.getElementById('vstable').innerHTML = h;
+}
+
+function renderDock(r, metaPill, d30){
+  document.getElementById('dock').innerHTML =
+    `<div><span>Primário</span><b>${r.prim>=0?'+':'−'}${fmtBi(Math.abs(r.prim))}</b></div>
+     <div><span>Dívida 2030</span><b>${pct(d30)}</b></div>
+     <div><span>Congresso</span><b>${r.reforms.pec} PEC · ${r.reforms.lei} lei</b></div>
+     <a href="#panel">Resultado ↓</a>`;
+}
+
+// ---------- share card ----------
+let cardTimer=null, lastCardURL='';
+function topChanges(s){
+  const ch = AREAS.map(a=>({n:a.name, d:s.v[a.id]-a.base})).filter(x=>Math.abs(x.d)>=0.5);
+  const ups = ch.filter(x=>x.d>0).sort((a,b)=>b.d-a.d).slice(0,3);
+  const downs = ch.filter(x=>x.d<0).sort((a,b)=>a.d-b.d).slice(0,3);
+  return {ups,downs};
+}
+function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+async function drawCard(r, meta){
+  try{ await Promise.all(['48px "DM Serif Display"','italic 40px "Instrument Serif"','600 30px "Newsreader"','500 24px "IBM Plex Mono"'].map(f=>document.fonts.load(f))); }catch(e){}
+  const c=document.createElement('canvas'); c.width=1080; c.height=1350; const g=c.getContext('2d');
+  const P='#F8F8F9', I='#0D0D0F', C='#2337FF', M='#55585F', G='#0E7C66', R='#C8322B';
+  g.fillStyle=P; g.fillRect(0,0,1080,1350);
+  g.fillStyle=I; g.fillRect(0,0,1080,14);
+  g.fillStyle=C; g.font='italic 46px "Instrument Serif", Georgia, serif'; g.fillText('Se eu fosse presidente…',72,120);
+  g.fillStyle=I; g.font='112px "DM Serif Display", Georgia, serif';
+  wrapText(g, ARCH[meta.ak][0], 72, 250, 940, 110);
+  g.fillStyle=M; g.font='34px "Newsreader", Georgia, serif';
+  g.fillText(`Meu orçamento se parece com o de ${meta.gov.n} (${meta.gov.y}).`,72, ARCH[meta.ak][0].length>16?470:370);
+  let y = ARCH[meta.ak][0].length>16?560:460;
+  const {ups,downs}=topChanges(state);
+  const col=(title,arr,x,color,sign)=>{
+    g.fillStyle=M; g.font='500 22px "IBM Plex Mono", monospace'; g.fillText(title,x,y);
+    g.fillStyle=I; g.fillRect(x,y+16,440,3);
+    if(!arr.length){ g.fillStyle=M; g.font='30px "Newsreader", Georgia, serif'; g.fillText('nada',x,y+70); return; }
+    arr.forEach((it,k)=>{
+      const yy=y+70+k*92;
+      g.fillStyle=I; g.font='600 30px "Newsreader", Georgia, serif'; g.fillText(shorten(g,it.n,440),x,yy);
+      g.fillStyle=color; g.font='500 28px "IBM Plex Mono", monospace'; g.fillText(sign+fmtBi(Math.abs(it.d)),x,yy+40);
+    });
+  };
+  col('MAIS DINHEIRO PARA',ups,72,G,'+ ');
+  col('MENOS DINHEIRO PARA',downs,568,R,'− ');
+  y += 70+3*92+30;
+  g.fillStyle=I; g.fillRect(72,y,936,2);
+  const stat=(lab,val,x)=>{ g.fillStyle=M; g.font='500 21px "IBM Plex Mono", monospace'; g.fillText(lab,x,y+52); g.fillStyle=I; g.font='500 40px "IBM Plex Mono", monospace'; g.fillText(val,x,y+104); };
+  const mOk = r.prim >= META - TOL;
+  stat('META FISCAL', mOk?'cumpre':'descumpre', 72);
+  stat('DÍVIDA 2030', pct(r.debt[4],0)+' PIB', 400);
+  stat('PECs', String(r.reforms.pec), 780);
+  g.fillStyle=I; g.fillRect(0,1230,1080,120);
+  g.fillStyle=P; g.font='34px "DM Serif Display", Georgia, serif'; g.fillText('E você, faria o quê?',72,1300);
+  g.font='500 22px "IBM Plex Mono", monospace'; g.textAlign='right'; g.fillText('media.thewatermouse.com',1008,1298); g.textAlign='left';
+  return c;
+}
+function wrapText(g,t,x,y,w,lh){ const words=t.split(' '); let line=''; for(const wd of words){ const test=line?line+' '+wd:wd; if(g.measureText(test).width>w && line){ g.fillText(line,x,y); line=wd; y+=lh; } else line=test; } g.fillText(line,x,y); }
+function shorten(g,t,w){ if(g.measureText(t).width<=w) return t; while(t.length>4 && g.measureText(t+'…').width>w) t=t.slice(0,-1); return t+'…'; }
+
+function scheduleCard(r,meta){
+  clearTimeout(cardTimer);
+  cardTimer=setTimeout(async()=>{
+    const c=await drawCard(r,meta);
+    c.toBlob(b=>{ if(!b) return; if(lastCardURL) URL.revokeObjectURL(lastCardURL); lastCardURL=URL.createObjectURL(b); document.getElementById('cardimg').src=lastCardURL; window.__cardBlob=b; },'image/png');
+  },250);
+}
+
+function track(metodo){ try{ (window.dataLayer=window.dataLayer||[]).push({event:'simulador_share', metodo:metodo, perfil:window.__perfil||''}); }catch(e){} }
+['wa','xpost','threads'].forEach(id=>document.getElementById(id).addEventListener('click',()=>track(id)));
+function updateShare(r,meta){
+  window.__perfil = ARCH[meta.ak][0];
+  const link = SHARE_BASE + '#' + encode(state);
+  document.getElementById('sharelink').value = link;
+  const txt = `Se eu fosse presidente, meu orçamento seria "${ARCH[meta.ak][0]}" e parecido com o de ${meta.gov.n}. Dívida em 2030: ${pct(r.debt[4],0)} do PIB. Monte o seu:`;
+  document.getElementById('wa').href = 'https://wa.me/?text=' + encodeURIComponent(txt + ' ' + link);
+  document.getElementById('xpost').href = 'https://x.com/intent/post?text=' + encodeURIComponent(txt) + '&url=' + encodeURIComponent(link);
+  document.getElementById('threads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(txt + ' ' + link);
+  window.__shareText = txt; window.__shareLink = link;
+}
+
+// ---------- main ----------
+function update(){
+  renderLines();
+  const r = calc(state);
+  const meta = renderPanel(r);
+  updateShare(r,meta);
+  scheduleCard(r,meta);
+}
+
+document.getElementById('reset').addEventListener('click',()=>{ state=fresh(); update(); });
+document.getElementById('copy').addEventListener('click',()=>{
+  const inp=document.getElementById('sharelink'), b=document.getElementById('copy');
+  track('copiar_link'); const done=()=>{ b.textContent='Copiado'; setTimeout(()=>b.textContent='Copiar',1500); };
+  try{ navigator.clipboard.writeText(inp.value).then(done,()=>{ inp.select(); }); }catch(e){ inp.select(); }
+});
+document.getElementById('dl').addEventListener('click',()=>{
+  if(!window.__cardBlob) return;
+  track('baixar_imagem');
+  const a=document.createElement('a'); a.href=lastCardURL; a.download='meu-orcamento-presidente.png'; document.body.appendChild(a); a.click(); a.remove();
+  document.querySelector('#share .hint').textContent='Se o download não começar, toque e segure a imagem para salvar.';
+});
+const ns=document.getElementById('nativeShare');
+if(navigator.canShare){ ns.hidden=false; ns.addEventListener('click',async()=>{
+  try{
+    const f = window.__cardBlob ? new File([window.__cardBlob],'meu-orcamento.png',{type:'image/png'}) : null;
+    const data = {text:window.__shareText, url:window.__shareLink};
+    if(f && navigator.canShare({files:[f]})) data.files=[f];
+    await navigator.share(data); track('nativo');
+  }catch(e){}
+}); }
+function setFriend(s){
+  friend=s;
+  const banner=document.getElementById('friendBanner'); banner.hidden=!s;
+  update();
+}
+document.getElementById('friendView').addEventListener('click',()=>{ if(friend){ state=JSON.parse(JSON.stringify(friend)); update(); document.getElementById('friendBanner').hidden=true; } });
+document.getElementById('loadfriend').addEventListener('click',()=>{
+  const s=decode(document.getElementById('pastelink').value), msg=document.getElementById('pastemsg');
+  if(!s){ msg.textContent='Esse link não tem um orçamento. Copie o link inteiro que seu amigo mandou.'; return; }
+  track('comparar_amigo'); msg.textContent='Orçamento do amigo carregado. A comparação está logo acima.'; setFriend(s);
+  document.getElementById('vsbox').scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+buildLines();
+renderSplit();
+const fromHash = decode(location.hash);
+if(fromHash){ friend=fromHash; document.getElementById('friendBanner').hidden=false; }
+update();
+})();
+</script>
+
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+</body>
+</html>

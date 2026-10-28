@@ -181,6 +181,16 @@
   .wm-cookie-btn{font-family:inherit;font-size:13px;font-weight:500;border-radius:2px;padding:9px 18px;cursor:pointer;border:none;}
   .wm-cookie-btn.ghost{background:transparent;color:rgba(248,248,249,0.72);border:1px solid rgba(248,248,249,0.24);}
   .wm-cookie-btn.solid{background:#2337FF;color:#fff;}
+  /* simulador promo */
+  .sim-promo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 28px;align-items:center;border:1px solid var(--ink);background:var(--surface);padding:20px 22px;margin:4px 0 28px;color:var(--ink);text-decoration:none}
+  .sim-promo .sk{font-family:'Instrument Serif',serif;font-style:italic;color:#2337FF;font-size:19px}
+  .sim-promo h2{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(26px,3.4vw,36px);line-height:1.08;margin:2px 0 6px}
+  .sim-promo p{color:var(--muted);font-size:15.5px;margin:0;max-width:62ch}
+  .sim-promo .bar{display:flex;height:12px;border:1px solid var(--ink);margin-top:12px;max-width:520px}
+  .sim-promo .bar span{display:block;height:100%}
+  .sim-promo .go{font-family:'IBM Plex Mono',monospace;font-size:13px;background:var(--ink);color:#F8F8F9;padding:11px 16px;white-space:nowrap}
+  .sim-promo:hover .go{background:#2337FF}
+  @media (max-width:700px){.sim-promo{grid-template-columns:minmax(0,1fr)}.sim-promo .go{justify-self:start}}
 </style>
 <style>
 /* mobile header fix (WM) */
@@ -276,6 +286,18 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
   <div class="tagline">
     <p>Notícias internacionais em português, com contexto pro Brasil e a fonte sempre no lugar.</p>
   </div>
+
+  <!--SIMULADOR-->
+  <a href="orcamento/" class="sim-promo">
+    <div>
+      <div class="sk">Simulador · Orçamento federal</div>
+      <h2>Se você fosse presidente, onde poria o dinheiro?</h2>
+      <p>R$ 2,61 trilhões, com as regras de verdade. Só 5% é escolha livre. Monte o seu orçamento, veja o que acontece com a dívida até 2030 e descubra com qual governo ele se parece.</p>
+      <div class="bar" aria-hidden="true"><span style="flex-basis:72%;background:#0D0D0F"></span><span style="flex-basis:23%;background:#6E717A"></span><span style="flex-basis:5%;background:#2337FF"></span></div>
+    </div>
+    <span class="go">Montar meu orçamento →</span>
+  </a>
+  <!--/SIMULADOR-->
 
   <!-- LEAD -->
   <div class="lead-grid">
