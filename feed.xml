@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 22:10:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 22:20:00 -0300</lastBuildDate>
+    <item>
+      <title>Como os arqueólogos sabem a idade de um achado: do carbono-14 às camadas do solo</title>
+      <link>https://media.thewatermouse.com/guia-como-se-datam-achados-arqueologicos-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-como-se-datam-achados-arqueologicos-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 22:20:00 -0300</pubDate>
+      <category>Cultura</category>
+      <description>Como se datam achados antigos: carbono-14, camadas do solo, anéis de árvores e luminescência, e como ler as margens de erro nas notícias.</description>
+    </item>
     <item>
       <title>Como funciona o sono: fases, sono REM e por que sonhamos</title>
       <link>https://media.thewatermouse.com/guia-sono-fases-rem-sonhos-2026.html</link>
