@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 22:30:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 22:40:00 -0300</lastBuildDate>
+    <item>
+      <title>Supervulcões: o que são, como se mede o tamanho de uma erupção e qual é o risco real</title>
+      <link>https://media.thewatermouse.com/guia-supervulcoes-escala-vei-risco-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-supervulcoes-escala-vei-risco-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 22:40:00 -0300</pubDate>
+      <category>Ciência</category>
+      <description>O que é um supervulcão, como funciona a escala VEI, quais são os casos conhecidos e por que o risco imediato é baixo, mas o assunto merece atenção.</description>
+    </item>
     <item>
       <title>Como funciona um assistente de IA: do texto à "próxima palavra", e por que ele às vezes inventa</title>
       <link>https://media.thewatermouse.com/guia-como-funciona-ia-generativa-2026.html</link>
