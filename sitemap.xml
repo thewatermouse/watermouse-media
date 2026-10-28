@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://media.thewatermouse.com/</loc><lastmod>2026-10-28</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://media.thewatermouse.com/ferramentas/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://media.thewatermouse.com/mais-ou-menos/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://media.thewatermouse.com/brasil-em-100/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-argentina/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-chile/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-uruguai/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-paraguai/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-peru/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-colombia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-mexico/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-estados-unidos/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-canada/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-china/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-india/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-japao/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-coreia-do-sul/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-russia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-alemanha/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-franca/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-reino-unido/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-italia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-espanha/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-portugal/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-noruega/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-australia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-africa-do-sul/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-nigeria/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-turquia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-indonesia/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-arabia-saudita/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/brasil-vs-egito/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/estados-unidos-vs-china/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/india-vs-china/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/argentina-vs-chile/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://media.thewatermouse.com/comparar/portugal-vs-espanha/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://media.thewatermouse.com/orcamento/</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://media.thewatermouse.com/calor-verao-2026-mortes-cidades-europeias.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://media.thewatermouse.com/guia-materia-escura-energia-escura-2026.html</loc><lastmod>2026-10-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>

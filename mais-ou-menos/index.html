@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mais ou menos? O jogo dos números de países, estados e cidades | Watermouse Media</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/mais-ou-menos/">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta name="description" content="Jogo de adivinhar quem tem mais ou menos: população, PIB, área e dezenas de indicadores de países, estados e cidades do Brasil, com dados oficiais. Um desafio novo por dia.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Mais ou menos?">
+<meta property="og:description" content="Jogo de adivinhar quem tem mais ou menos: população, PIB, área e dezenas de indicadores de países, estados e cidades do Brasil, com dados oficiais. Um desafio novo por dia.">
+<meta property="og:url" content="https://media.thewatermouse.com/mais-ou-menos/">
+<meta property="og:image" content="https://media.thewatermouse.com/mais-ou-menos/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.thewatermouse.com/mais-ou-menos/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Mais ou menos?", "description": "Jogo de adivinhar quem tem mais ou menos: população, PIB, área e dezenas de indicadores de países, estados e cidades do Brasil, com dados oficiais. Um desafio novo por dia.", "url": "https://media.thewatermouse.com/mais-ou-menos/", "inLanguage": "pt-BR", "isAccessibleForFree": true, "image": "https://media.thewatermouse.com/mais-ou-menos/og.png", "publisher": {"@type": "NewsMediaOrganization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/", "logo": {"@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png"}}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/ferr.css">
+
+<style>
+.game{padding-block:8px 20px}
+.gbar{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;padding-block:14px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.status{display:flex;gap:22px;font-family:var(--f-mono);font-size:13px;padding-block:12px;color:var(--muted)}
+.status span:first-child{color:var(--ink)}
+.prompt{font-family:var(--f-display);font-size:clamp(22px,3.2vw,32px);line-height:1.15;margin:6px 0 18px;text-wrap:balance}
+.prompt .hl{color:var(--cobalt)}
+.stage-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}
+.ccard{background:var(--surface);border:1px solid var(--ink);padding:22px 18px 20px;text-align:center;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:background .2s,border-color .2s}
+.ccard.ok{background:color-mix(in srgb,var(--good) 14%,var(--surface));border-color:var(--good)}
+.ccard.no{background:color-mix(in srgb,var(--bad) 12%,var(--surface));border-color:var(--bad)}
+.ccard .vis{height:68px;display:flex;align-items:center;justify-content:center}
+.flag{width:96px;height:64px;object-fit:cover;border:1px solid var(--line);display:block}
+.mono-badge{width:68px;height:68px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);font-size:28px}
+.ccard .nm{font-family:var(--f-display);font-size:clamp(24px,3vw,34px);line-height:1.05;text-wrap:balance}
+.ccard .val{font-size:clamp(24px,3.4vw,40px);font-weight:500;margin-top:6px;min-height:1.2em}
+.ccard .mlabel{margin-top:2px}
+.vsbadge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:13px;z-index:2;border:3px solid var(--paper)}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+.answers .btn{justify-content:center;font-size:16px;padding:16px}
+.fb{min-height:1.6em;margin-top:14px;font-size:16px}
+.fb.ok{color:var(--good)} .fb.no{color:var(--bad)}
+.nextrow{margin-top:8px;display:flex;justify-content:center}
+.end{border:1px solid var(--ink);background:var(--surface);padding:32px 22px;text-align:center}
+.end .big{font-family:var(--f-display);font-size:clamp(88px,18vw,170px);line-height:.9}
+.end .grid{font-size:30px;letter-spacing:2px;margin:14px 0 4px;word-break:break-all}
+.end .msg{font-family:var(--f-kicker);font-style:italic;font-size:24px;color:var(--cobalt);margin:10px 0 20px}
+.how{margin-top:30px;font-size:15.5px;color:var(--muted);max-width:68ch}
+.how b{color:var(--ink)}
+@media (max-width:640px){
+  .stage-grid{grid-template-columns:1fr;gap:12px}.ccard{min-height:0;padding:16px}
+  .vsbadge{top:50%}.answers{gap:10px}.ccard .vis{height:56px}.flag{width:80px;height:53px}
+}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="106 18 100 100" aria-hidden="true"><circle cx="156" cy="68" r="50" fill="#F8F8F9"/><g transform="translate(156 68) scale(1.05) translate(-158 -68)"><g fill="#0D0D0F"><circle cx="128" cy="64" r="15"/><circle cx="128" cy="64" r="8" fill="#2B2C33"/><path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/><circle cx="189" cy="80" r="4"/><g transform="translate(-2 6) rotate(8 156 50)"><path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/><rect x="141" y="47" width="30" height="5" fill="#2337FF"/><rect x="128" y="54" width="56" height="5" rx="2.5"/></g></g><circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/><path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/></g></svg>Watermouse Media</a>
+    <nav class="mastnav" aria-label="Seções"><a href="/">Notícias</a><a href="/ferramentas/" aria-current="page">Ferramentas</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Jogo · Desafio diário</div>
+    <h1>Mais ou menos?</h1>
+    <p class="lede">Dez rodadas por dia, iguais para todo mundo. <strong>Quem tem mais população? Mais floresta? Mais internet?</strong> Dados do Banco Mundial e do IBGE, sem pegadinha de fonte.</p>
+  </div>
+</section>
+
+
+<main class="wrap game">
+  <div class="gbar">
+    <div class="seg" role="group" aria-label="Modo de jogo">
+      <button type="button" data-mode="dia" aria-pressed="true">Desafio do dia <span id="dayno" class="mono"></span></button>
+      <button type="button" data-mode="treino" aria-pressed="false">Treino</button>
+    </div>
+    <div class="chips" id="pools" role="group" aria-label="Categoria" hidden>
+      <button type="button" class="chip" data-pool="misto" aria-pressed="true">Misto</button>
+      <button type="button" class="chip" data-pool="paises" aria-pressed="false">Países</button>
+      <button type="button" class="chip" data-pool="estados" aria-pressed="false">Estados</button>
+      <button type="button" class="chip" data-pool="cidades" aria-pressed="false">Cidades</button>
+    </div>
+  </div>
+  <div class="status mono" id="status" aria-live="polite"></div>
+
+  <section id="stage" aria-label="Rodada">
+    <div class="prompt" id="prompt"></div>
+    <div class="stage-grid">
+      <div class="ccard" id="cardA"></div>
+      <div class="vsbadge" aria-hidden="true">VS</div>
+      <div class="ccard" id="cardB"></div>
+    </div>
+    <div class="answers">
+      <button type="button" class="btn" id="btnMore">▲ Tem mais</button>
+      <button type="button" class="btn" id="btnLess">▼ Tem menos</button>
+    </div>
+    <div class="fb" id="fb" role="status" aria-live="polite"></div>
+    <div class="nextrow"><button type="button" class="btn cobalt" id="next" hidden>Próxima →</button></div>
+  </section>
+
+  <section id="end" class="end" hidden aria-live="polite">
+    <div class="label" id="endlbl"></div>
+    <div class="big" id="endbig"></div>
+    <div class="grid" id="endgrid"></div>
+    <div class="msg" id="endmsg"></div>
+    <div class="sharebox" style="text-align:left">
+      <span class="label">Compartilhar o resultado</span>
+      <button type="button" class="btn cobalt small" id="shWa">WhatsApp</button>
+      <button type="button" class="btn ghost small" id="shX">X</button>
+      <button type="button" class="btn ghost small" id="shNative">Compartilhar…</button>
+      <button type="button" class="btn ghost small" id="shCopy">Copiar texto</button>
+      <button type="button" class="btn ghost small" id="shImg">Baixar imagem</button>
+    </div>
+    <div style="margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button type="button" class="btn" id="again">Jogar de novo</button>
+      <button type="button" class="btn ghost" data-mode="treino">Modo treino</button>
+    </div>
+  </section>
+
+  <div class="how">
+    <b>Como jogar.</b> Você vê um número e um adversário escondido. Diga se o adversário tem <b>mais</b> ou <b>menos</b> do que o primeiro. No <b>desafio do dia</b> são 10 rodadas, iguais para todo mundo, e o resultado vira um quadradinho verde ou vermelho para você compartilhar. No <b>treino</b> a rodada continua até o primeiro erro. Atalhos: seta para cima (mais), seta para baixo (menos), Enter (próxima).
+  </div>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <h4>Fontes e método</h4>
+    <ul><li>Países: <a href="https://data.worldbank.org" target="_blank" rel="noopener">Banco Mundial, World Development Indicators</a> (valor mais recente disponível de cada país, entre 2022 e 2025; países com 2 milhões de habitantes ou mais). Nomes em português: CLDR/Unicode. Bandeiras: <a href="https://flagcdn.com" target="_blank" rel="noopener">FlagCDN</a>.</li><li>Estados e cidades: <a href="https://sidra.ibge.gov.br/tabela/4714" target="_blank" rel="noopener">IBGE, Censo Demográfico 2022</a> (população, área e densidade; as 150 cidades mais populosas).</li><li>Diferenças menores que 8% não entram no jogo, para evitar empates técnicos. Um mesmo indicador pode ter anos de referência diferentes entre países; se algum resultado parecer errado, <a href="/contato.html">avise a gente</a>.</li></ul>
+    <div class="sitelinks">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="/">Notícias</a> · <a href="/ferramentas/">Ferramentas</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+<script src="/assets/ferr.js"></script>
+<script>(function(){
+  var D = {"paises":[{"i":"in","n":"Índia","v":{"pop":1463865525,"pib":3956067115771.63,"pibpc":2702.48,"area":3287263,"dens":488.01,"vida":72.23,"fert":1.96,"mort":23.3,"idosos":7.38,"urb":35.69,"net":70,"co2pc":2.17,"mata":24.44,"homic":2.82}},{"i":"cn","n":"China","v":{"pop":1406585000,"pib":19498039388042.6,"pibpc":13861.97,"area":9562910,"dens":150.08,"vida":78.02,"fert":1.01,"mort":4.1,"idosos":14.91,"urb":66.34,"net":91.6,"co2pc":9.32,"mata":24.02,"homic":0.5}},{"i":"us","n":"Estados Unidos","v":{"pop":341784857,"pib":30769700000000,"pibpc":90026.52,"area":9831510,"dens":37.17,"vida":78.89,"fert":1.63,"mort":5.5,"idosos":18.39,"urb":80.19,"net":94.69,"co2pc":13.62,"mata":33.78,"homic":5.76}},{"i":"id","n":"Indonésia","v":{"pop":285721236,"pib":1445642584163.81,"pibpc":5059.63,"area":1916906.8,"dens":149.8,"vida":71.29,"fert":2.12,"mort":15.2,"idosos":7.54,"urb":59.39,"net":72.78,"co2pc":2.87,"mata":50.67,"homic":0.3}},{"i":"pk","n":"Paquistão","v":{"pop":255219554,"pib":407307214476.22,"pibpc":1595.91,"area":796100,"dens":325.95,"vida":67.8,"fert":3.55,"mort":48.2,"idosos":4.36,"urb":39.53,"net":57.25,"co2pc":0.81,"mata":4.11,"homic":4.33}},{"i":"ng","n":"Nigéria","v":{"pop":237527782,"pib":290794361542.11,"pibpc":1224.25,"area":923768,"dens":255.48,"vida":54.63,"fert":4.38,"mort":69.8,"idosos":3.07,"urb":63.78,"net":41.21,"co2pc":0.57,"mata":18.95,"homic":15.75}},{"i":"br","n":"Brasil","v":{"pop":212812405,"pib":2279920092492.13,"pibpc":10713.29,"area":8510420,"dens":25.36,"vida":76.02,"fert":1.61,"mort":12.3,"idosos":11.48,"urb":88.18,"net":84.46,"co2pc":2.32,"mata":58.55,"homic":19.28}},{"i":"bd","n":"Bangladesh","v":{"pop":175686899,"pib":456319229255.58,"pibpc":2597.34,"area":147570,"dens":1333.35,"vida":74.93,"fert":2.14,"mort":24.4,"idosos":6.67,"urb":33.24,"net":53.42,"co2pc":0.72,"mata":14.4,"homic":2.34}},{"i":"ru","n":"Rússia","v":{"pop":143513328,"pib":2561310169358.74,"pibpc":17546.61,"area":17125190,"dens":8.77,"vida":73.44,"fert":1.42,"mort":4.1,"idosos":17.79,"urb":75.25,"net":94.36,"co2pc":13.98,"mata":50.79,"homic":6.77}},{"i":"et","n":"Etiópia","v":{"pop":135472051,"pib":126358758448.36,"pibpc":932.73,"area":1129818.8,"dens":117.69,"vida":67.6,"fert":3.91,"mort":34.5,"idosos":3.3,"urb":24.11,"net":21.94,"co2pc":0.15,"mata":23.84,"homic":8.51}},{"i":"mx","n":"México","v":{"pop":131946900,"pib":1832641364775.52,"pibpc":13889.23,"area":1957193.9,"dens":67.32,"vida":75.26,"fert":1.89,"mort":12.1,"idosos":8.52,"urb":80.04,"net":83.12,"co2pc":3.64,"mata":34.15,"homic":24.86}},{"i":"jp","n":"Japão","v":{"pop":123366734,"pib":4435162999976.94,"pibpc":35951.04,"area":377974.71,"dens":340.12,"vida":84.04,"fert":1.15,"mort":1.8,"idosos":29.99,"urb":92.3,"net":85.54,"co2pc":7.84,"mata":68.34,"homic":0.23}},{"i":"eg","n":"Egito","v":{"pop":118365995,"pib":365254630179.74,"pibpc":3085.81,"area":1001450,"dens":117.07,"vida":71.81,"fert":2.73,"mort":20.8,"idosos":5.27,"urb":42.9,"net":74.65,"co2pc":2.5,"mata":0.0,"homic":1.31}},{"i":"ph","n":"Filipinas","v":{"pop":116786962,"pib":487086123720.42,"pibpc":4170.72,"area":300000,"dens":388.52,"vida":69.95,"fert":1.89,"mort":21.7,"idosos":5.72,"urb":55.77,"net":67.26,"co2pc":1.5,"mata":24.81,"homic":4.35}},{"i":"cd","n":"Congo - Kinshasa","v":{"pop":112832473,"pib":91030531316.99,"pibpc":806.78,"area":2345410,"dens":48.2,"vida":62.07,"fert":5.98,"mort":56.4,"idosos":3.08,"urb":45.11,"net":19.67,"co2pc":0.06,"mata":61.52}},{"i":"vn","n":"Vietnã","v":{"pop":101598527,"pib":514697215165.07,"pibpc":5065.99,"area":331338.31,"dens":322.2,"vida":74.74,"fert":1.9,"mort":12,"idosos":9.49,"urb":38.83,"net":84.15,"co2pc":4.27,"mata":47.12,"homic":1.54}},{"i":"ir","n":"Irã","v":{"pop":92417681,"pib":362682115433.36,"pibpc":3924.38,"area":1745150,"dens":56.44,"vida":77.85,"fert":1.68,"mort":10.3,"idosos":8.58,"urb":77.38,"net":85.34,"co2pc":9.05,"mata":6.63,"homic":2.38}},{"i":"tr","n":"Turquia","v":{"pop":85878556,"pib":1597293229287,"pibpc":18599.44,"area":785350,"dens":111.12,"vida":77.42,"fert":1.48,"mort":8,"idosos":10.57,"urb":89.49,"net":89.77,"co2pc":5.38,"mata":29.48,"homic":3.23}},{"i":"de","n":"Alemanha","v":{"pop":83491249,"pib":5050922925047.05,"pibpc":60496.44,"area":357680,"dens":239.01,"vida":80.79,"fert":1.36,"mort":3.1,"idosos":23.7,"urb":82.14,"net":93.5,"co2pc":6.94,"mata":32.84,"homic":0.91}},{"i":"th","n":"Tailândia","v":{"pop":71619863,"pib":577009981112.02,"pibpc":8056.56,"area":513115,"dens":140.28,"vida":76.56,"fert":1.2,"mort":7.7,"idosos":16.02,"urb":62.8,"net":90.87,"co2pc":3.96,"mata":38.73,"homic":4.79}},{"i":"tz","n":"Tanzânia","v":{"pop":70545865,"pib":90143496090.44,"pibpc":1318.82,"area":945500,"dens":77.56,"vida":67.21,"fert":4.54,"mort":28.7,"idosos":3.04,"urb":36.88,"net":31.16,"co2pc":0.31,"mata":49.63,"homic":3.75}},{"i":"gb","n":"Reino Unido","v":{"pop":69487000,"pib":4002587541846.01,"pibpc":57601.96,"area":243610,"dens":286.37,"vida":81.39,"fert":1.55,"mort":4.1,"idosos":19.7,"urb":83.32,"net":95.47,"co2pc":4.22,"mata":13.5,"homic":1.12}},{"i":"fr","n":"França","v":{"pop":68720337,"pib":3366315927447.33,"pibpc":48985.73,"area":606410,"dens":127.19,"vida":82.98,"fert":1.61,"mort":3.4,"idosos":22.54,"urb":78.84,"net":88.65,"co2pc":4.0,"mata":32.85,"homic":1.34}},{"i":"za","n":"África do Sul","v":{"pop":64747319,"pib":427184325997.31,"pibpc":6597.71,"area":1219602,"dens":52.76,"vida":66.31,"fert":2.21,"mort":24.2,"idosos":6.89,"urb":63.82,"net":78.36,"co2pc":6.88,"mata":18.79,"homic":43.72}},{"i":"it","n":"Itália","v":{"pop":58915656,"pib":2551556954100.35,"pibpc":43308.64,"area":302070,"dens":199.35,"vida":83.95,"fert":1.18,"mort":2.3,"idosos":25.1,"urb":69.68,"net":89.22,"co2pc":5.08,"mata":31.82,"homic":0.57}},{"i":"ke","n":"Quênia","v":{"pop":57532493,"pib":135941278878.82,"pibpc":2362.86,"area":591970,"dens":97.15,"vida":63.83,"fert":3.17,"mort":34.2,"idosos":3.02,"urb":32.21,"net":34.98,"co2pc":0.38,"mata":6.63,"homic":4.87}},{"i":"mm","n":"Mianmar (Birmânia)","v":{"pop":54850648,"pib":81665773809.52,"pibpc":1488.88,"area":676578,"dens":83.5,"vida":67.09,"fert":2.1,"mort":32.8,"idosos":7.52,"urb":30.58,"net":45.45,"co2pc":0.58,"mata":41.96,"homic":2.58}},{"i":"co","n":"Colômbia","v":{"pop":53425635,"pib":457410034202.52,"pibpc":8561.62,"area":1140619.1,"dens":47.67,"vida":77.91,"fert":1.63,"mort":10.5,"idosos":10.2,"urb":78.78,"net":79.35,"co2pc":1.8,"mata":53.71,"homic":24.91}},{"i":"kr","n":"Coreia do Sul","v":{"pop":51684564,"pib":1872374961553.15,"pibpc":36226.97,"area":100460,"dens":530.24,"vida":83.63,"fert":0.75,"mort":2.3,"idosos":20.33,"urb":81.17,"net":97.9,"co2pc":11.36,"mata":64.37,"homic":0.48}},{"i":"sd","n":"Sudão","v":{"pop":51662147,"pib":60162634574.47,"pibpc":1164.54,"area":1878000,"dens":27.01,"vida":66.52,"fert":4.26,"mort":42.9,"idosos":3.39,"urb":34.93,"net":18.6,"co2pc":0.43,"mata":11.86,"homic":5.15}},{"i":"ug","n":"Uganda","v":{"pop":51384894,"pib":61985829288.15,"pibpc":1206.3,"area":241551,"dens":249.43,"vida":68.49,"fert":4.17,"mort":35.9,"idosos":2.23,"urb":31.94,"net":8.95,"co2pc":0.17,"mata":11.95,"homic":8.97}},{"i":"es","n":"Espanha","v":{"pop":49355143,"pib":1906453309985.88,"pibpc":38627.25,"area":505981.25,"dens":97.76,"vida":83.89,"fert":1.1,"mort":2.6,"idosos":21.64,"urb":80.51,"net":95.76,"co2pc":4.51,"mata":38.23,"homic":0.69}},{"i":"dz","n":"Argélia","v":{"pop":47435312,"pib":287031225987.74,"pibpc":6051.0,"area":2381740,"dens":19.66,"vida":76.47,"fert":2.72,"mort":19.5,"idosos":6.81,"urb":75.82,"net":77.42,"co2pc":3.98,"mata":0.71,"homic":1.16}},{"i":"iq","n":"Iraque","v":{"pop":47020774,"pib":254367293538.46,"pibpc":5409.68,"area":435050,"dens":106.06,"vida":72.42,"fert":3.22,"mort":20.1,"idosos":3.45,"urb":69.94,"net":81.47,"co2pc":5.18,"mata":1.61,"homic":9.46}},{"i":"ar","n":"Argentina","v":{"pop":45851378,"pib":683097891618.6,"pibpc":14898.09,"area":2780400,"dens":16.7,"vida":77.54,"fert":1.5,"mort":8,"idosos":12.63,"urb":92.35,"net":89.67,"co2pc":4.01,"mata":17.09,"homic":4.49}},{"i":"af","n":"Afeganistão","v":{"pop":43844111,"pib":17778508875.74,"pibpc":416.87,"area":652870,"dens":65.39,"vida":66.29,"fert":4.76,"mort":48.3,"idosos":2.43,"urb":25.94,"net":16.09,"co2pc":0.28,"mata":1.85,"homic":4.03}},{"i":"ye","n":"Iêmen","v":{"pop":41773878,"pib":21606160663.03,"pibpc":633.89,"area":527968,"dens":76.87,"vida":69.44,"fert":4.5,"mort":33.8,"idosos":2.55,"urb":37.03,"net":17.49,"co2pc":0.26,"mata":1.04,"homic":5.81}},{"i":"ca","n":"Canadá","v":{"pop":41651653,"pib":2319899772425.92,"pibpc":55697.66,"area":15634410,"dens":4.69,"vida":82.11,"fert":1.25,"mort":4.7,"idosos":20.26,"urb":82.88,"net":94.35,"co2pc":14.01,"mata":41.97,"homic":1.98}},{"i":"ao","n":"Angola","v":{"pop":39040039,"pib":122174889423.63,"pibpc":3129.48,"area":1246700,"dens":30.39,"vida":64.81,"fert":5.05,"mort":32.1,"idosos":2.89,"urb":71.46,"net":40.7,"co2pc":0.74,"mata":51.15,"homic":4.1}},{"i":"ua","n":"Ucrânia","v":{"pop":38980376,"pib":214233312784.4,"pibpc":5865.88,"area":603550,"dens":65.34,"vida":74.69,"fert":0.99,"mort":7.6,"idosos":18.97,"urb":69.6,"net":82.47,"co2pc":3.13,"mata":17.35,"homic":3.78}},{"i":"ma","n":"Marrocos","v":{"pop":38430770,"pib":182374250612.28,"pibpc":4672.47,"area":446550,"dens":85.33,"vida":75.49,"fert":2.21,"mort":14.7,"idosos":8.45,"urb":63.13,"net":91.2,"co2pc":1.84,"mata":12.76,"homic":1.71}},{"i":"uz","n":"Uzbequistão","v":{"pop":37053428,"pib":147038081129.4,"pibpc":3968.27,"area":448923,"dens":82.92,"vida":72.53,"fert":3.49,"mort":12.8,"idosos":6.07,"urb":51.02,"net":89.51,"co2pc":4.09,"mata":8.79,"homic":1.4}},{"i":"sa","n":"Arábia Saudita","v":{"pop":36973555,"pib":1276942933333.33,"pibpc":34536.66,"area":2149690,"dens":16.42,"vida":78.98,"fert":2.31,"mort":4.7,"idosos":3.06,"urb":84.61,"net":100,"co2pc":18.48,"mata":1.29,"homic":0.94}},{"i":"pl","n":"Polônia","v":{"pop":36435861,"pib":1035491784197.44,"pibpc":28419.58,"area":313940,"dens":119.45,"vida":78.41,"fert":1.14,"mort":3.6,"idosos":20.75,"urb":60.09,"net":88.58,"co2pc":7.55,"mata":31.0,"homic":0.8}},{"i":"my","n":"Malásia","v":{"pop":35977838,"pib":472193128644.6,"pibpc":13124.56,"area":330534,"dens":108.23,"vida":76.82,"fert":1.54,"mort":7,"idosos":8.03,"urb":77.39,"net":98.02,"co2pc":8.32,"mata":57.66,"homic":0.73}},{"i":"mz","n":"Moçambique","v":{"pop":35631653,"pib":22337997046.19,"pibpc":626.91,"area":799380,"dens":44.04,"vida":63.8,"fert":4.69,"mort":43.7,"idosos":2.73,"urb":37.21,"net":20.53,"co2pc":0.29,"mata":41.34,"homic":3.59}},{"i":"gh","n":"Gana","v":{"pop":35064272,"pib":114209905278.72,"pibpc":3257.16,"area":238539,"dens":151.31,"vida":65.69,"fert":3.34,"mort":27.5,"idosos":3.79,"urb":58.92,"net":72.18,"co2pc":0.7,"mata":30.86,"homic":1.83}},{"i":"pe","n":"Peru","v":{"pop":34576665,"pib":334854659181.89,"pibpc":9684.41,"area":1285215.6,"dens":26.73,"vida":77.94,"fert":1.97,"mort":11,"idosos":9.47,"urb":85.6,"net":81.96,"co2pc":2.02,"mata":52.7,"homic":8.6}},{"i":"mg","n":"Madagascar","v":{"pop":32740678,"pib":19620352035.79,"pibpc":599.27,"area":591896,"dens":54.94,"vida":63.84,"fert":3.91,"mort":43,"idosos":3.47,"urb":32.9,"net":18.68,"co2pc":0.15,"mata":17.27}},{"i":"ci","n":"Costa do Marfim","v":{"pop":32711547,"pib":99773555666.2,"pibpc":3050.1,"area":322460,"dens":100.42,"vida":62.11,"fert":4.23,"mort":44.8,"idosos":2.65,"urb":54.55,"net":41.43,"co2pc":0.59,"mata":12.12}},{"i":"cm","n":"Camarões","v":{"pop":29879337,"pib":58933453923.76,"pibpc":1972.38,"area":475442,"dens":61.61,"vida":63.97,"fert":4.26,"mort":40.2,"idosos":2.82,"urb":55.67,"net":46.26,"co2pc":0.35,"mata":40.74,"homic":6.76}},{"i":"np","n":"Nepal","v":{"pop":29618118,"pib":45489810283.11,"pibpc":1535.88,"area":147181,"dens":206.84,"vida":70.64,"fert":1.96,"mort":22.2,"idosos":6.62,"urb":67.0,"net":46.32,"co2pc":0.54,"mata":43.6,"homic":2.13}},{"i":"ve","n":"Venezuela","v":{"pop":28516896,"pib":99661244155.63,"pibpc":3494.81,"area":912050,"dens":32.2,"vida":72.67,"fert":2.08,"mort":21.2,"idosos":10.02,"urb":89.32,"net":76.68,"co2pc":3.39,"mata":53.44,"homic":12.65}},{"i":"ne","n":"Níger","v":{"pop":27917831,"pib":21646191388.25,"pibpc":775.35,"area":1267000,"dens":21.34,"vida":61.43,"fert":5.93,"mort":65.6,"idosos":2.62,"urb":18.37,"net":15.56,"co2pc":0.12,"mata":0.84,"homic":4.42}},{"i":"au","n":"Austrália","v":{"pop":27614411,"pib":1798518933689.21,"pibpc":65129.72,"area":7741220,"dens":3.54,"vida":83.05,"fert":1.48,"mort":3.1,"idosos":18.09,"urb":87.72,"net":96.13,"co2pc":14.1,"mata":17.37,"homic":0.85}},{"i":"sy","n":"Síria","v":{"pop":25620427,"pib":23737634644.4,"pibpc":1056.78,"area":185180,"dens":134.36,"vida":72.56,"fert":2.7,"mort":17.7,"idosos":4.84,"urb":72.08,"net":33.77,"co2pc":1.27,"mata":2.87,"homic":2.06}},{"i":"ml","n":"Mali","v":{"pop":25198821,"pib":30069148580.77,"pibpc":1193.28,"area":1241238,"dens":20.06,"vida":60.67,"fert":5.51,"mort":47.5,"idosos":2.36,"urb":32.21,"net":36.8,"co2pc":0.3,"mata":8.67}},{"i":"bf","n":"Burquina Faso","v":{"pop":24074580,"pib":27627297461.32,"pibpc":1147.57,"area":274200,"dens":86.07,"vida":61.29,"fert":4.11,"mort":43.6,"idosos":2.68,"urb":28.92,"net":28.25,"co2pc":0.27,"mata":12.27,"homic":1.25}},{"i":"mw","n":"Malaui","v":{"pop":22216120,"pib":14918276698.3,"pibpc":671.51,"area":118484,"dens":229.69,"vida":67.56,"fert":3.59,"mort":38,"idosos":2.59,"urb":17.59,"net":18.96,"co2pc":0.22,"mata":22.0,"homic":1.78}},{"i":"zm","n":"Zâmbia","v":{"pop":21913874,"pib":28879806220.13,"pibpc":1317.88,"area":752612,"dens":28.67,"vida":66.53,"fert":4.04,"mort":34.6,"idosos":2.0,"urb":45.92,"net":17.1,"co2pc":0.54,"mata":60.5,"homic":5.2}},{"i":"lk","n":"Sri Lanka","v":{"pop":21756000,"pib":108825231671.2,"pibpc":5002.08,"area":65610,"dens":354.28,"vida":77.67,"fert":1.95,"mort":5.2,"idosos":12.47,"urb":20.45,"net":54.59,"co2pc":1.06,"mata":34.36,"homic":3.31}},{"i":"td","n":"Chade","v":{"pop":21003705,"pib":21472835225.43,"pibpc":1022.34,"area":1284000,"dens":16.12,"vida":55.24,"fert":6.03,"mort":56.3,"idosos":2.12,"urb":27.57,"net":12.63,"co2pc":0.14,"mata":2.97}},{"i":"kz","n":"Cazaquistão","v":{"pop":20843754,"pib":306239209650.02,"pibpc":14692.13,"area":2724902,"dens":7.63,"vida":74.53,"fert":2.98,"mort":7.4,"idosos":9.0,"urb":62.39,"net":93.39,"co2pc":12.57,"mata":1.3,"homic":2.55}},{"i":"cl","n":"Chile","v":{"pop":19859921,"pib":357371159574.86,"pibpc":17994.59,"area":756556.4,"dens":26.64,"vida":81.36,"fert":1.14,"mort":5.8,"idosos":14.59,"urb":89.18,"net":95.59,"co2pc":3.94,"mata":24.48,"homic":6.35}},{"i":"so","n":"Somália","v":{"pop":19654739,"pib":12995200000.27,"pibpc":661.17,"area":637657,"dens":30.3,"vida":58.97,"fert":6.01,"mort":65.4,"idosos":2.62,"urb":55.14,"net":27.94,"co2pc":0.05,"mata":7.82}},{"i":"ro","n":"Romênia","v":{"pop":19020271,"pib":428677977854.83,"pibpc":22537.95,"area":238397,"dens":82.81,"vida":76.46,"fert":1.39,"mort":6,"idosos":20.14,"urb":52.17,"net":91.29,"co2pc":3.72,"mata":30.21,"homic":1.11}},{"i":"sn","n":"Senegal","v":{"pop":18931966,"pib":37006536238.37,"pibpc":1954.71,"area":196710,"dens":96.1,"vida":68.92,"fert":3.77,"mort":28.9,"idosos":3.65,"urb":55.77,"net":60.12,"co2pc":0.77,"mata":45.01,"homic":0.27}},{"i":"gt","n":"Guatemala","v":{"pop":18687881,"pib":123306008821.47,"pibpc":6598.18,"area":108889,"dens":171.77,"vida":72.75,"fert":2.29,"mort":17.2,"idosos":4.96,"urb":56.3,"net":60.22,"co2pc":1.11,"mata":33.12,"homic":23.37}},{"i":"ec","n":"Equador","v":{"pop":18289896,"pib":130320560400,"pibpc":7125.28,"area":256370,"dens":73.02,"vida":77.58,"fert":1.81,"mort":10.9,"idosos":8.6,"urb":63.39,"net":77.17,"co2pc":2.64,"mata":49.69,"homic":45.72}},{"i":"nl","n":"Países Baixos","v":{"pop":18087633,"pib":1332767651100.39,"pibpc":73683.92,"area":41540,"dens":534.41,"vida":81.97,"fert":1.43,"mort":3.4,"idosos":20.87,"urb":95.94,"net":97.01,"co2pc":6.6,"mata":10.96,"homic":0.69}},{"i":"kh","n":"Camboja","v":{"pop":17847982,"pib":51267065842.96,"pibpc":2872.43,"area":181035,"dens":99.93,"vida":70.82,"fert":2.55,"mort":16.4,"idosos":6.38,"urb":41.11,"net":68.48,"co2pc":1.1,"mata":37.63,"homic":1.82}},{"i":"zw","n":"Zimbábue","v":{"pop":16950795,"pib":51215643905.59,"pibpc":3021.43,"area":390760,"dens":43.0,"vida":63.06,"fert":3.67,"mort":62.4,"idosos":3.56,"urb":40.5,"net":41.64,"co2pc":0.77,"mata":35.72,"homic":6.76}},{"i":"gn","n":"Guiné","v":{"pop":15099727,"pib":28346024753.29,"pibpc":1877.25,"area":245857,"dens":60.05,"vida":60.9,"fert":4.13,"mort":59.8,"idosos":3.47,"urb":38.52,"net":33.3,"co2pc":0.35,"mata":20.04}},{"i":"bj","n":"Benin","v":{"pop":14814460,"pib":24566420903.53,"pibpc":1658.27,"area":114760,"dens":128.26,"vida":60.96,"fert":4.48,"mort":45.2,"idosos":3.15,"urb":53.36,"net":33.98,"co2pc":0.49,"mata":28.12,"homic":1.13}},{"i":"rw","n":"Ruanda","v":{"pop":14569341,"pib":16372132990.23,"pibpc":1123.74,"area":26340,"dens":599.95,"vida":68.02,"fert":3.65,"mort":29.4,"idosos":4.02,"urb":30.91,"net":31.7,"co2pc":0.16,"mata":26.09,"homic":3.61}},{"i":"bi","n":"Burundi","v":{"pop":14390003,"pib":3364713864.08,"pibpc":233.82,"area":27834,"dens":547.03,"vida":63.82,"fert":4.79,"mort":30.5,"idosos":2.55,"urb":25.69,"net":8.6,"co2pc":0.07,"mata":10.89,"homic":5.65}},{"i":"bo","n":"Bolívia","v":{"pop":12581843,"pib":64768947525.33,"pibpc":5147.81,"area":1098580,"dens":11.41,"vida":68.74,"fert":2.52,"mort":14.2,"idosos":5.74,"urb":71.56,"net":79.7,"co2pc":2.29,"mata":50.19,"homic":4.42}},{"i":"tn","n":"Tunísia","v":{"pop":12348573,"pib":57502836548.09,"pibpc":4656.64,"area":163610,"dens":79.02,"vida":76.71,"fert":1.82,"mort":9.7,"idosos":9.94,"urb":70.7,"net":76.5,"co2pc":2.62,"mata":4.44,"homic":4.69}},{"i":"ss","n":"Sudão do Sul","v":{"pop":12188788,"pib":11997800760.22,"pibpc":1080.15,"area":646883,"dens":18.9,"vida":57.74,"fert":3.79,"mort":71.9,"idosos":3.08,"urb":21.68,"net":6.67,"mata":11.33,"homic":13.98}},{"i":"be","n":"Bélgica","v":{"pop":11941781,"pib":725466462859.65,"pibpc":60750.27,"area":30689.17,"dens":388.88,"vida":82.3,"fert":1.44,"mort":3.1,"idosos":20.96,"urb":87.67,"net":95.78,"co2pc":7.31,"mata":21.99,"homic":1.08}},{"i":"ht","n":"Haiti","v":{"pop":11906095,"pib":32077278409.23,"pibpc":2694.19,"area":27750,"dens":427.16,"vida":65.12,"fert":2.62,"mort":39,"idosos":4.79,"urb":55.61,"net":47.86,"co2pc":0.3,"mata":13.45,"homic":41.15}},{"i":"jo","n":"Jordânia","v":{"pop":11520684,"pib":61610052535.21,"pibpc":5347.78,"area":89318,"dens":130.11,"vida":77.98,"fert":2.6,"mort":12,"idosos":4.75,"urb":93.21,"net":95.62,"co2pc":2.09,"mata":0.8,"homic":0.99}},{"i":"do","n":"República Dominicana","v":{"pop":11520487,"pib":127407463759.04,"pibpc":11059.21,"area":146839.46,"dens":237.1,"vida":73.87,"fert":2.22,"mort":27.7,"idosos":8.19,"urb":72.52,"net":91.0,"co2pc":2.99,"mata":46.7,"homic":10.92}},{"i":"ae","n":"Emirados Árabes Unidos","v":{"pop":11513149,"pib":552324919095.87,"pibpc":50273.51,"area":98647.9,"dens":154.69,"vida":83.07,"fert":1.21,"mort":3.8,"idosos":1.79,"urb":85.96,"net":100,"co2pc":18.26,"mata":4.57,"homic":0.69}},{"i":"hn","n":"Honduras","v":{"pop":11005850,"pib":39601409103.3,"pibpc":3598.21,"area":112492,"dens":96.75,"vida":73.04,"fert":2.48,"mort":12.8,"idosos":4.54,"urb":59.25,"net":58.62,"co2pc":1.14,"mata":52.83,"homic":31.44}},{"i":"cu","n":"Cuba","v":{"pop":10937203,"pib":107352000000,"pibpc":9605.28,"area":109884.01,"dens":105.78,"vida":78.26,"fert":1.45,"mort":6.8,"idosos":17.04,"urb":77.23,"net":70.48,"co2pc":1.91,"mata":34.88,"homic":4.46}},{"i":"cz","n":"Tchéquia","v":{"pop":10886878,"pib":391026962800.47,"pibpc":35917.27,"area":78871.42,"dens":141.34,"vida":79.98,"fert":1.36,"mort":2.1,"idosos":21.18,"urb":72.88,"net":87.69,"co2pc":7.13,"mata":38.36,"homic":0.77}},{"i":"pt","n":"Portugal","v":{"pop":10804871,"pib":346639825141.82,"pibpc":32081.81,"area":92230,"dens":116.75,"vida":82.38,"fert":1.41,"mort":2.7,"idosos":24.94,"urb":61.5,"net":88.49,"co2pc":3.32,"mata":36.65,"homic":0.72}},{"i":"tj","n":"Tadjiquistão","v":{"pop":10786734,"pib":17660626562.48,"pibpc":1637.25,"area":141379,"dens":76.31,"vida":71.93,"fert":3.04,"mort":23.5,"idosos":4.07,"urb":26.16,"net":55.79,"co2pc":0.92,"mata":3.06,"homic":0.89}},{"i":"pg","n":"Papua-Nova Guiné","v":{"pop":10762817,"pib":32498658653.84,"pibpc":3019.53,"area":462840,"dens":23.35,"vida":66.26,"fert":3.07,"mort":31.3,"idosos":3.59,"urb":15.78,"net":18.81,"co2pc":0.52,"mata":75.15,"homic":9.34}},{"i":"se","n":"Suécia","v":{"pop":10596620,"pib":668998664082.08,"pibpc":63133.21,"area":528860,"dens":25.95,"vida":84.06,"fert":1.43,"mort":2,"idosos":20.91,"urb":89.08,"net":95.77,"co2pc":3.57,"mata":68.59,"homic":1.15}},{"i":"gr","n":"Grécia","v":{"pop":10413962,"pib":280635521324.44,"pibpc":26948.01,"area":131960,"dens":80.72,"vida":81.84,"fert":1.24,"mort":3.2,"idosos":24.4,"urb":79.22,"net":86.27,"co2pc":5.05,"mata":36.95,"homic":0.84}},{"i":"az","n":"Azerbaijão","v":{"pop":10246996,"pib":75937647058.82,"pibpc":7410.72,"area":86600,"dens":123.45,"vida":74.58,"fert":1.43,"mort":12.5,"idosos":9.17,"urb":58.64,"net":90.8,"co2pc":3.81,"mata":14.56,"homic":2.16}},{"i":"il","n":"Israel","v":{"pop":10122800,"pib":610777842873.59,"pibpc":60336.85,"area":22070,"dens":462.21,"vida":83.2,"fert":2.87,"mort":2.7,"idosos":12.69,"urb":91.58,"net":88.18,"co2pc":5.77,"mata":6.84,"homic":1.63}},{"i":"hu","n":"Hungria","v":{"pop":9514251,"pib":246490213513.05,"pibpc":25907.47,"area":93030,"dens":104.78,"vida":76.72,"fert":1.41,"mort":3.1,"idosos":21.16,"urb":70.69,"net":93.78,"co2pc":4.46,"mata":22.81,"homic":0.72}},{"i":"at","n":"Áustria","v":{"pop":9208163,"pib":579470021095.42,"pibpc":62930.04,"area":83879,"dens":111.22,"vida":82.0,"fert":1.31,"mort":2.8,"idosos":21.09,"urb":69.72,"net":91.93,"co2pc":6.32,"mata":47.27,"homic":0.88}},{"i":"ch","n":"Suíça","v":{"pop":9092436,"pib":1043529899250.92,"pibpc":114769.01,"area":41290.7,"dens":227.93,"vida":84.41,"fert":1.29,"mort":3.4,"idosos":20.43,"urb":85.73,"net":97.32,"co2pc":3.75,"mata":32.02,"homic":0.6}},{"i":"by","n":"Bielorrússia","v":{"pop":9085991,"pib":93397215864.2,"pibpc":10279.25,"area":207629,"dens":44.99,"vida":74.37,"fert":1.22,"mort":1.8,"idosos":18.28,"urb":79.49,"net":94.26,"co2pc":5.94,"mata":44.09,"homic":2.38}},{"i":"sl","n":"Serra Leoa","v":{"pop":8819794,"pib":7464157904.44,"pibpc":846.3,"area":72300,"dens":119.73,"vida":61.96,"fert":3.7,"mort":54.6,"idosos":3.28,"urb":45.93,"net":25.1,"co2pc":0.17,"mata":34.03,"homic":2.22}},{"i":"tg","n":"Togo","v":{"pop":8591626,"pib":11889949067.47,"pibpc":1383.9,"area":56785,"dens":154.56,"vida":62.94,"fert":4.12,"mort":34.8,"idosos":3.48,"urb":44.39,"net":39.48,"co2pc":0.31,"mata":22.46}},{"i":"la","n":"Laos","v":{"pop":7873046,"pib":18302970218.59,"pibpc":2324.76,"area":236800,"dens":33.66,"vida":69.22,"fert":2.4,"mort":27.2,"idosos":4.81,"urb":40.31,"net":65.59,"co2pc":3.35,"mata":56.64}},{"i":"tm","n":"Turcomenistão","v":{"pop":7618847,"pib":49828621355.65,"pibpc":6540.18,"area":491209,"dens":15.95,"vida":70.2,"fert":2.66,"mort":30.4,"idosos":4.81,"urb":47.11,"net":17.99,"co2pc":10.86,"mata":4.96,"homic":1.01}},{"i":"hk","n":"Hong Kong, RAE da China","v":{"pop":7498900,"pib":427310315921.99,"pibpc":56983.07,"area":1110,"dens":7165.81,"vida":85.39,"fert":0.84,"idosos":23.67,"urb":100,"net":95.76,"co2pc":4.6,"homic":0.38}},{"i":"ly","n":"Líbia","v":{"pop":7458555,"pib":48098909613.63,"pibpc":6448.82,"area":1759540,"dens":4.19,"vida":71.12,"fert":2.3,"mort":7.9,"idosos":5.19,"urb":87.91,"net":81.95,"co2pc":8.66,"mata":0.12}},{"i":"kg","n":"Quirguistão","v":{"pop":7343064,"pib":22623752095.46,"pibpc":3080.97,"area":199950,"dens":37.65,"vida":72.4,"fert":2.6,"mort":14.8,"idosos":5.97,"urb":34.75,"net":92.03,"co2pc":1.49,"mata":6.55,"homic":1.75}},{"i":"py","n":"Paraguai","v":{"pop":7013078,"pib":49278227554.33,"pibpc":7026.62,"area":406752,"dens":17.5,"vida":73.98,"fert":2.42,"mort":14.5,"idosos":6.72,"urb":70.39,"net":81.58,"co2pc":1.16,"mata":36.52,"homic":6.78}},{"i":"ni","n":"Nicarágua","v":{"pop":7007502,"pib":22237167113.09,"pibpc":3173.34,"area":130370,"dens":56.7,"vida":75.1,"fert":2.21,"mort":9.4,"idosos":5.7,"urb":59.44,"net":61.4,"co2pc":0.83,"mata":25.82,"homic":11.35}},{"i":"rs","n":"Sérvia","v":{"pop":6549143,"pib":99953324472.9,"pibpc":15262.05,"area":88490,"dens":75.2,"vida":75.97,"fert":1.64,"mort":4.6,"idosos":23.05,"urb":62.64,"net":87.69,"mata":39.22,"homic":1.31}},{"i":"cg","n":"República do Congo","v":{"pop":6484437,"pib":16306633778.76,"pibpc":2514.73,"area":342000,"dens":18.54,"vida":66.0,"fert":4.11,"mort":27,"idosos":3.06,"urb":64.12,"net":47.25,"co2pc":1.34,"mata":63.95}},{"i":"bg","n":"Bulgária","v":{"pop":6433302,"pib":130777235529.61,"pibpc":20328.17,"area":111000,"dens":59.34,"vida":75.76,"fert":1.72,"mort":4.6,"idosos":22.24,"urb":74.17,"net":82.44,"co2pc":5.31,"mata":36.35,"homic":1.09}},{"i":"sv","n":"El Salvador","v":{"pop":6365503,"pib":36708110000,"pibpc":5766.73,"area":21040,"dens":305.9,"vida":72.3,"fert":1.77,"mort":8.8,"idosos":8.31,"urb":75.52,"net":66.48,"co2pc":1.51,"mata":33.01,"homic":7.9}},{"i":"sg","n":"Singapura","v":{"pop":6111175,"pib":603869516998.74,"pibpc":98813.98,"area":735.6,"dens":8329.0,"vida":83.35,"fert":0.97,"mort":2.2,"idosos":14.21,"urb":100,"net":94.38,"co2pc":9.75,"mata":21.8,"homic":0.07}},{"i":"dk","n":"Dinamarca","v":{"pop":6009169,"pib":462526660468.39,"pibpc":76970.15,"area":42920,"dens":149.42,"vida":82.25,"fert":1.47,"mort":3.5,"idosos":21.12,"urb":88.85,"net":99.77,"co2pc":4.28,"mata":16.01,"homic":0.84}},{"i":"lb","n":"Líbano","v":{"pop":5849421,"pib":25971643441.34,"pibpc":4473.27,"area":10452,"dens":567.54,"vida":77.94,"fert":2.23,"mort":15.3,"idosos":10.44,"urb":90.96,"net":80.63,"co2pc":1.9,"mata":13.8,"homic":2.24}},{"i":"lr","n":"Libéria","v":{"pop":5731206,"pib":5245938900,"pibpc":915.33,"area":111370,"dens":58.27,"vida":62.32,"fert":3.86,"mort":63.2,"idosos":3.33,"urb":56.08,"net":32.23,"co2pc":0.15,"mata":66.1,"homic":3.09}},{"i":"fi","n":"Finlândia","v":{"pop":5646436,"pib":317039368819.61,"pibpc":56148.58,"area":338485,"dens":18.49,"vida":82.34,"fert":1.25,"mort":1.9,"idosos":24.2,"urb":74.52,"net":93.72,"co2pc":5.54,"mata":74.15,"homic":0.98}},{"i":"no","n":"Noruega","v":{"pop":5610870,"pib":530755719438.88,"pibpc":94594.19,"area":624500,"dens":15.3,"vida":83.16,"fert":1.45,"mort":2,"idosos":19.08,"urb":83.57,"net":99,"co2pc":7.18,"mata":33.25,"homic":0.72}},{"i":"cf","n":"República Centro-Africana","v":{"pop":5513282,"pib":3066109226.4,"pibpc":556.13,"area":622980,"dens":8.56,"vida":57.67,"fert":5.95,"mort":58.8,"idosos":2.2,"urb":44.55,"net":13.78,"co2pc":0.06,"mata":72.46,"homic":20.12}},{"i":"om","n":"Omã","v":{"pop":5494691,"pib":109604780696.23,"pibpc":19947.4,"area":309500,"dens":17.06,"vida":80.25,"fert":2.51,"mort":8.3,"idosos":2.69,"urb":79.48,"net":95.25,"co2pc":18.65,"mata":0.01,"homic":0.14}},{"i":"ie","n":"Irlanda","v":{"pop":5484367,"pib":721701359046.31,"pibpc":131592.46,"area":70280,"dens":78.32,"vida":83.01,"fert":1.47,"mort":3.4,"idosos":16.21,"urb":64.59,"net":97.19,"co2pc":6.04,"mata":11.97,"homic":0.65}},{"i":"sk","n":"Eslováquia","v":{"pop":5413813,"pib":154530066506.89,"pibpc":28543.67,"area":49030,"dens":112.77,"vida":78.37,"fert":1.46,"mort":5.3,"idosos":19.04,"urb":53.19,"net":89.83,"co2pc":5.51,"mata":40.32,"homic":1.12}},{"i":"ps","n":"Territórios palestinos","v":{"pop":5413596,"pib":17167100000,"pibpc":3171.11,"area":6025,"dens":877.87,"vida":69.21,"fert":3.25,"mort":17,"idosos":3.85,"urb":87.38,"net":86.64,"mata":1.84,"homic":0.62}},{"i":"nz","n":"Nova Zelândia","v":{"pop":5324700,"pib":264057413739.96,"pibpc":49591.04,"area":267710,"dens":20.09,"vida":82.01,"fert":1.57,"mort":4,"idosos":17.61,"urb":84.0,"net":93.52,"co2pc":6.01,"mata":38.87,"homic":1.46}},{"i":"mr","n":"Mauritânia","v":{"pop":5315065,"pib":11679910946.44,"pibpc":2197.51,"area":1030700,"dens":5.02,"vida":68.71,"fert":4.62,"mort":30.2,"idosos":3.25,"urb":61.49,"net":45.78,"co2pc":0.97,"mata":0.99,"homic":1.0}},{"i":"cr","n":"Costa Rica","v":{"pop":5152950,"pib":102904921157.48,"pibpc":19970.1,"area":51100,"dens":101.46,"vida":81.0,"fert":1.32,"mort":9.1,"idosos":12.75,"urb":79.73,"net":87.17,"co2pc":1.63,"mata":59.06,"homic":17.75}},{"i":"kw","n":"Kuwait","v":{"pop":4865298,"pib":157209026926.42,"pibpc":32312.31,"area":17820,"dens":274.82,"vida":84.58,"fert":1.56,"mort":7,"idosos":3.17,"urb":100,"net":100,"co2pc":23.67,"mata":0.35,"homic":0.25}},{"i":"pa","n":"Panamá","v":{"pop":4571189,"pib":90462600000,"pibpc":19789.73,"area":75320,"dens":60.87,"vida":79.78,"fert":2.11,"mort":12,"idosos":9.66,"urb":66.15,"net":72.77,"co2pc":2.74,"mata":62.25,"homic":11.71}},{"i":"ge","n":"Geórgia","v":{"pop":3935766,"pib":38143612855.14,"pibpc":9691.53,"area":69700,"dens":66.7,"vida":74.66,"fert":1.8,"mort":7.5,"idosos":15.99,"urb":61.18,"net":83.8,"co2pc":3.53,"mata":44.62,"homic":2.03}},{"i":"hr","n":"Croácia","v":{"pop":3876200,"pib":105060182186.27,"pibpc":27103.91,"area":88070,"dens":69.09,"vida":78.93,"fert":1.46,"mort":4.1,"idosos":23.61,"urb":57.81,"net":83.63,"co2pc":4.83,"mata":34.75,"homic":0.67}},{"i":"er","n":"Eritreia","v":{"pop":3607003,"pib":2065001626.02,"pibpc":688.68,"area":121630,"dens":29.27,"vida":68.89,"fert":3.68,"mort":24.7,"idosos":4.26,"urb":34.54,"net":14.35,"co2pc":0.22,"mata":11.99,"homic":15.61}},{"i":"mn","n":"Mongólia","v":{"pop":3568978,"pib":25369107325.45,"pibpc":7108.23,"area":1564115.75,"dens":2.26,"vida":72.4,"fert":2.5,"mort":11.2,"idosos":5.43,"urb":71.15,"net":85.12,"co2pc":7.85,"mata":9.1,"homic":5.92}},{"i":"uy","n":"Uruguai","v":{"pop":3384688,"pib":85347696277.69,"pibpc":25215.82,"area":176215,"dens":19.35,"vida":78.29,"fert":1.4,"mort":6.2,"idosos":16.28,"urb":95.65,"net":91.99,"co2pc":2.57,"mata":11.46,"homic":11.25}},{"i":"pr","n":"Porto Rico","v":{"pop":3184835,"pib":129368484000,"pibpc":40620.15,"area":8870,"dens":361.05,"vida":81.9,"fert":0.92,"idosos":25.27,"urb":94.34,"net":87.29,"co2pc":4.82,"mata":49.75,"homic":14.59}},{"i":"ba","n":"Bósnia e Herzegovina","v":{"pop":3140095,"pib":32599982936.39,"pibpc":10381.85,"area":51210,"dens":61.8,"vida":78.04,"fert":1.49,"mort":5.5,"idosos":22.86,"urb":52.69,"net":86.1,"co2pc":6.45,"mata":42.21,"homic":1.22}},{"i":"na","n":"Namíbia","v":{"pop":3092816,"pib":15080340653.53,"pibpc":4875.93,"area":824292,"dens":3.68,"vida":67.52,"fert":3.21,"mort":36.4,"idosos":3.79,"urb":50.87,"net":64.87,"co2pc":1.2,"mata":9.77,"homic":11.21}},{"i":"am","n":"Armênia","v":{"pop":3086700,"pib":29243452882.35,"pibpc":9474.02,"area":29740,"dens":107.57,"vida":78.32,"fert":1.7,"mort":8.5,"idosos":14.44,"urb":65.93,"net":81.34,"co2pc":2.47,"mata":11.85,"homic":2.21}},{"i":"qa","n":"Catar","v":{"pop":2972215,"pib":215559615384.61,"pibpc":72524.91,"area":11636.8,"dens":248.72,"vida":82.52,"fert":1.72,"mort":4.8,"idosos":1.7,"urb":99.36,"net":98.09,"co2pc":47.33,"mata":0.12,"homic":0.07}},{"i":"lt","n":"Lituânia","v":{"pop":2888774,"pib":95210150818.35,"pibpc":32958.67,"area":65290,"dens":46.15,"vida":77.2,"fert":1.11,"mort":2.8,"idosos":20.72,"urb":69.08,"net":89.16,"co2pc":4.49,"mata":35.37,"homic":2.63}},{"i":"jm","n":"Jamaica","v":{"pop":2837077,"pib":22704903217.56,"pibpc":8002.92,"area":10991,"dens":262.16,"vida":71.61,"fert":1.35,"mort":16.4,"idosos":8.58,"urb":59.43,"net":90.11,"co2pc":2.84,"mata":56.55,"homic":49.44}},{"i":"gm","n":"Gâmbia","v":{"pop":2822093,"pib":2593673987.53,"pibpc":919.06,"area":11295,"dens":272.73,"vida":66.06,"fert":3.91,"mort":32.7,"idosos":3.18,"urb":64.99,"net":49.49,"co2pc":0.18,"mata":21.34}},{"i":"ga","n":"Gabão","v":{"pop":2593130,"pib":21427119323.28,"pibpc":8263.03,"area":267670,"dens":9.85,"vida":68.51,"fert":3.59,"mort":25.9,"idosos":4.13,"urb":92.09,"net":68.72,"co2pc":2.05,"mata":91.44}},{"i":"bw","n":"Botsuana","v":{"pop":2562122,"pib":19928479839.45,"pibpc":7778.12,"area":581730,"dens":4.45,"vida":69.29,"fert":2.7,"mort":32.1,"idosos":4.08,"urb":67.96,"net":57.46,"co2pc":2.74,"mata":27.76,"homic":11.37}},{"i":"ls","n":"Lesoto","v":{"pop":2363325,"pib":2573572920.05,"pibpc":1088.96,"area":30360,"dens":76.99,"vida":57.8,"fert":2.66,"mort":56.3,"idosos":3.88,"urb":44.67,"net":51.8,"co2pc":0.43,"mata":1.14,"homic":38.24}},{"i":"md","n":"Moldávia","v":{"pop":2360527,"pib":20351796275.29,"pibpc":8621.72,"area":33849,"dens":83.51,"vida":71.33,"fert":1.73,"mort":15.1,"idosos":16.86,"urb":43.73,"net":77.37,"co2pc":3.42,"mata":11.26,"homic":2.54}},{"i":"al","n":"Albânia","v":{"pop":2349580,"pib":30540188271.34,"pibpc":12998.15,"area":28750,"dens":86.76,"vida":79.78,"fert":1.34,"mort":8.3,"idosos":17.62,"urb":58.87,"net":85.86,"co2pc":1.79,"mata":34.34,"homic":1.39}},{"i":"gw","n":"Guiné-Bissau","v":{"pop":2249515,"pib":2527930272.93,"pibpc":1123.77,"area":36125,"dens":78.28,"vida":64.25,"fert":3.76,"mort":42.1,"idosos":3.24,"urb":46.65,"net":29.78,"co2pc":0.16,"mata":74.82,"homic":1.12}},{"i":"si","n":"Eslovênia","v":{"pop":2130986,"pib":79648204979.36,"pibpc":37376.22,"area":20480,"dens":105.66,"vida":82.29,"fert":1.52,"mort":1.8,"idosos":22.21,"urb":55.99,"net":90.76,"co2pc":6.27,"mata":61.77,"homic":0.57}}],"ufs":[{"n":"Rondônia","v":{"pop":1581196.0,"area":237754.172,"dens":6.65}},{"n":"Acre","v":{"pop":830018.0,"area":164173.429,"dens":5.06}},{"n":"Amazonas","v":{"pop":3941613.0,"area":1559255.881,"dens":2.53}},{"n":"Roraima","v":{"pop":636707.0,"area":223644.53,"dens":2.85}},{"n":"Pará","v":{"pop":8120131.0,"area":1245870.704,"dens":6.52}},{"n":"Amapá","v":{"pop":733759.0,"area":142470.762,"dens":5.15}},{"n":"Tocantins","v":{"pop":1511460.0,"area":277423.627,"dens":5.45}},{"n":"Maranhão","v":{"pop":6776699.0,"area":329651.496,"dens":20.56}},{"n":"Piauí","v":{"pop":3271199.0,"area":251755.481,"dens":12.99}},{"n":"Ceará","v":{"pop":8794957.0,"area":148894.447,"dens":59.07}},{"n":"Rio Grande do Norte","v":{"pop":3302729.0,"area":52809.599,"dens":62.54}},{"n":"Paraíba","v":{"pop":3974687.0,"area":56467.242,"dens":70.39}},{"n":"Pernambuco","v":{"pop":9058931.0,"area":98067.877,"dens":92.37}},{"n":"Alagoas","v":{"pop":3127683.0,"area":27830.661,"dens":112.38}},{"n":"Sergipe","v":{"pop":2210004.0,"area":21938.188,"dens":100.74}},{"n":"Bahia","v":{"pop":14141626.0,"area":564760.429,"dens":25.04}},{"n":"Minas Gerais","v":{"pop":20539989.0,"area":586513.983,"dens":35.02}},{"n":"Espírito Santo","v":{"pop":3833712.0,"area":46074.448,"dens":83.21}},{"n":"Rio de Janeiro","v":{"pop":16055174.0,"area":43750.425,"dens":366.97}},{"n":"São Paulo","v":{"pop":44411238.0,"area":248219.485,"dens":178.92}},{"n":"Paraná","v":{"pop":11444380.0,"area":199298.981,"dens":57.42}},{"n":"Santa Catarina","v":{"pop":7610361.0,"area":95730.69,"dens":79.5}},{"n":"Rio Grande do Sul","v":{"pop":10882965.0,"area":281707.151,"dens":38.63}},{"n":"Mato Grosso do Sul","v":{"pop":2757013.0,"area":357142.082,"dens":7.72}},{"n":"Mato Grosso","v":{"pop":3658649.0,"area":903208.361,"dens":4.05}},{"n":"Goiás","v":{"pop":7056495.0,"area":340242.859,"dens":20.74}},{"n":"Distrito Federal","v":{"pop":2817381.0,"area":5760.784,"dens":489.06}}],"mun":[{"n":"São Paulo - SP","v":{"pop":11451999.0,"area":1521.202,"dens":7528.26}},{"n":"Rio de Janeiro - RJ","v":{"pop":6211223.0,"area":1200.329,"dens":5174.6}},{"n":"Brasília - DF","v":{"pop":2817381.0,"area":5760.784,"dens":489.06}},{"n":"Fortaleza - CE","v":{"pop":2428708.0,"area":312.353,"dens":7775.52}},{"n":"Salvador - BA","v":{"pop":2417678.0,"area":693.442,"dens":3486.49}},{"n":"Belo Horizonte - MG","v":{"pop":2315560.0,"area":331.354,"dens":6988.18}},{"n":"Manaus - AM","v":{"pop":2063689.0,"area":11401.092,"dens":181.01}},{"n":"Curitiba - PR","v":{"pop":1773718.0,"area":434.892,"dens":4078.53}},{"n":"Recife - PE","v":{"pop":1488920.0,"area":218.843,"dens":6803.6}},{"n":"Goiânia - GO","v":{"pop":1437366.0,"area":729.296,"dens":1970.9}},{"n":"Porto Alegre - RS","v":{"pop":1332845.0,"area":495.39,"dens":2690.5}},{"n":"Belém - PA","v":{"pop":1303403.0,"area":1059.466,"dens":1230.25}},{"n":"Guarulhos - SP","v":{"pop":1291771.0,"area":318.675,"dens":4053.57}},{"n":"Campinas - SP","v":{"pop":1139047.0,"area":794.571,"dens":1433.54}},{"n":"São Luís - MA","v":{"pop":1037775.0,"area":583.063,"dens":1779.87}},{"n":"Maceió - AL","v":{"pop":957916.0,"area":509.32,"dens":1880.77}},{"n":"Campo Grande - MS","v":{"pop":898100.0,"area":8082.978,"dens":111.11}},{"n":"São Gonçalo - RJ","v":{"pop":896744.0,"area":248.16,"dens":3613.57}},{"n":"Teresina - PI","v":{"pop":866300.0,"area":1391.293,"dens":622.66}},{"n":"João Pessoa - PB","v":{"pop":833932.0,"area":210.044,"dens":3970.27}},{"n":"São Bernardo do Campo - SP","v":{"pop":810729.0,"area":409.532,"dens":1979.65}},{"n":"Duque de Caxias - RJ","v":{"pop":808161.0,"area":467.319,"dens":1729.36}},{"n":"Nova Iguaçu - RJ","v":{"pop":785867.0,"area":520.581,"dens":1509.6}},{"n":"Natal - RN","v":{"pop":751300.0,"area":167.401,"dens":4488.03}},{"n":"Santo André - SP","v":{"pop":748919.0,"area":175.782,"dens":4260.5}},{"n":"Osasco - SP","v":{"pop":728615.0,"area":64.954,"dens":11217.4}},{"n":"Sorocaba - SP","v":{"pop":723682.0,"area":449.872,"dens":1608.64}},{"n":"Uberlândia - MG","v":{"pop":713224.0,"area":4115.206,"dens":173.31}},{"n":"Ribeirão Preto - SP","v":{"pop":698642.0,"area":650.916,"dens":1073.32}},{"n":"São José dos Campos - SP","v":{"pop":697054.0,"area":1099.409,"dens":634.03}},{"n":"Cuiabá - MT","v":{"pop":650877.0,"area":4327.448,"dens":150.41}},{"n":"Jaboatão dos Guararapes - PE","v":{"pop":644037.0,"area":258.724,"dens":2489.28}},{"n":"Contagem - MG","v":{"pop":621863.0,"area":194.746,"dens":3193.2}},{"n":"Joinville - SC","v":{"pop":616317.0,"area":1127.947,"dens":546.41}},{"n":"Feira de Santana - BA","v":{"pop":616272.0,"area":1304.425,"dens":472.45}},{"n":"Aracaju - SE","v":{"pop":602757.0,"area":182.163,"dens":3308.89}},{"n":"Londrina - PR","v":{"pop":555965.0,"area":1652.569,"dens":336.42}},{"n":"Juiz de Fora - MG","v":{"pop":540756.0,"area":1435.749,"dens":376.64}},{"n":"Florianópolis - SC","v":{"pop":537211.0,"area":674.844,"dens":796.05}},{"n":"Aparecida de Goiânia - GO","v":{"pop":527796.0,"area":279.954,"dens":1885.3}},{"n":"Serra - ES","v":{"pop":520653.0,"area":547.631,"dens":950.74}},{"n":"Campos dos Goytacazes - RJ","v":{"pop":483540.0,"area":4032.487,"dens":119.91}},{"n":"Belford Roxo - RJ","v":{"pop":483087.0,"area":78.985,"dens":6116.19}},{"n":"Niterói - RJ","v":{"pop":481749.0,"area":133.757,"dens":3601.67}},{"n":"São José do Rio Preto - SP","v":{"pop":480393.0,"area":431.944,"dens":1112.17}},{"n":"Ananindeua - PA","v":{"pop":478778.0,"area":190.581,"dens":2512.2}},{"n":"Vila Velha - ES","v":{"pop":467722.0,"area":210.225,"dens":2224.86}},{"n":"Caxias do Sul - RS","v":{"pop":463501.0,"area":1652.32,"dens":280.52}},{"n":"Porto Velho - RO","v":{"pop":460434.0,"area":34090.952,"dens":13.51}},{"n":"Mogi das Cruzes - SP","v":{"pop":451505.0,"area":712.541,"dens":633.65}},{"n":"Jundiaí - SP","v":{"pop":443221.0,"area":431.204,"dens":1027.87}},{"n":"Macapá - AP","v":{"pop":442933.0,"area":6563.849,"dens":67.48}},{"n":"São João de Meriti - RJ","v":{"pop":440962.0,"area":35.216,"dens":12521.64}},{"n":"Piracicaba - SP","v":{"pop":423323.0,"area":1378.069,"dens":307.19}},{"n":"Campina Grande - PB","v":{"pop":419379.0,"area":591.658,"dens":708.82}},{"n":"Santos - SP","v":{"pop":418608.0,"area":281.033,"dens":1489.53}},{"n":"Mauá - SP","v":{"pop":418261.0,"area":61.937,"dens":6753.01}},{"n":"Montes Claros - MG","v":{"pop":414240.0,"area":3589.811,"dens":115.39}},{"n":"Boa Vista - RR","v":{"pop":413486.0,"area":5687.037,"dens":72.71}},{"n":"Betim - MG","v":{"pop":411846.0,"area":344.062,"dens":1197.01}},{"n":"Maringá - PR","v":{"pop":409657.0,"area":487.012,"dens":841.16}},{"n":"Anápolis - GO","v":{"pop":398869.0,"area":935.672,"dens":426.29}},{"n":"Diadema - SP","v":{"pop":393237.0,"area":30.732,"dens":12795.69}},{"n":"Carapicuíba - SP","v":{"pop":386984.0,"area":34.546,"dens":11201.99}},{"n":"Petrolina - PE","v":{"pop":386791.0,"area":4561.87,"dens":84.79}},{"n":"Bauru - SP","v":{"pop":379146.0,"area":667.684,"dens":567.85}},{"n":"Caruaru - PE","v":{"pop":378048.0,"area":923.15,"dens":409.52}},{"n":"Vitória da Conquista - BA","v":{"pop":370879.0,"area":3254.186,"dens":113.97}},{"n":"Itaquaquecetuba - SP","v":{"pop":369275.0,"area":82.622,"dens":4469.45}},{"n":"Rio Branco - AC","v":{"pop":364756.0,"area":8835.154,"dens":41.28}},{"n":"Blumenau - SC","v":{"pop":361261.0,"area":518.619,"dens":696.58}},{"n":"Ponta Grossa - PR","v":{"pop":358371.0,"area":2054.732,"dens":174.41}},{"n":"Caucaia - CE","v":{"pop":355679.0,"area":1223.246,"dens":290.77}},{"n":"Cariacica - ES","v":{"pop":353491.0,"area":279.718,"dens":1263.74}},{"n":"Franca - SP","v":{"pop":352536.0,"area":605.679,"dens":582.05}},{"n":"Olinda - PE","v":{"pop":349976.0,"area":41.3,"dens":8474.0}},{"n":"Praia Grande - SP","v":{"pop":349935.0,"area":149.652,"dens":2338.32}},{"n":"Cascavel - PR","v":{"pop":348051.0,"area":2091.199,"dens":166.44}},{"n":"Canoas - RS","v":{"pop":347657.0,"area":130.789,"dens":2658.15}},{"n":"Paulista - PE","v":{"pop":342167.0,"area":96.932,"dens":3529.97}},{"n":"Uberaba - MG","v":{"pop":337836.0,"area":4523.957,"dens":74.68}},{"n":"Santarém - PA","v":{"pop":331942.0,"area":17898.389,"dens":18.55}},{"n":"São Vicente - SP","v":{"pop":329911.0,"area":148.151,"dens":2226.86}},{"n":"Ribeirão das Neves - MG","v":{"pop":329794.0,"area":155.105,"dens":2126.26}},{"n":"São José dos Pinhais - PR","v":{"pop":329628.0,"area":946.435,"dens":348.28}},{"n":"Pelotas - RS","v":{"pop":325685.0,"area":1608.78,"dens":202.44}},{"n":"Vitória - ES","v":{"pop":322869.0,"area":97.123,"dens":3324.33}},{"n":"Barueri - SP","v":{"pop":316473.0,"area":65.701,"dens":4816.87}},{"n":"Taubaté - SP","v":{"pop":310739.0,"area":625.003,"dens":497.18}},{"n":"Suzano - SP","v":{"pop":307429.0,"area":206.236,"dens":1490.67}},{"n":"Palmas - TO","v":{"pop":302692.0,"area":2227.329,"dens":135.9}},{"n":"Camaçari - BA","v":{"pop":300372.0,"area":785.421,"dens":382.43}},{"n":"Várzea Grande - MT","v":{"pop":300078.0,"area":724.279,"dens":414.31}},{"n":"Limeira - SP","v":{"pop":291869.0,"area":580.711,"dens":502.61}},{"n":"Guarujá - SP","v":{"pop":287634.0,"area":144.794,"dens":1986.5}},{"n":"Juazeiro do Norte - CE","v":{"pop":286120.0,"area":258.788,"dens":1105.62}},{"n":"Foz do Iguaçu - PR","v":{"pop":285415.0,"area":609.192,"dens":468.51}},{"n":"Sumaré - SP","v":{"pop":279545.0,"area":153.465,"dens":1821.56}},{"n":"Petrópolis - RJ","v":{"pop":278881.0,"area":791.144,"dens":352.5}},{"n":"Cotia - SP","v":{"pop":274413.0,"area":323.994,"dens":846.97}},{"n":"Taboão da Serra - SP","v":{"pop":273542.0,"area":20.388,"dens":13416.81}},{"n":"Imperatriz - MA","v":{"pop":273110.0,"area":1369.039,"dens":199.49}},{"n":"Santa Maria - RS","v":{"pop":271735.0,"area":1780.194,"dens":152.64}},{"n":"São José - SC","v":{"pop":270299.0,"area":150.499,"dens":1796.02}},{"n":"Parauapebas - PA","v":{"pop":267836.0,"area":6885.794,"dens":38.9}},{"n":"Marabá - PA","v":{"pop":266533.0,"area":15128.058,"dens":17.62}},{"n":"Gravataí - RS","v":{"pop":265074.0,"area":468.288,"dens":566.05}},{"n":"Mossoró - RN","v":{"pop":264577.0,"area":2099.334,"dens":126.03}},{"n":"Itajaí - SC","v":{"pop":264054.0,"area":289.215,"dens":913.0}},{"n":"Volta Redonda - RJ","v":{"pop":261563.0,"area":182.105,"dens":1436.33}},{"n":"Governador Valadares - MG","v":{"pop":257171.0,"area":2342.376,"dens":109.79}},{"n":"Indaiatuba - SP","v":{"pop":255748.0,"area":311.545,"dens":820.9}},{"n":"São Carlos - SP","v":{"pop":254857.0,"area":1136.907,"dens":224.17}},{"n":"Chapecó - SC","v":{"pop":254785.0,"area":624.846,"dens":407.76}},{"n":"Parnamirim - RN","v":{"pop":252716.0,"area":124.006,"dens":2037.93}},{"n":"Embu das Artes - SP","v":{"pop":250691.0,"area":70.398,"dens":3561.05}},{"n":"Macaé - RJ","v":{"pop":246391.0,"area":1216.989,"dens":202.46}},{"n":"Rondonópolis - MT","v":{"pop":244911.0,"area":4824.02,"dens":50.77}},{"n":"São José de Ribamar - MA","v":{"pop":244579.0,"area":180.363,"dens":1356.04}},{"n":"Dourados - MS","v":{"pop":243367.0,"area":4062.236,"dens":59.91}},{"n":"Araraquara - SP","v":{"pop":242228.0,"area":1003.625,"dens":241.35}},{"n":"Jacareí - SP","v":{"pop":240275.0,"area":464.272,"dens":517.53}},{"n":"Juazeiro - BA","v":{"pop":237821.0,"area":6721.237,"dens":35.38}},{"n":"Marília - SP","v":{"pop":237627.0,"area":1170.515,"dens":203.01}},{"n":"Americana - SP","v":{"pop":237240.0,"area":133.912,"dens":1771.61}},{"n":"Hortolândia - SP","v":{"pop":236641.0,"area":62.416,"dens":3791.35}},{"n":"Arapiraca - AL","v":{"pop":234696.0,"area":345.655,"dens":678.99}},{"n":"Maracanaú - CE","v":{"pop":234509.0,"area":105.071,"dens":2231.91}},{"n":"Itapevi - SP","v":{"pop":232297.0,"area":82.658,"dens":2810.34}},{"n":"Colombo - PR","v":{"pop":232212.0,"area":197.58,"dens":1175.28}},{"n":"Divinópolis - MG","v":{"pop":231091.0,"area":708.115,"dens":326.35}},{"n":"Magé - RJ","v":{"pop":228127.0,"area":390.775,"dens":583.78}},{"n":"Ipatinga - MG","v":{"pop":227731.0,"area":164.884,"dens":1381.16}},{"n":"Novo Hamburgo - RS","v":{"pop":227646.0,"area":222.536,"dens":1022.96}},{"n":"Sete Lagoas - MG","v":{"pop":227397.0,"area":536.928,"dens":423.51}},{"n":"Rio Verde - GO","v":{"pop":225696.0,"area":8374.255,"dens":26.95}},{"n":"Águas Lindas de Goiás - GO","v":{"pop":225693.0,"area":191.817,"dens":1176.61}},{"n":"Presidente Prudente - SP","v":{"pop":225668.0,"area":560.637,"dens":402.52}},{"n":"Itaboraí - RJ","v":{"pop":224267.0,"area":429.961,"dens":521.6}},{"n":"Viamão - RS","v":{"pop":224112.0,"area":1496.506,"dens":149.76}},{"n":"Palhoça - SC","v":{"pop":222598.0,"area":394.85,"dens":563.75}},{"n":"Cabo Frio - RJ","v":{"pop":222161.0,"area":413.449,"dens":537.34}},{"n":"Santa Luzia - MG","v":{"pop":219132.0,"area":235.205,"dens":931.66}},{"n":"São Leopoldo - RS","v":{"pop":217409.0,"area":103.009,"dens":2110.58}},{"n":"Criciúma - SC","v":{"pop":214493.0,"area":234.865,"dens":913.26}},{"n":"Luziânia - GO","v":{"pop":209129.0,"area":3962.107,"dens":52.78}},{"n":"Passo Fundo - RS","v":{"pop":206215.0,"area":784.407,"dens":262.89}},{"n":"Cabo de Santo Agostinho - PE","v":{"pop":203440.0,"area":445.386,"dens":456.77}},{"n":"Lauro de Freitas - BA","v":{"pop":203331.0,"area":57.942,"dens":3509.22}},{"n":"Sobral - CE","v":{"pop":203023.0,"area":2068.474,"dens":98.15}}]};            /* {paises:[{i,n,v:{}}], ufs:[...], mun:[...]} */
+  var M = {                    /* metricas: q = substantivo na pergunta; f = formatador */
+    pop:  {q:'habitantes', f:function(v){return wm.big(v);}},
+    pib:  {q:'PIB (em dólares)', f:function(v){return 'US$ '+wm.big(v);}},
+    pibpc:{q:'PIB por pessoa', f:function(v){return 'US$ '+wm.fmt(v,0);}},
+    area: {q:'área', f:function(v){return wm.big(v)+' km²';}},
+    dens: {q:'densidade demográfica', f:function(v){return wm.fmt(v, v<10?1:0)+' hab./km²';}},
+    vida: {q:'expectativa de vida', f:function(v){return wm.fmt(v,1)+' anos';}},
+    fert: {q:'filhos por mulher', f:function(v){return wm.fmt(v,1);}},
+    mort: {q:'mortalidade infantil', f:function(v){return wm.fmt(v,1)+' por mil';}},
+    idosos:{q:'população com 65 anos ou mais (%)', f:function(v){return wm.fmt(v,1)+'%';}},
+    urb:  {q:'população urbana (%)', f:function(v){return wm.fmt(v,0)+'%';}},
+    net:  {q:'gente na internet (%)', f:function(v){return wm.fmt(v,0)+'%';}},
+    co2pc:{q:'emissões de CO₂ por pessoa', f:function(v){return wm.fmt(v,1)+' t';}},
+    mata: {q:'território coberto por florestas (%)', f:function(v){return wm.fmt(v,0)+'%';}},
+    homic:{q:'homicídios por 100 mil habitantes', f:function(v){return wm.fmt(v,1);}}
+  };
+  var POOLS = {
+    paises:{label:'Países', items:D.paises, keys:['pop','pib','pibpc','area','dens','vida','fert','mort','idosos','urb','net','co2pc','mata','homic'], flag:true},
+    estados:{label:'Estados', items:D.ufs, keys:['pop','area','dens']},
+    cidades:{label:'Cidades', items:D.mun, keys:['pop','area','dens']}
+  };
+  var LAUNCH = new Date('2026-10-28T12:00:00-03:00');
+  var DAILY_N = 10;
+  var $ = function(id){ return document.getElementById(id); };
+  var S = {mode:'dia', pool:'misto', rounds:[], i:0, score:0, streak:0, answers:[], locked:false, over:false, cur:null};
+
+  function poolKeys(){ return S.pool==='misto' ? ['paises','estados','cidades'] : [S.pool]; }
+  function pick(arr, r){ return arr[Math.floor(r()*arr.length)]; }
+  function metricsOf(pk, it){ return POOLS[pk].keys.filter(function(k){ return it.v[k]!=null; }); }
+
+  /* gera uma rodada: A (conhecido) vs B (escondido) numa metrica comum, com diferenca de pelo menos 8% */
+  function makeRound(prevB, r, pkForced){
+    for (var tries=0; tries<200; tries++){
+      var pk = pkForced || pick(poolKeys(), r), P = POOLS[pk];
+      var A = (prevB && prevB.pk===pk) ? prevB.it : pick(P.items, r);
+      var ks = metricsOf(pk, A); if (!ks.length) continue;
+      var k = pick(ks, r), B = pick(P.items, r);
+      if (B===A || B.v[k]==null) continue;
+      var a = A.v[k], b = B.v[k]; if (a<=0 || b<=0) continue;
+      var gap = Math.max(a,b)/Math.min(a,b); if (gap < 1.08) continue;
+      return {pk:pk, k:k, A:A, B:B, more:b>a};
+    }
+    return null;
+  }
+  function buildRounds(){
+    var r = wm.rng(wm.hash('mm-'+wm.today())), out = [], prev = null;
+    for (var i=0;i<DAILY_N;i++){ var rd = makeRound(prev, r, null); out.push(rd); prev = {pk:rd.pk, it:rd.B}; }
+    return out;
+  }
+  function nextTraining(){ var prev = S.cur ? {pk:S.cur.pk, it:S.cur.B} : null; return makeRound(prev, Math.random, S.pool==='misto' ? null : S.pool); }
+
+  function dayNo(){ return Math.max(1, Math.floor((new Date(wm.today()+'T12:00:00-03:00') - LAUNCH)/86400000) + 1); }
+  function visual(pk, it){
+    if (POOLS[pk].flag) return '<img class="flag" src="/assets/flags/'+it.i+'.png" alt="" width="96" height="64" loading="eager">';
+    var ini = it.n.replace(/ - [A-Z]{2}$/,'').split(/\s+/).filter(function(w){return w.length>2;}).slice(0,2).map(function(w){return w[0];}).join('').toUpperCase() || it.n.slice(0,2).toUpperCase();
+    return '<span class="mono-badge" aria-hidden="true">'+wm.esc(ini)+'</span>';
+  }
+
+  function render(){
+    var rd = S.cur; if (!rd) return;
+    var m = M[rd.k];
+    $('prompt').innerHTML = '<b>'+wm.esc(rd.B.n)+'</b> tem <span class="hl">mais</span> ou <span class="hl">menos</span> '+wm.esc(m.q)+' do que <b>'+wm.esc(rd.A.n)+'</b>?';
+    $('cardA').innerHTML = '<div class="vis">'+visual(rd.pk, rd.A)+'</div><div class="nm">'+wm.esc(rd.A.n)+'</div><div class="val num">'+wm.esc(m.f(rd.A.v[rd.k]))+'</div><div class="mlabel label">'+wm.esc(m.q)+'</div>';
+    $('cardB').className = 'ccard'; $('cardB').innerHTML = '<div class="vis">'+visual(rd.pk, rd.B)+'</div><div class="nm">'+wm.esc(rd.B.n)+'</div><div class="val num" id="valB">?</div><div class="mlabel label">'+wm.esc(m.q)+'</div>';
+    $('btnMore').disabled = $('btnLess').disabled = false; $('next').hidden = true; $('fb').textContent = ''; $('fb').className = 'fb';
+    S.locked = false; status();
+  }
+  function status(){
+    var tot = S.mode==='dia' ? 'Rodada '+Math.min(S.i+1,DAILY_N)+' de '+DAILY_N : 'Sequência: '+S.streak;
+    $('status').innerHTML = '<span>'+tot+'</span><span>'+(S.mode==='dia' ? 'Acertos: '+S.score : 'Recorde: '+(wm.store.get('mm_best',0)))+'</span>';
+  }
+
+  function countUp(el, to, f, ms){
+    var t0 = performance.now();
+    function step(t){ var p = Math.min(1,(t-t0)/ms), e = 1-Math.pow(1-p,3); el.textContent = f(to*e); if (p<1) requestAnimationFrame(step); else el.textContent = f(to); }
+    requestAnimationFrame(step);
+  }
+
+  function answer(guessMore){
+    if (S.locked || S.over || !S.cur) return; S.locked = true;
+    var rd = S.cur, ok = (guessMore === rd.more), m = M[rd.k];
+    $('btnMore').disabled = $('btnLess').disabled = true;
+    countUp($('valB'), rd.B.v[rd.k], m.f, 700);
+    $('cardB').classList.add(ok ? 'ok' : 'no');
+    $('fb').className = 'fb ' + (ok ? 'ok' : 'no');
+    $('fb').textContent = (ok ? 'Acertou. ' : 'Errou. ') + rd.B.n + ' tem ' + (rd.more ? 'mais' : 'menos') + ': ' + m.f(rd.B.v[rd.k]) + ' contra ' + m.f(rd.A.v[rd.k]) + '.';
+    S.answers.push(ok?1:0);
+    if (ok){ S.score++; S.streak++; }
+    if (S.mode!=='dia' && ok){ var b0 = wm.store.get('mm_best',0); if (S.streak>b0) wm.store.set('mm_best', S.streak); }
+    status();
+    if (S.mode==='dia'){
+      S.i++;
+      var done = S.i >= DAILY_N;
+      $('next').textContent = done ? 'Ver resultado →' : 'Próxima →'; $('next').hidden = false; $('next').focus();
+      if (done) wm.store.set('mm_dia_'+wm.today(), {a:S.answers, s:S.score});
+    } else {
+      if (ok){ var best = wm.store.get('mm_best',0); if (S.streak>best) wm.store.set('mm_best', S.streak); $('next').textContent='Próxima →'; }
+      else { S.over = true; $('next').textContent='Ver resultado →'; }
+      $('next').hidden = false; $('next').focus();
+    }
+  }
+
+  function advance(){
+    if (S.mode==='dia'){
+      if (S.i >= DAILY_N) return showEnd();
+      S.cur = S.rounds[S.i]; render();
+    } else {
+      if (S.over) return showEnd();
+      S.cur = nextTraining(); render();
+    }
+  }
+
+  function squares(a){ return a.map(function(x){ return x ? '🟩' : '🟥'; }).join(''); }
+  function endText(){
+    if (S.mode==='dia') return 'Mais ou Menos #'+dayNo()+' · '+S.score+'/'+DAILY_N+'\n'+squares(S.answers);
+    return 'Fiz uma sequência de '+S.streak+' no Mais ou Menos.';
+  }
+  var CARD = null;
+  function showEnd(){
+    $('stage').hidden = true; $('end').hidden = false;
+    var dia = S.mode==='dia';
+    $('endbig').textContent = dia ? S.score+'/'+DAILY_N : String(S.streak);
+    $('endlbl').textContent = dia ? 'acertos no desafio de hoje' : 'acertos seguidos';
+    $('endmsg').textContent = dia ? (S.score>=9?'Você manda nos números.':S.score>=7?'Muito bem. Dá pra chegar ao 10.':S.score>=5?'Na média. Amanhã tem outro desafio.':'O mundo é maior do que parece. Amanhã tem revanche.') : (S.streak>=10?'Sequência de respeito.':S.streak>=5?'Bom ritmo. Dá pra passar de 10.':'Tente de novo.');
+    $('endgrid').textContent = dia ? squares(S.answers) : '';
+    $('endgrid').hidden = !dia;
+    $('again').hidden = dia;
+    wm.track('jogo_fim', {jogo:'mais_ou_menos', modo:S.mode, pontos:(dia?S.score:S.streak)});
+    buildCard();
+  }
+  function buildCard(){
+    var dia = S.mode==='dia', score = dia ? S.score : S.streak, ans = S.answers.slice(), day = dayNo();
+    wm.card(function(c, W){
+      c.textAlign='left'; c.fillStyle='#2337FF'; c.font='italic 44px "Instrument Serif", serif'; c.fillText('Jogo · Mais ou menos', 64, 116);
+      c.fillStyle='#0D0D0F'; c.font='108px "DM Serif Display", serif'; c.fillText('Mais ou', 64, 232); c.fillText('menos?', 64, 340);
+      c.font='500 26px "IBM Plex Mono", monospace'; c.fillStyle='#55585F';
+      c.fillText(dia ? 'DESAFIO DO DIA #'+day : 'MODO TREINO', 64, 410);
+      c.fillStyle='#0D0D0F'; c.font='300px "DM Serif Display", serif'; c.fillText(dia ? score+'/'+DAILY_N : String(score), 64, 700);
+      c.font='36px "Newsreader", serif'; c.fillStyle='#55585F'; c.fillText(dia ? 'acertos' : 'acertos seguidos', 64, 770);
+      if (dia){ var s = 70, g = 12; ans.forEach(function(a,i){ c.fillStyle = a ? '#0E7C66' : '#C8322B'; c.fillRect(64 + (i%5)*(s+g), 850 + Math.floor(i/5)*(s+g), s, s); }); }
+      c.fillStyle='#0D0D0F'; c.font='38px "Newsreader", serif'; wm.wrap(c, 'Países, estados e cidades com dados oficiais. Quanto você sabe de número?', 64, 1090, W-128, 50, 3);
+    }).then(function(r){ CARD = r; });
+  }
+  function url(){ return location.origin + location.pathname; }
+
+  function start(mode, pool){
+    S.mode = mode; if (pool) S.pool = pool;
+    S.i = 0; S.score = 0; S.streak = 0; S.answers = []; S.over = false; S.cur = null; CARD = null;
+    $('end').hidden = true; $('stage').hidden = false;
+    $('pools').hidden = mode==='dia';
+    if (mode==='dia'){
+      S.pool = 'misto'; S.rounds = buildRounds();
+      var done = wm.store.get('mm_dia_'+wm.today(), null);
+      if (done){ S.answers = done.a; S.score = done.s; S.i = DAILY_N; syncButtons(); showEnd(); return; }
+      S.cur = S.rounds[0];
+    } else { S.cur = nextTraining(); }
+    syncButtons(); render();
+  }
+  function syncButtons(){
+    document.querySelectorAll('.gbar [data-mode]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.mode===S.mode); });
+    document.querySelectorAll('[data-pool]').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.pool===S.pool); });
+  }
+
+  $('btnMore').addEventListener('click', function(){ answer(true); });
+  $('btnLess').addEventListener('click', function(){ answer(false); });
+  $('next').addEventListener('click', advance);
+  $('again').addEventListener('click', function(){ start('treino'); });
+  document.querySelectorAll('[data-mode]').forEach(function(b){ b.addEventListener('click', function(){ start(b.dataset.mode); wm.track('jogo_modo',{jogo:'mais_ou_menos',modo:b.dataset.mode}); }); });
+  document.querySelectorAll('[data-pool]').forEach(function(b){ b.addEventListener('click', function(){ start('treino', b.dataset.pool); }); });
+  document.addEventListener('keydown', function(e){
+    if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+    if ($('stage').hidden) return;
+    if (e.key==='ArrowUp'){ e.preventDefault(); answer(true); }
+    else if (e.key==='ArrowDown'){ e.preventDefault(); answer(false); }
+    else if (e.key==='Enter' && !$('next').hidden){ advance(); }
+  });
+  $('shWa').addEventListener('click', function(){ wm.wa(endText(), url(), 'mais_ou_menos'); });
+  $('shX').addEventListener('click', function(){ wm.xp(endText(), url(), 'mais_ou_menos'); });
+  $('shCopy').addEventListener('click', function(){ wm.copy(endText()+'\n'+url()); wm.track('ferramenta_share',{metodo:'copiar',ferramenta:'mais_ou_menos'}); });
+  $('shImg').addEventListener('click', function(){ if (!CARD) return; wm.download(CARD.blob, 'mais-ou-menos.png'); wm.track('ferramenta_share',{metodo:'imagem',ferramenta:'mais_ou_menos'}); });
+  $('shNative').addEventListener('click', function(){ wm.share({text:endText(), url:url(), blob:CARD&&CARD.blob, name:'mais-ou-menos.png', ferramenta:'mais_ou_menos'}); });
+  if (!navigator.share) $('shNative').hidden = true;
+  $('dayno').textContent = '#'+dayNo();
+
+  start('dia');
+  wm.track('jogo_inicio', {jogo:'mais_ou_menos'});
+})();
+</script>
+</body>
+</html>

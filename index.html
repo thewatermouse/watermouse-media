@@ -287,17 +287,27 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     <p>Notícias internacionais em português, com contexto pro Brasil e a fonte sempre no lugar.</p>
   </div>
 
-  <!--SIMULADOR-->
-  <a href="orcamento/" class="sim-promo">
-    <div>
-      <div class="sk">Simulador · Orçamento federal</div>
-      <h2>Se você fosse presidente, onde poria o dinheiro?</h2>
-      <p>R$ 2,61 trilhões, com as regras de verdade. Só 5% é escolha livre. Monte o seu orçamento, veja o que acontece com a dívida até 2030 e descubra com qual governo ele se parece.</p>
-      <div class="bar" aria-hidden="true"><span style="flex-basis:72%;background:#0D0D0F"></span><span style="flex-basis:23%;background:#6E717A"></span><span style="flex-basis:5%;background:#2337FF"></span></div>
-    </div>
-    <span class="go">Montar meu orçamento →</span>
-  </a>
-  <!--/SIMULADOR-->
+  <!--FERRAMENTAS-->
+  <section class="ts" aria-label="Ferramentas">
+    <style>
+      .ts{margin:26px 0 8px}
+      .ts-head{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid #0D0D0F;padding-top:10px;margin-bottom:12px}
+      .ts-head .sk{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+      .ts-head a{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:inherit}
+      .ts-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid #0D0D0F}
+      .ts-card{display:flex;flex-direction:column;gap:8px;padding:18px 18px 16px;text-decoration:none;color:inherit;border-right:1px solid #0D0D0F;min-height:150px;background:#fff}
+      .ts-card:last-child{border-right:0}
+      .ts-card:hover{background:#EEEFF3}
+      .ts-k{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:18px;color:#2337FF}
+      .ts-card strong{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.05;flex:1}
+      .ts-go{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px}
+      @media (max-width:820px){.ts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ts-card:nth-child(2){border-right:0}.ts-card:nth-child(-n+2){border-bottom:1px solid #0D0D0F}}
+      @media (prefers-color-scheme:dark){.ts-head{border-top-color:#EDEDF0}.ts-grid,.ts-card{border-color:#EDEDF0}.ts-card{background:#16171C}.ts-card:hover{background:#1E2027}.ts-k{color:#7D8BFF}}
+    </style>
+    <div class="ts-head"><span class="sk">Ferramentas</span><a href="/ferramentas/">Ver todas →</a></div>
+    <div class="ts-grid"><a href="orcamento/" class="ts-card"><span class="ts-k">Simulador · Orçamento federal</span><strong>Se eu fosse presidente</strong><span class="ts-go">Montar meu orçamento →</span></a><a href="mais-ou-menos/" class="ts-card"><span class="ts-k">Jogo · Desafio diário</span><strong>Mais ou menos?</strong><span class="ts-go">Jogar agora →</span></a><a href="brasil-em-100/" class="ts-card"><span class="ts-k">Explicador · Censo 2022</span><strong>O Brasil em 100 pessoas</strong><span class="ts-go">Ver o retrato →</span></a><a href="comparar/" class="ts-card"><span class="ts-k">Comparador · Banco Mundial</span><strong>Compare dois países</strong><span class="ts-go">Comparar países →</span></a></div>
+  </section>
+  <!--/FERRAMENTAS-->
 
   <!-- LEAD -->
   <div class="lead-grid">
@@ -436,7 +446,7 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     </nav>
     <div class="foot">
       <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
-      <span><a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Contato</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+      <span><a href="/ferramentas/">Ferramentas</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Contato</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
     </div>
   </div>
 </footer>

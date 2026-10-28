@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ferramentas de dados: simuladores, jogos e explicadores | Watermouse Media</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/ferramentas/">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta name="description" content="Simulador do orçamento federal, jogo Mais ou Menos, O Brasil em 100 pessoas e comparador de países: ferramentas interativas com dados oficiais, feitas para entender e compartilhar.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Ferramentas de dados">
+<meta property="og:description" content="Simulador do orçamento federal, jogo Mais ou Menos, O Brasil em 100 pessoas e comparador de países: ferramentas interativas com dados oficiais, feitas para entender e compartilhar.">
+<meta property="og:url" content="https://media.thewatermouse.com/ferramentas/">
+<meta property="og:image" content="https://media.thewatermouse.com/ferramentas/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.thewatermouse.com/ferramentas/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Ferramentas de dados", "description": "Simulador do orçamento federal, jogo Mais ou Menos, O Brasil em 100 pessoas e comparador de países: ferramentas interativas com dados oficiais, feitas para entender e compartilhar.", "url": "https://media.thewatermouse.com/ferramentas/", "inLanguage": "pt-BR", "isAccessibleForFree": true, "image": "https://media.thewatermouse.com/ferramentas/og.png", "publisher": {"@type": "NewsMediaOrganization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/", "logo": {"@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/ferr.css">
+
+<style>
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:1px solid var(--ink);margin-bottom:10px}
+.tcard{display:flex;flex-direction:column;gap:8px;padding:26px 26px 22px;text-decoration:none;color:var(--ink);background:var(--surface);border:0;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);min-height:250px}
+.tcard:nth-child(2n){border-right:0}.tcard:nth-last-child(-n+2){border-bottom:0}
+.tcard:hover{background:var(--tint)}
+.tcard .tk{font-family:var(--f-kicker);font-style:italic;font-size:20px;color:var(--cobalt)}
+.tcard h2{font-size:clamp(28px,3.6vw,40px);margin:0}
+.tcard p{margin:0;color:var(--muted);font-size:17px;flex:1}
+.tcard .go{font-family:var(--f-mono);font-size:13px;margin-top:6px}
+.principles{margin-top:34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.principles div{border-top:2px solid var(--ink);padding-top:10px}
+.principles h3{margin-bottom:4px}.principles p{margin:0;color:var(--muted);font-size:15.5px}
+@media (max-width:720px){.tgrid{grid-template-columns:1fr}.tcard{border-right:0!important;border-bottom:1px solid var(--ink)!important;min-height:0}.tcard:last-child{border-bottom:0!important}.principles{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="106 18 100 100" aria-hidden="true"><circle cx="156" cy="68" r="50" fill="#F8F8F9"/><g transform="translate(156 68) scale(1.05) translate(-158 -68)"><g fill="#0D0D0F"><circle cx="128" cy="64" r="15"/><circle cx="128" cy="64" r="8" fill="#2B2C33"/><path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/><circle cx="189" cy="80" r="4"/><g transform="translate(-2 6) rotate(8 156 50)"><path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/><rect x="141" y="47" width="30" height="5" fill="#2337FF"/><rect x="128" y="54" width="56" height="5" rx="2.5"/></g></g><circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/><path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/></g></svg>Watermouse Media</a>
+    <nav class="mastnav" aria-label="Seções"><a href="/">Notícias</a><a href="/ferramentas/" aria-current="page">Ferramentas</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Watermouse Media</div>
+    <h1>Ferramentas de dados</h1>
+    <p class="lede">Números do Brasil e do mundo que a gente consegue <strong>mexer, jogar e comparar</strong>. Dados oficiais, fonte em cada página.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="tgrid"><a class="tcard" href="/orcamento/"><div class="tk">Simulador · Orçamento federal</div><h2>Se eu fosse presidente</h2><p>R$ 2,61 trilhões, com as regras de verdade. Só 5% é escolha livre. Monte o seu orçamento e descubra com qual governo ele se parece.</p><span class="go">Montar meu orçamento →</span></a><a class="tcard" href="/mais-ou-menos/"><div class="tk">Jogo · Desafio diário</div><h2>Mais ou menos?</h2><p>Quem tem mais população, mais floresta, mais internet? Dez rodadas por dia com países, estados e cidades. Compartilhe o seu resultado.</p><span class="go">Jogar agora →</span></a><a class="tcard" href="/brasil-em-100/"><div class="tk">Explicador · Censo 2022</div><h2>O Brasil em 100 pessoas</h2><p>Se o Brasil tivesse só 100 habitantes: quantos seriam mulheres, pardos, evangélicos? E onde você aparece nesse retrato.</p><span class="go">Ver o retrato →</span></a><a class="tcard" href="/comparar/"><div class="tk">Comparador · Banco Mundial</div><h2>Compare dois países</h2><p>População, PIB, expectativa de vida, emissões, internet e mais de 20 indicadores lado a lado, com a posição de cada país no mundo.</p><span class="go">Comparar países →</span></a></div>
+  <div class="principles">
+    <div><h3>Dado oficial, fonte à vista</h3><p>Banco Mundial, IBGE, Tesouro Nacional e Portal da Transparência. Cada ferramenta lista de onde veio cada número.</p></div>
+    <div><h3>Sem opinião escondida</h3><p>As ferramentas mostram números e deixam a conclusão com você. Quando há estimativa, a página diz qual é.</p></div>
+    <div><h3>Feito para compartilhar</h3><p>Todo resultado vira um cartão para o WhatsApp ou as redes. Se achar um erro, <a href="/contato.html">avise a gente</a>.</p></div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h4>Fontes e método</h4>
+    <ul><li>Cada ferramenta traz a lista completa de fontes no próprio rodapé. Veja também a <a href="/politica-editorial.html">política editorial</a>.</li></ul>
+    <div class="sitelinks">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="/">Notícias</a> · <a href="/ferramentas/">Ferramentas</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+<script src="/assets/ferr.js"></script>
+<script></script>
+</body>
+</html>
