@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computação quântica sem mistério: o que é um qubit, o que ela faz de verdade e o que ainda não faz | Watermouse Media</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/guia-computacao-quantica-sem-misterio-2026.html">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:title" content="Computação quântica sem mistério: o que é um qubit, o que ela faz de verdade e o que ainda não faz">
+<meta property="og:description" content="Guia de computação quântica para leigos: bits e qubits, superposição e emaranhamento sem jargão, aplicações realistas, o problema dos erros e o que a criptografia tem a ver com isso.">
+<meta property="og:url" content="https://media.thewatermouse.com/guia-computacao-quantica-sem-misterio-2026.html">
+<meta property="og:image" content="https://media.thewatermouse.com/media/ion-trap.jpg">
+<meta name="description" content="Guia de computação quântica para leigos: bits e qubits, superposição e emaranhamento sem jargão, aplicações realistas, o problema dos erros e o que a criptografia tem a ver com isso.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "Computação quântica sem mistério: o que é um qubit, o que ela faz de verdade e o que ainda não faz",
+  "description": "Guia de computação quântica para leigos: bits e qubits, superposição e emaranhamento sem jargão, aplicações realistas, o problema dos erros e o que a criptografia tem a ver com isso.",
+  "image": "https://media.thewatermouse.com/media/ion-trap.jpg",
+  "datePublished": "2026-10-27T21:30:00-03:00",
+  "dateModified": "2026-10-27T21:30:00-03:00",
+  "inLanguage": "pt-BR",
+  "articleSection": "Tecnologia",
+  "author": { "@type": "Organization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/" },
+  "publisher": {
+    "@type": "NewsMediaOrganization",
+    "name": "Watermouse Media",
+    "logo": { "@type": "ImageObject", "url": "https://media.thewatermouse.com/media/solar-farm.jpg" }
+  },
+  "mainEntityOfPage": "https://media.thewatermouse.com/guia-computacao-quantica-sem-misterio-2026.html"
+}
+</script>
+<style>
+  :root{
+    --bg:#F8F8F9; --surface:#FFFFFF; --tint:#F1F1F3; --tint-sage:#ECEDEF;
+    --ink:#0D0D0F; --muted:#55585F; --faint:#8A8D94;
+    --sage:#2337FF; --sage-dark:#0D0D0F; --warm-deep:#D4A64A; --warm-dark:#6E717A;
+    --line:rgba(13,13,15,0.12); --line-soft:rgba(13,13,15,0.07);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Newsreader',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6;font-weight:300;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  .col{max-width:680px;margin:0 auto;padding:0 32px;}
+
+  header.mast{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:50;}
+  .mast-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand svg{color:var(--sage);}
+  .brand .word{font-family:'DM Serif Display',serif;font-size:21px;font-weight:300;letter-spacing:0.03em;color:var(--ink);white-space:nowrap;}
+  .brand .tag{font-size:10.5px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--warm-dark);border-left:1px solid var(--line);padding-left:10px;white-space:nowrap;}
+  .sub-link{font-size:13px;font-weight:500;color:var(--sage-dark);border:1px solid var(--line);border-radius:2px;padding:8px 16px;white-space:nowrap;flex-shrink:0;}
+  .sub-link:hover{border-color:var(--sage);}
+
+  article{padding:36px 0 20px;}
+  .back{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);margin-bottom:24px;}
+  .back:hover{color:var(--sage-dark);}
+  .a-cat{font-size:11.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;}
+  h1{font-family:'DM Serif Display',serif;font-size:clamp(30px,4.6vw,44px);font-weight:400;line-height:1.12;color:var(--ink);margin-bottom:18px;text-wrap:balance;}
+  .dek{font-size:19px;font-weight:300;line-height:1.55;color:var(--muted);margin-bottom:26px;}
+  .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--faint);padding-bottom:26px;border-bottom:1px solid var(--line-soft);margin-bottom:8px;}
+  .meta b{color:var(--ink);font-weight:500;}
+  .hero-fig{margin:26px 0;}
+  .hero-fig img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:2px;background:linear-gradient(135deg,var(--sage) 0%,var(--sage-dark) 60%,var(--ink) 100%);}
+  .hero-fig figcaption{font-size:12.5px;line-height:1.5;color:var(--faint);margin-top:8px;}
+  .hero-fig figcaption a{color:inherit;text-decoration:underline;}
+  .body p{font-size:17px;line-height:1.75;color:#1A1A1E;margin-bottom:20px;}
+  .body h2{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--ink);margin:34px 0 12px;}
+  .body a{color:var(--sage-dark);border-bottom:1px solid var(--line);}
+
+  .attrib{background:var(--tint-sage);border:1px solid var(--line-soft);border-left:3px solid var(--sage);border-radius:2px;padding:18px 20px;margin:34px 0;font-size:14.5px;line-height:1.6;color:var(--ink);}
+  .attrib b{color:var(--sage-dark);}
+  .attrib a{color:var(--sage-dark);font-weight:500;border-bottom:1px solid var(--line);}
+  .attrib .note{display:block;margin-top:8px;font-size:13px;color:var(--muted);}
+
+  .news{background:var(--ink);border-radius:2px;padding:30px 28px;margin:36px 0;text-align:center;}
+  .news h2{font-family:'DM Serif Display',serif;font-size:22px;font-weight:300;color:#F8F8F9;margin-bottom:8px;}
+  .news p{font-size:14px;color:rgba(248,248,249,0.6);margin-bottom:16px;}
+  .news a{display:inline-block;background:var(--sage);color:#fff;border-radius:2px;padding:12px 24px;font-size:14px;font-weight:500;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 56px;}
+  .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);}
+  .foot a{color:var(--sage-dark);}
+
+  .wm-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;max-width:680px;margin:0 auto;background:#08080A;color:#F8F8F9;border:1px solid rgba(248,248,249,0.16);border-radius:2px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 10px 34px rgba(0,0,0,0.3);}
+  .wm-cookie[hidden]{display:none!important;}
+  .wm-cookie-text{font-size:13px;font-weight:300;line-height:1.5;color:rgba(248,248,249,0.82);flex:1;min-width:220px;}
+  .wm-cookie-text a{color:#8D98FF;}
+  .wm-cookie-actions{display:flex;gap:8px;flex-shrink:0;}
+  .wm-cookie-btn{font-family:inherit;font-size:13px;font-weight:500;border-radius:2px;padding:9px 18px;cursor:pointer;border:none;}
+  .wm-cookie-btn.ghost{background:transparent;color:rgba(248,248,249,0.72);border:1px solid rgba(248,248,249,0.24);}
+  .wm-cookie-btn.solid{background:#2337FF;color:#fff;}
+  @media(max-width:560px){
+    .mast-top{gap:10px;}
+    .brand{gap:8px;}
+    .brand .word{font-size:17px;}
+    .brand .tag{font-size:9.5px;padding-left:7px;letter-spacing:0.1em;}
+    .sub-link{padding:7px 13px;font-size:12px;}
+  }
+  @media(max-width:380px){.brand .tag{display:none;}.brand .word{font-size:15px;}}
+
+  .related-reads{margin:36px 0 0;padding-top:28px;border-top:1px solid var(--line);}
+  .related-reads h3{font-family:'DM Serif Display',serif;font-size:19px;font-weight:400;color:var(--ink);margin-bottom:12px;}
+  .related-reads a{display:block;padding:14px 0;border-bottom:1px solid var(--line-soft);line-height:1.3;transition:color .15s;}
+  .related-reads a:last-child{border-bottom:none;}
+  .related-reads a:hover .rr-title{color:var(--sage-dark);}
+  .related-reads .rr-cat{display:block;font-family:'Newsreader',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-dark);margin-bottom:5px;}
+  .related-reads .rr-title{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;color:var(--ink);}
+</style>
+<style>/* WM brand v2 (media) */
+body{font-family:'Newsreader',Georgia,serif;font-weight:400;font-synthesis:none;}
+h1,h2,h3,.serif{font-family:'DM Serif Display','Times New Roman',serif !important;font-weight:400 !important;letter-spacing:-0.02em;}
+h1{line-height:1.02 !important;} h2,h3{line-height:1.06;}
+.brand{gap:10px !important;}
+.brand .word{font-family:'DM Serif Display','Times New Roman',serif !important;font-size:23px !important;font-weight:400 !important;letter-spacing:-0.02em !important;color:#0D0D0F !important;}
+.brand .word em{font-style:italic;} .brand .word i{font-style:normal;color:#2337FF;}
+.brand .wm-mascot{flex-shrink:0;}
+.chip,nav.cats a,.catnav a,.eyebrow,.a-cat,.src,.cat-count,.side-h,.k,.n,.meta,.byline,.constr,.wm-cookie-btn,.sub-link,.back{font-family:'IBM Plex Mono',ui-monospace,monospace !important;}
+.chip,nav.cats a,.catnav a,.eyebrow,.a-cat{font-weight:500 !important;letter-spacing:0.08em !important;}
+.sub-link{background:#0D0D0F !important;border-color:#0D0D0F !important;color:#F8F8F9 !important;font-size:12px !important;}
+.sub-link:hover{background:#2337FF !important;border-color:#2337FF !important;}
+.tagline p,.dek em,.kick{font-family:'Instrument Serif','Times New Roman',serif !important;font-style:italic;}
+.tagline p{font-size:clamp(19px,2.6vw,25px) !important;color:#0D0D0F !important;}
+article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;}
+::selection{background:#2337FF;color:#F8F8F9;}
+@media(max-width:560px){.brand .word{font-size:19px !important;} .brand .wm-mascot{width:32px;height:29px;}}
+</style>
+<style>
+.ad-slot{display:none;margin:34px auto;max-width:728px;text-align:center;}
+.ad-slot.live{display:block;}
+.ad-slot.live:has(ins.adsbygoogle[data-ad-status="unfilled"]){display:none;}
+
+.ad-slot .ad-label{display:block;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+</style>
+<!-- Google AdSense: quando a conta for aprovada, adicione UMA vez no <head> (com o ca-pub real):
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     Depois ative cada .ad-slot (classe "live" + bloco <ins class="adsbygoogle">). -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3920760016147555" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="mast-top">
+      <a href="/" class="brand"><svg viewBox="0 0 220 200" width="38" height="35" class="wm-mascot" aria-hidden="true"><circle cx="110" cy="100" r="100" fill="#F8F8F9"/><circle cx="110" cy="100" r="99" fill="none" stroke="rgba(13,13,15,0.14)" stroke-width="2"/><g transform="translate(110 100) scale(.86) translate(-114 -104)">
+  <g fill="#0D0D0F">
+    <path d="M70 128 C40 132 26 150 34 166 C38 174 46 176 52 172" fill="none" stroke="#0D0D0F" stroke-width="5" stroke-linecap="round"/>
+    <path d="M52 156 C52 156 43 167 43 172.5 A9 9 0 0 0 61 172.5 C61 167 52 156 52 156Z"/>
+    <path d="M96 146 L88 170 L100 171" fill="none" stroke="#0D0D0F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M124 144 L134 168 L146 168" fill="none" stroke="#0D0D0F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M66 122 C62 92 86 74 114 78 C138 82 150 102 146 126 C142 146 122 154 100 152 C80 150 68 140 66 122Z"/>
+    <circle cx="128" cy="64" r="15"/>
+    <circle cx="128" cy="64" r="8" fill="#2B2C33"/>
+    <path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/>
+    <circle cx="189" cy="80" r="4"/>
+    <g transform="translate(-2 6) rotate(8 156 50)">
+      <path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/>
+      <rect x="141" y="47" width="30" height="5" fill="#2337FF"/>
+      <rect x="128" y="54" width="56" height="5" rx="2.5"/>
+    </g>
+  </g>
+  <circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/>
+  <path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/>
+  <g transform="rotate(-14 150 118)">
+    <rect x="128" y="104" width="44" height="30" rx="2" fill="#2337FF"/>
+    <path d="M134 112h32M134 118h20M134 124h26" stroke="#F8F8F9" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <path d="M120 100 C130 108 138 116 146 118" fill="none" stroke="#0D0D0F" stroke-width="6" stroke-linecap="round"/>
+</g></svg><span class="word">Watermouse <em>Media</em><i>.</i></span>
+      </a>
+      <a href="/#newsletter" class="sub-link">Receber no e-mail</a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="col">
+    <a href="/" class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg> Todas as notícias</a>
+    <div class="a-cat">Tecnologia</div>
+    <h1>Computação quântica sem mistério: o que é um qubit, o que ela faz de verdade e o que ainda não faz</h1>
+    <p class="dek">Não, o computador quântico não "testa todas as possibilidades ao mesmo tempo" nem vai substituir o seu notebook. Entenda a ideia por trás do qubit, onde essas máquinas podem ajudar e por que errar é o maior desafio.</p>
+    <div class="meta"><span>Por <b>Redação Watermouse Media</b></span><span>27 de outubro de 2026</span><span>9 min de leitura</span></div>
+  </div>
+
+  <div class="col">
+    <figure class="hero-fig">
+      <img src="media/ion-trap.jpg" alt="Uma armadilha de íons dourada, dispositivo usado em experimentos de computação quântica." loading="lazy">
+      <figcaption>Armadilha de íons, usada em computadores quânticos. Foto: NIST (domínio público).</figcaption>
+    </figure>
+
+    <div class="body">
+      <p>"Computador quântico resolve em segundos o que levaria milhões de anos" é o tipo de manchete que aparece com frequência e que, quase sempre, esconde mais do que revela. A computação quântica é real, está avançando e tem aplicações promissoras, mas funciona de um jeito bem diferente do que as metáforas populares sugerem. Este guia explica o essencial para que você consiga ler as próximas notícias sem se perder, inclusive as <a href="computacao-quantica-mil-vezes-2026.html">que já publicamos sobre ganhos de desempenho</a>.</p>
+
+<div class="ad-slot live" data-ad="in-article-1">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3920760016147555" data-ad-slot="8356866030" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+<h2>Do bit ao qubit</h2>
+
+<p>O computador comum trabalha com bits, e cada bit vale 0 ou 1. Tudo o que ele faz, de uma planilha a um vídeo, é manipular enormes sequências desses zeros e uns. O computador quântico usa o <b>qubit</b>, que também pode representar 0 e 1, mas obedece às regras da física quântica e pode estar num estado de <b>superposição</b>: uma combinação dos dois, com certas "amplitudes" associadas a cada resultado.</p>
+
+<p>Uma imagem útil, ainda que imperfeita, é a de uma moeda girando. Enquanto gira, ela não é nem cara nem coroa; ao ser medida, cai num dos dois lados. O qubit é parecido: antes da medição, é uma combinação; depois, é um resultado definido. A diferença importante é que, com qubits, é possível combinar essas "moedas" de forma que as possibilidades interfiram entre si, reforçando umas e cancelando outras.</p>
+
+<h2>O que "emaranhamento" quer dizer</h2>
+
+<p>Dois ou mais qubits podem ser preparados de modo que o estado de um não possa ser descrito sem o do outro. Isso se chama emaranhamento. Não é comunicação mais rápida que a luz, como às vezes se diz, e sim uma correlação que só aparece quando os resultados são comparados. Para a computação, ela é um recurso: permite que o conjunto de qubits represente informações que um conjunto de bits comuns não conseguiria representar com a mesma economia.</p>
+
+<h2>Por que a ideia de "testar tudo ao mesmo tempo" engana</h2>
+
+<p>É comum ouvir que um computador quântico "faz todas as contas de uma vez". Não é isso. No fim, é preciso medir o resultado, e a medição devolve só uma resposta. O truque dos algoritmos quânticos é organizar as operações para que as respostas erradas se cancelem e a correta tenha alta probabilidade de aparecer na medição. Isso só funciona para problemas com uma estrutura que permita esse arranjo, e são poucos os problemas conhecidos nessa situação.</p>
+
+<h2>Para que servem, de fato</h2>
+
+<ul>
+<li><b>Simular sistemas quânticos.</b> Moléculas, materiais e reações químicas são regidos pela física quântica, e simulá-los em computadores comuns fica rapidamente impraticável. É a aplicação mais natural, e a que mais motiva a área. A <a href="simulador-quantico-materia-energia-2026.html">matéria sobre simuladores quânticos de matéria e energia</a> mostra um passo nessa direção.</li>
+<li><b>Fatoração e criptografia.</b> O algoritmo de Shor, proposto nos anos 1990, mostra que um computador quântico grande e livre de erros poderia quebrar parte da criptografia usada hoje. Ainda estamos longe disso, mas o risco já é levado a sério.</li>
+<li><b>Busca e otimização.</b> Algoritmos como o de Grover dão ganhos modestos na busca em dados desorganizados. Para otimização, os ganhos práticos ainda são discutidos.</li>
+</ul>
+
+<p>O que quase nunca acontece é um computador quântico acelerar tarefas do dia a dia, como abrir páginas ou rodar jogos. Para isso, o computador comum continua melhor e vai seguir sendo.</p>
+
+<h2>O verdadeiro obstáculo: os erros</h2>
+
+<p>Qubits são frágeis. Qualquer interação com o ambiente, como vibração, calor ou radiação, faz o estado quântico se perder, um processo chamado <b>decoerência</b>. Por isso, muitas dessas máquinas operam em temperaturas próximas do zero absoluto, e mesmo assim cometem muitos erros. O estado da arte hoje é construir sistemas com centenas ou milhares de qubits <b>físicos</b>, ainda ruidosos.</p>
+
+<p>Para fazer cálculos longos de forma confiável, a ideia é usar a <b>correção de erros quânticos</b>: reunir muitos qubits físicos para formar um qubit <b>lógico</b>, mais estável. A conta é pesada: dependendo da tecnologia, podem ser necessários muitos qubits físicos para cada qubit lógico. Por isso, quando uma notícia diz que uma máquina tem "mil qubits", vale perguntar: físicos ou lógicos? E com que taxa de erro?</p>
+
+<h2>Diferentes tecnologias, diferentes apostas</h2>
+
+<ul>
+<li><b>Circuitos supercondutores:</b> usados por empresas como a IBM e o Google, são rápidos, mas precisam de resfriamento extremo.</li>
+<li><b>Íons presos:</b> átomos eletricamente carregados, mantidos por campos elétricos e manipulados com laser, como o da imagem acima. Têm boa qualidade de operação, mas tendem a ser mais lentos.</li>
+<li><b>Átomos neutros:</b> átomos mantidos por feixes de luz, que permitem arranjar muitos qubits numa grade.</li>
+<li><b>Fótons:</b> usam partículas de luz como qubits, com vantagens para comunicação.</li>
+<li><b>Silício:</b> qubits em chips semelhantes aos da indústria de semicondutores, o que facilitaria a produção em escala.</li>
+</ul>
+
+<p>Ainda não está claro qual delas vencerá, e é possível que mais de uma sobreviva, cada qual para um uso.</p>
+
+<h2>O que a "vantagem quântica" significa</h2>
+
+<p>Quando uma empresa anuncia "supremacia" ou "vantagem quântica", significa que um computador quântico resolveu uma tarefa específica mais rápido do que os melhores métodos clássicos conhecidos. Essa tarefa costuma ser escolhida porque é favorável à máquina, e não útil na prática. Além disso, é frequente que pesquisadores de computação clássica encontrem depois algoritmos mais espertos que reduzem a vantagem. Isso não invalida o experimento, mas indica que a comparação precisa ser acompanhada com cuidado.</p>
+
+<h2>E a segurança dos meus dados?</h2>
+
+<p>Por precaução, institutos de padronização, como o NIST, dos Estados Unidos, já publicaram padrões de criptografia pós-quântica, projetados para resistir a ataques de computadores quânticos futuros. A preocupação é com dados que precisam ficar secretos por muitos anos: alguém poderia armazenar hoje mensagens criptografadas e tentar abri-las quando a tecnologia estiver madura. Para a maioria das pessoas, o conselho é simples: manter aplicativos e sistemas atualizados, pois a migração para os novos padrões acontecerá pelas atualizações.</p>
+
+<h2>Como ler uma manchete sobre computação quântica</h2>
+
+<ul>
+<li>Procure qual problema foi resolvido e se ele tem utilidade fora do laboratório.</li>
+<li>Veja se a comparação é com o melhor algoritmo clássico ou com um método ingênuo.</li>
+<li>Pergunte quantos qubits eram físicos e quantos lógicos, e qual a taxa de erro.</li>
+<li>Desconfie de prazos exatos: "em cinco anos" costuma ser palpite.</li>
+</ul>
+
+<p>A computação quântica é um campo sério, com avanços reais e um longo caminho pela frente. Tratar as notícias com interesse e paciência, e não com euforia nem descrença, é o jeito mais útil de acompanhar essa história.</p>
+
+      <div class="attrib">
+        <b>Sobre este guia:</b> texto original da Redação Watermouse Media, sem fonte-base única. Veja <a href="politica-editorial.html">como trabalhamos</a> e <a href="contato.html">como apontar um erro</a>.
+        <span class="note">Guia original da Redação Watermouse Media, escrito para explicar conceitos que aparecem com frequência nas notícias. Não é cobertura de um fato específico; datas e números vêm de fontes públicas amplamente documentadas.</span>
+      </div>
+    </div>
+
+                <div class="ad-slot live" data-ad="in-article-2">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3920760016147555" data-ad-slot="7043784364" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+        <section class="related-reads">
+      <h3>Leia também</h3>
+      <a href="computacao-quantica-mil-vezes-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">Operações quânticas 1.000 vezes mais rápidas: o avanço de Chalmers</span></a>
+      <a href="everything-to-grid-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">Carros e casas que devolvem energia à rede: o &#x27;everything-to-grid&#x27;</span></a>
+      <a href="india-deep-tech-espacial-2026.html"><span class="rr-cat">Tecnologia</span><span class="rr-title">A Índia vira potência de deep tech e espaço, com US$ 1,6 bi em 2025</span></a>
+    </section>
+
+<section class="news">
+      <h2 class="serif">Gostou? Receba as próximas.</h2>
+      <p>As notícias internacionais que importam, em português, uma vez por semana.</p>
+      <a href="/#newsletter">Assinar a newsletter</a>
+    </section>
+  </div>
+</article>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+    <span><a href="/sobre.html">Sobre</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a> · <a href="mailto:digo@thewatermouse.com">digo@thewatermouse.com</a></span>
+  </div>
+</footer>
+
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+</body>
+</html>

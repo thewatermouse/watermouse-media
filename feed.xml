@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Tue, 27 Oct 2026 12:10:00 -0300</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 21:30:00 -0300</lastBuildDate>
+    <item>
+      <title>Computação quântica sem mistério: o que é um qubit, o que ela faz de verdade e o que ainda não faz</title>
+      <link>https://media.thewatermouse.com/guia-computacao-quantica-sem-misterio-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/guia-computacao-quantica-sem-misterio-2026.html</guid>
+      <pubDate>Tue, 27 Oct 2026 21:30:00 -0300</pubDate>
+      <category>Tecnologia</category>
+      <description>O que é um qubit, para que servem os computadores quânticos, por que os erros são o principal obstáculo e como ler as manchetes sobre o assunto.</description>
+    </item>
     <item>
       <title>Webb e Hubble: o que cada telescópio enxerga e por que o infravermelho muda a história do Universo</title>
       <link>https://media.thewatermouse.com/guia-webb-hubble-infravermelho-2026.html</link>
