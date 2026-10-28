@@ -762,7 +762,7 @@ function renderDebt(path){
   document.getElementById('debtchart').innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Dívida bruta em % do PIB de 2025 a 2030">
     ${grid}${xl}
     <rect x="${x(1)}" y="${pt}" width="${x(5)-x(1)}" height="${H-pt-pb}" fill="var(--cobalt-soft)" opacity=".35"/>
-    <text x="${x(3)}" y="${pt+11}" text-anchor="middle" style="font-size:10px">seu mandato</text>
+    <text x="${x(3)}" y="${pt+11}" text-anchor="middle" style="font-size:10px;fill:var(--cobalt);font-weight:500">seu mandato</text>
     <path d="${line(base)}" fill="none" stroke="var(--faint)" stroke-width="2" stroke-dasharray="4 3"/>
     <path d="${area}" fill="var(--cobalt)" opacity=".08"/>
     <path d="${line(user)}" fill="none" stroke="var(--cobalt)" stroke-width="2.5"/>
