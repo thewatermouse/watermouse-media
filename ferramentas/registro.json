@@ -1,0 +1,10 @@
+[
+ {
+  "id": "calc-juros-compostos",
+  "path": "/calculadoras/juros-compostos/",
+  "titulo": "Calculadora de juros compostos",
+  "tipo": "Calculadora",
+  "desc": "Valor inicial, aporte mensal, taxa e prazo: quanto vira o dinheiro.",
+  "data": "2026-10-30"
+ }
+]

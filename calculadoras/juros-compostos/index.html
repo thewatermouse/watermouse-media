@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  window.dataLayer = window.dataLayer || [];
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  document.addEventListener('DOMContentLoaded', function(){
+    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
+    var orig = window.wmCookie;
+    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Calculadora de juros compostos com aportes mensais | Watermouse Media</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/calculadoras/juros-compostos/">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta name="description" content="Calcule quanto seu dinheiro rende com juros compostos e aportes mensais: informe o valor inicial, o aporte, a taxa e o prazo. Gratuita e sem cadastro.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Calculadora de juros compostos">
+<meta property="og:description" content="Calcule quanto seu dinheiro rende com juros compostos e aportes mensais: informe o valor inicial, o aporte, a taxa e o prazo. Gratuita e sem cadastro.">
+<meta property="og:url" content="https://media.thewatermouse.com/calculadoras/juros-compostos/">
+<meta property="og:image" content="https://media.thewatermouse.com/calculadoras/juros-compostos/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.thewatermouse.com/calculadoras/juros-compostos/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Calculadora de juros compostos", "description": "Calcule quanto seu dinheiro rende com juros compostos e aportes mensais: informe o valor inicial, o aporte, a taxa e o prazo. Gratuita e sem cadastro.", "url": "https://media.thewatermouse.com/calculadoras/juros-compostos/", "inLanguage": "pt-BR", "isAccessibleForFree": true, "image": "https://media.thewatermouse.com/calculadoras/juros-compostos/og.png", "publisher": {"@type": "NewsMediaOrganization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/", "logo": {"@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png"}}, "applicationCategory": "EducationalApplication", "operatingSystem": "Any"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/ferr.css">
+
+<style>
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:1px solid var(--ink);margin:6px 0 10px;background:var(--surface)}
+.calc>div{padding:22px}.calc>div+div{border-left:1px solid var(--ink);background:var(--tint)}
+.calc label{display:block;margin-top:14px}.calc label:first-child{margin-top:0}
+.calc input,.calc select{width:100%;font-family:var(--f-body);font-size:19px;padding:10px 12px;border:1px solid var(--ink);background:#fff;color:#0D0D0F;border-radius:0;margin-top:4px}
+.calc .res{display:flex;flex-direction:column;gap:14px}
+.calc .big{font-family:var(--f-display);font-size:clamp(34px,5vw,52px);line-height:1;color:var(--cobalt)}
+.calc .rl{font-family:var(--f-mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.calc .rv{font-size:21px;font-weight:600}
+.calc .verdict{padding:12px 14px;border:1px solid var(--ink);background:#fff;font-size:17px;color:#0D0D0F}
+.calc .small{font-size:14px;color:var(--muted)}
+.static h2{margin-top:34px}.static p,.static li{max-width:68ch}.static details{border-top:1px solid var(--line);padding:10px 0}.static summary{cursor:pointer;font-weight:600}
+.static table{width:100%;border-collapse:collapse;font-size:15px}.static th,.static td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left}
+@media (max-width:720px){.calc{grid-template-columns:1fr}.calc>div+div{border-left:0;border-top:1px solid var(--ink)}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="106 18 100 100" aria-hidden="true"><circle cx="156" cy="68" r="50" fill="#F8F8F9"/><g transform="translate(156 68) scale(1.05) translate(-158 -68)"><g fill="#0D0D0F"><circle cx="128" cy="64" r="15"/><circle cx="128" cy="64" r="8" fill="#2B2C33"/><path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/><circle cx="189" cy="80" r="4"/><g transform="translate(-2 6) rotate(8 156 50)"><path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/><rect x="141" y="47" width="30" height="5" fill="#2337FF"/><rect x="128" y="54" width="56" height="5" rx="2.5"/></g></g><circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/><path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/></g></svg>Watermouse Media</a>
+    <nav class="mastnav" aria-label="Seções"><a href="/">Notícias</a><a href="/ferramentas/" aria-current="page">Ferramentas</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Calculadora</div>
+    <h1>Calculadora de juros compostos</h1>
+    <p class="lede">Veja quanto um valor inicial e aportes mensais viram com <strong>juros compostos</strong>. Mude a taxa e o prazo e compare.</p>
+  </div>
+</section>
+
+<main class="wrap"><div class="calc"><div><label class="label" for="inicial">Valor inicial (R$)</label><input id="inicial" type="number" inputmode="decimal" value="1000" step="any" min="0"><label class="label" for="aporte">Aporte mensal (R$)</label><input id="aporte" type="number" inputmode="decimal" value="200" step="any" min="0"><label class="label" for="taxa">Taxa de juros (%)</label><input id="taxa" type="number" inputmode="decimal" value="1" step="any" min="0"><label class="label" for="per">Período da taxa</label><select id="per"><option value="m" selected>Ao mês</option><option value="a">Ao ano</option></select><label class="label" for="prazo">Prazo (meses)</label><input id="prazo" type="number" inputmode="decimal" value="24" step="1" min="1"></div><div class="res" id="res" aria-live="polite"></div></div><div class="sharebox" style="margin-top:14px"><span class="label">Compartilhar</span><button type="button" class="btn cobalt small" id="shWa">WhatsApp</button><button type="button" class="btn ghost small" id="shCopy">Copiar resultado</button></div><div class="static"><h2>Como é calculado</h2><p>O montante final é o valor inicial corrigido pelos juros mais o valor futuro dos aportes: M = P × (1 + i)<sup>n</sup> + A × [(1 + i)<sup>n</sup> - 1] / i, em que P é o valor inicial, A é o aporte mensal, i é a taxa mensal e n é o número de meses. Os aportes são considerados no fim de cada mês.</p><p>Se você informar a taxa ao ano, a calculadora converte para a taxa mensal equivalente: i = (1 + taxa anual)<sup>1/12</sup> - 1. Isso não é o mesmo que dividir por 12, porque os juros compostos incidem sobre os juros anteriores.</p><h2>Exemplo</h2><p>Com R$ 1.000 de valor inicial, aportes de R$ 200 por mês, taxa de 1% ao mês e 24 meses, o montante final é de R$ 6.664,43. Foram investidos R$ 5.800,00, e os juros somam R$ 864,43, ou 13,0% do total.</p><h2>Perguntas frequentes</h2><details><summary>Qual a diferença entre juros simples e compostos?</summary><p>Nos juros simples, a taxa incide sempre sobre o valor inicial. Nos compostos, incide também sobre os juros já acumulados, o que faz o valor crescer mais rápido no longo prazo.</p></details><details><summary>A calculadora desconta imposto de renda ou taxas?</summary><p>Não. O resultado é bruto. Investimentos como CDB, Tesouro e fundos têm imposto de renda e, às vezes, taxa de administração, que reduzem o ganho. Consulte as regras do produto.</p></details><details><summary>Posso usar a taxa da poupança ou do CDI?</summary><p>Pode, desde que você use a taxa efetiva do período. Taxas variam, então o resultado é uma simulação, não uma promessa de rendimento.</p></details><p style="margin-top:26px">Veja também: <a href="/ferramentas/">todas as ferramentas</a>, o <a href="/comparar/">comparador de países</a> e os <a href="/guias/">guias</a>.</p></div></main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h4>Fontes e método</h4>
+    <ul><li>Fórmula padrão de matemática financeira (valor futuro com aportes periódicos). Não é recomendação de investimento: os valores reais dependem das condições de cada produto.</li><li>Se algum número parecer errado, <a href="/contato.html">avise a gente</a>. Política de correções na <a href="/politica-editorial.html">política editorial</a>.</li></ul>
+    <div class="sitelinks">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="/">Notícias</a> · <a href="/ferramentas/">Ferramentas</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+<script src="/assets/ferr.js"></script>
+<script>var $=function(i){return document.getElementById(i)};var num=function(i){var v=parseFloat(String($(i).value).replace(',','.'));return isNaN(v)?0:v};var brl=function(v){return 'R$ '+wm.fmt(v,2)};var pct=function(v,d){return wm.fmt(v,d==null?2:d)+'%'};var last='';function out(rows,verdict){var h='';rows.forEach(function(r,i){h+='<div><div class="rl">'+wm.esc(r[0])+'</div><div class="'+(i===0?'big':'rv')+'">'+r[1]+'</div></div>';});if(verdict)h+='<div class="verdict">'+verdict+'</div>';$('res').innerHTML=h;last=rows.map(function(r){return r[0]+': '+r[1].replace(/<[^>]+>/g,'')}).join(' | ')+(verdict?' | '+verdict.replace(/<[^>]+>/g,''):'');}
+function calc(){var P=num('inicial'),A=num('aporte'),t=num('taxa')/100,n=Math.max(1,Math.round(num('prazo')));var i=$('per').value==='a'?Math.pow(1+t,1/12)-1:t;var f=Math.pow(1+i,n);
+var fv=P*f+(i>0?A*(f-1)/i:A*n),inv=P+A*n,j=fv-inv;out([['Montante final',brl(fv)],['Total investido',brl(inv)],['Juros ganhos',brl(j)]],'Os juros respondem por '+pct(fv>0?j/fv*100:0,1)+' do montante final, em '+n+' meses (taxa mensal efetiva de '+pct(i*100,3)+').');}
+var ids=["inicial", "aporte", "taxa", "per", "prazo"];ids.forEach(function(i){$(i).addEventListener('input',function(){calc();});$(i).addEventListener('change',function(){calc();});});calc();var tt=0;ids.forEach(function(i){$(i).addEventListener('change',function(){clearTimeout(tt);tt=setTimeout(function(){wm.track('calculadora_uso',{tool:'juros-compostos'});},800);});});var url=location.href;$('shWa').onclick=function(){wm.track('compartilhar',{tool:'juros-compostos',canal:'whatsapp'});window.open('https://wa.me/?text='+encodeURIComponent('Simulei no Watermouse Media: '+last+' '+url),'_blank');};$('shCopy').onclick=function(){wm.copy('Simulei no Watermouse Media: '+last+' '+url);wm.track('compartilhar',{tool:'juros-compostos',canal:'copiar'});};</script>
+</body>
+</html>
