@@ -4,6 +4,7 @@
 Uso (na raiz do repo): python -I tools/publish_scheduled_article.py rascunhos/AAAA-MM-DD-slug.json
 Pensado pra rodar em tarefa agendada de uma materia JA APROVADA pelo Rodrigo. Seguro pra rodar duas vezes:
 se o arquivo da materia ja existir, nao faz nada."""
+import datetime as dt
 import json
 import pathlib
 import subprocess
@@ -24,6 +25,10 @@ def main():
     spec_path = ROOT / sys.argv[1]
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
     slug, cat = spec["slug"], spec["cat"]
+    if not (ROOT / f"{slug}.html").exists():  # data de publicacao = momento real (spec pode ter sido antecipado na programacao)
+        now = dt.datetime.now(dt.timezone(dt.timedelta(hours=-3))).replace(microsecond=0)
+        spec["date_iso"] = now.isoformat()
+        spec_path.write_text(json.dumps(spec, ensure_ascii=False, indent=1), encoding="utf-8")
     if (ROOT / f"{slug}.html").exists():
         print(f"{slug}.html ja existe: nada a fazer (materia ja publicada ou gerada).")
         return
