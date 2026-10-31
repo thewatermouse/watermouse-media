@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-expectativa-de-vida",
+  "path": "/ranking/expectativa-de-vida/",
+  "titulo": "Expectativa de vida: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Quem vive mais e quem vive menos: 214 países, com filtro por região.",
+  "data": "2026-10-31"
+ },
+ {
   "id": "calc-juros-compostos",
   "path": "/calculadoras/juros-compostos/",
   "titulo": "Calculadora de juros compostos",
