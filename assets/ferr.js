@@ -101,3 +101,22 @@
     if (wm.store.get('poll_'+id, null)) wm.hist(key).then(showRes); else ask();
   };
 })();
+
+/* newsletter nas ferramentas: inscricao via Apps Script (confirmacao por e-mail) */
+(function(){
+  var EP="https://script.google.com/macros/s/AKfycbwPrnZ0gmFK3_t8PXvk4XVsJq5jE1KRtB67aejkP8SA6E9RfsBHocwH47GV1RLcpfA/exec";
+  var box=document.getElementById('newsletter'); if(!box) return;
+  var f=box.querySelector('.nl-form'), s=box.querySelector('.nl-ok'); if(!f) return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var inp=f.querySelector('[name="email"]'), email=inp.value.trim(), btn=f.querySelector('button');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){inp.focus();return;}
+    if(f.querySelector('[name="_honey"]').value) return;
+    btn.disabled=true; btn.textContent='Enviando...';
+    fetch(EP,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({email:email,origem:'media-ferramenta'})})
+      .then(function(r){if(!r.ok) throw new Error('http'); return r.json();})
+      .then(function(d){if(!d||String(d.success)!=='true') throw new Error('rejected'); window.dataLayer=window.dataLayer||[]; window.dataLayer.push({event:'newsletter_signup',origem:'media-ferramenta'}); f.hidden=true; s.hidden=false; s.textContent='Quase lá! Enviamos um e-mail para você confirmar a inscrição. Olhe também a caixa de spam. 📨';})
+      .catch(function(){window.location.href='mailto:digo@thewatermouse.com?subject='+encodeURIComponent('Assinatura Watermouse Media')+'&body='+encodeURIComponent('E-mail: '+email);})
+      .finally(function(){btn.disabled=false; btn.textContent='Assinar';});
+  });
+})();
