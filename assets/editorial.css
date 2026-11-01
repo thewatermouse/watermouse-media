@@ -39,3 +39,9 @@
 .related{border:1px solid var(--ink);margin:36px 0;padding:16px 18px;background:var(--surface)}
 .related .rl{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .related a{font-family:'DM Serif Display',Georgia,serif;font-size:21px;border-bottom:0!important;color:var(--ink)!important}
+
+/* faixa de newsletter no meio da materia (tools/nl_mid.py) */
+.nl-mid{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0;padding:14px 18px;background:var(--tint,#F1F1F3);border-left:3px solid var(--sage,#2337FF);font-size:15px;line-height:1.4}
+.nl-mid b{font-weight:600}
+.nl-mid a{font-weight:600;color:var(--sage,#2337FF);text-decoration:none;white-space:nowrap}
+.nl-mid a:hover{text-decoration:underline}

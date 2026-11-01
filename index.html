@@ -150,6 +150,16 @@
   .card:hover h3{color:var(--sage-dark);}
   .card .dek{font-size:14px;color:var(--muted);line-height:1.55;}
 
+  /* faixa de inscricao no topo */
+  .nl-top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:18px 0 4px;padding:12px 16px;background:var(--ink);border-radius:2px;color:#F8F8F9;position:relative}
+  .nl-top .nl-t{font-size:15px;line-height:1.3;flex:1 1 260px}
+  .nl-top .nl-t b{font-family:'DM Serif Display',serif;font-weight:400;font-size:18px;display:block}
+  .nl-top form{display:flex;gap:8px;flex:1 1 300px;flex-wrap:wrap}
+  .nl-top input[type=email]{flex:1 1 180px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:2px;padding:10px 14px;font:inherit;font-size:14px;color:#fff;outline:none;min-width:0}
+  .nl-top input[type=email]::placeholder{color:rgba(248,248,249,0.45)}
+  .nl-top input[type=email]:focus{border-color:#B8C0FF}
+  .nl-top button{background:var(--sage);color:#fff;border:none;border-radius:2px;padding:10px 20px;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+  .nl-top .ok{font-size:14px;color:#B8C0FF;flex:1 1 100%}
   /* newsletter */
   .news{background:var(--ink);border-radius:2px;padding:44px 40px;margin:52px 0 8px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;position:relative;overflow:hidden;}
   .news::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(35,55,255,0.18),transparent 70%);}
@@ -287,6 +297,12 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
     <p>Notícias internacionais em português, com contexto pro Brasil e a fonte sempre no lugar.</p>
   </div>
 
+  <form class="nl-top" id="nl-top-wrap" novalidate>
+    <div class="nl-t"><b>As histórias que não chegam em português</b>Uma vez por semana, em 3 minutos de leitura. Sem spam.</div>
+    <div style="display:contents"><div class="ok" role="alert" hidden></div>
+    <div class="nl-fields" style="display:flex;gap:8px;flex:1 1 300px;flex-wrap:wrap"><input type="email" name="email" placeholder="voce@email.com" required autocomplete="email" aria-label="Seu e-mail"><button type="submit">Assinar</button><span class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></span></div></div>
+  </form>
+
   <!--FERRAMENTAS-->
   <section class="ts" aria-label="Ferramentas">
     <style>
@@ -302,7 +318,7 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
       .ts-card strong{font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:26px;line-height:1.05;flex:1}
       .ts-go{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px}
       @media (max-width:820px){.ts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ts-card:nth-child(2){border-right:0}.ts-card:nth-child(-n+2){border-bottom:1px solid #0D0D0F}}
-      @media (prefers-color-scheme:dark){.ts-head{border-top-color:#EDEDF0}.ts-grid,.ts-card{border-color:#EDEDF0}.ts-card{background:#16171C}.ts-card:hover{background:#1E2027}.ts-k{color:#7D8BFF}}
+      @media (prefers-color-scheme:dark){.ts-head{border-top-color:#EDEDF0}.ts-grid,.ts-card{border-color:#EDEDF0}.ts-card{background:#16171C;color:#EDEDF0}.ts-card:hover{background:#1E2027}.ts-k{color:#7D8BFF}}
     </style>
     <div class="ts-head"><span class="sk">Ferramentas</span><a href="/ferramentas/">Ver todas →</a></div>
     <div class="ts-grid"><a href="orcamento/" class="ts-card"><span class="ts-k">Simulador · Orçamento federal</span><strong>Se eu fosse presidente</strong><span class="ts-go">Montar meu orçamento →</span></a><a href="mais-ou-menos/" class="ts-card"><span class="ts-k">Jogo · Desafio diário</span><strong>Mais ou menos?</strong><span class="ts-go">Jogar agora →</span></a><a href="brasil-em-100/" class="ts-card"><span class="ts-k">Explicador · Censo 2022</span><strong>O Brasil em 100 pessoas</strong><span class="ts-go">Ver o retrato →</span></a><a href="comparar/" class="ts-card"><span class="ts-k">Comparador · Banco Mundial</span><strong>Compare dois países</strong><span class="ts-go">Comparar países →</span></a></div>
@@ -494,6 +510,23 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
 <script>
 function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
 (function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+// faixa do topo: mesma inscricao
+(function(){
+  var f=document.getElementById('nl-top-wrap'); if(!f) return;
+  var EP="https://script.google.com/macros/s/AKfycbwPrnZ0gmFK3_t8PXvk4XVsJq5jE1KRtB67aejkP8SA6E9RfsBHocwH47GV1RLcpfA/exec";
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var inp=f.querySelector('[name="email"]'), email=inp.value.trim(), btn=f.querySelector('button'), s=f.querySelector('.ok'), fields=f.querySelector('.nl-fields');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){inp.focus();return;}
+    if(f.querySelector('[name="_honey"]').value){return;}
+    btn.disabled=true; btn.textContent="Enviando...";
+    fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({email:email,origem:"media-home-topo"})})
+      .then(function(r){if(!r.ok){throw new Error("http");}return r.json();})
+      .then(function(d){if(!d||String(d.success)!=="true"){throw new Error("rejected");}window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'newsletter_signup',origem:'media-home-topo'});fields.hidden=true;fields.style.display='none';s.hidden=false;s.textContent="Quase lá! Enviamos um e-mail para você confirmar a inscrição. Olhe também a caixa de spam. 📨";})
+      .catch(function(){window.location.href="mailto:digo@thewatermouse.com?subject="+encodeURIComponent("Assinatura Watermouse Media")+"&body="+encodeURIComponent("E-mail: "+email);})
+      .finally(function(){btn.disabled=false;btn.textContent="Assinar";});
+  });
+})();
 // newsletter -> Google Apps Script (planilha de assinantes, com confirmacao por e-mail)
 (function(){
   var f=document.getElementById('nl-form'); if(!f) return;

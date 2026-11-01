@@ -26,6 +26,9 @@ import re
 import subprocess
 import sys
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from nl_mid import add_mid_cta
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE_URL = "https://media.thewatermouse.com"
 DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -98,6 +101,7 @@ def main():
            f'      <figcaption>{spec["image_caption_html"]}</figcaption>\n    </figure>')
     t = sub1(r'<figure class="hero-fig">.*?</figure>', fig, t, re.S)
     body = spec["body_html"].replace("<!--AD1-->", SLOT1)
+    body = add_mid_cta(body)  # faixa de newsletter no meio (tools/nl_mid.py)
     body = re.sub(r"^\s*<p>([A-Za-zÀ-ÿ])", lambda m: '<p class="dropcap">' + m.group(1), body, count=1)  # capitular (editorial.css)
     new_body = f'<div class="body">\n      {body}\n\n      <div class="attrib">\n        {spec["attrib_html"]}\n        <span class="note">{spec.get("note") or "Cobertura original da Watermouse Media, com contexto para o leitor brasileiro. Os fatos são atribuídos à fonte; o texto não é uma tradução."}</span>\n      </div>\n    </div>'
     t = sub1(r'<div class="body">.*?</div>(?=\s*\n\s*<div class="ad-slot(?: live)?" data-ad="in-article-2">)', new_body, t, re.S)
