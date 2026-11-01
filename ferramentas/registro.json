@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-etanol-ou-gasolina",
+  "path": "/calculadoras/etanol-ou-gasolina/",
+  "titulo": "Etanol ou gasolina: qual compensa?",
+  "tipo": "Calculadora",
+  "desc": "Compare o custo por km do etanol e da gasolina no seu carro.",
+  "data": "2026-11-01"
+ },
+ {
   "id": "rank-expectativa-de-vida",
   "path": "/ranking/expectativa-de-vida/",
   "titulo": "Expectativa de vida: ranking dos países",
