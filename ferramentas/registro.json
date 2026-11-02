@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-populacao",
+  "path": "/ranking/populacao/",
+  "titulo": "População: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Os países mais e menos populosos, com busca e filtro por região.",
+  "data": "2026-11-02"
+ },
+ {
   "id": "calc-etanol-ou-gasolina",
   "path": "/calculadoras/etanol-ou-gasolina/",
   "titulo": "Etanol ou gasolina: qual compensa?",
