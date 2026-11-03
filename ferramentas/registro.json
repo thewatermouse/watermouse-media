@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-parcelado-ou-a-vista",
+  "path": "/calculadoras/parcelado-ou-a-vista/",
+  "titulo": "Parcelado ou à vista?",
+  "tipo": "Calculadora",
+  "desc": "Compare o preço à vista com as parcelas e veja os juros embutidos.",
+  "data": "2026-11-03"
+ },
+ {
   "id": "rank-populacao",
   "path": "/ranking/populacao/",
   "titulo": "População: ranking dos países",
