@@ -3,11 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<!-- Google Tag Manager (consent-gated), loads only after cookie consent. GA4 and events live in the GTM container. -->
+<!-- Google Tag Manager com Consent Mode v2: consentimento NEGADO por padrao, sem cookies ate o aceite. GA4 e eventos ficam no container GTM. -->
 <script>
 (function(){
   var GTM_ID = 'GTM-T665625S';
+  var ADVANCED = true; // true: GTM carrega sempre, com tudo negado (pings sem cookies); false: so depois do aceite
   window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var ok = false;
+  try { ok = localStorage.getItem('wm_cookie_consent') === 'accepted'; } catch(e){}
+  var g = ok ? 'granted' : 'denied';
+  gtag('consent', 'default', {ad_storage: g, ad_user_data: g, ad_personalization: g, analytics_storage: g, wait_for_update: 500});
+  gtag('set', 'ads_data_redaction', true);
   window.loadWatermouseGA = function(){
     if (window.__watermouseGA) return; window.__watermouseGA = true;
     dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
@@ -15,10 +22,16 @@
     s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
     document.head.appendChild(s);
   };
+  window.wmConsentGrant = function(){
+    gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    window.loadWatermouseGA();
+  };
+  if (ADVANCED || ok) window.loadWatermouseGA();
   document.addEventListener('DOMContentLoaded', function(){
-    try { if (localStorage.getItem('wm_cookie_consent') === 'accepted') window.loadWatermouseGA(); } catch(e){}
-    var orig = window.wmCookie;
-    if (typeof orig === 'function') { window.wmCookie = function(a){ orig.apply(this, arguments); if (a) window.loadWatermouseGA(); }; }
+    var o1 = window.wmCookie;
+    if (typeof o1 === 'function') { window.wmCookie = function(a){ o1.apply(this, arguments); if (a) window.wmConsentGrant(); }; }
+    var o2 = window.cookieAccept;
+    if (typeof o2 === 'function') { window.cookieAccept = function(){ o2.apply(this, arguments); window.wmConsentGrant(); }; }
   });
 })();
 </script>
