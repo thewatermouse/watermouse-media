@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-pib-por-pessoa",
+  "path": "/ranking/pib-por-pessoa/",
+  "titulo": "PIB por pessoa: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "PIB per capita em dólares de 214 países. Veja onde o Brasil está.",
+  "data": "2026-11-04"
+ },
+ {
   "id": "calc-parcelado-ou-a-vista",
   "path": "/calculadoras/parcelado-ou-a-vista/",
   "titulo": "Parcelado ou à vista?",
