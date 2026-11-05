@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-price-vs-sac",
+  "path": "/calculadoras/financiamento-price-ou-sac/",
+  "titulo": "Financiamento: Price ou SAC?",
+  "tipo": "Calculadora",
+  "desc": "Compare parcelas e total de juros entre as tabelas Price e SAC.",
+  "data": "2026-11-05"
+ },
+ {
   "id": "rank-pib-por-pessoa",
   "path": "/ranking/pib-por-pessoa/",
   "titulo": "PIB por pessoa: ranking dos países",
