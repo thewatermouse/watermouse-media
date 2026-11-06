@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-mortalidade-infantil",
+  "path": "/ranking/mortalidade-infantil/",
+  "titulo": "Mortalidade infantil: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Mortes de menores de 1 ano por mil nascidos, em 194 países.",
+  "data": "2026-11-06"
+ },
+ {
   "id": "calc-price-vs-sac",
   "path": "/calculadoras/financiamento-price-ou-sac/",
   "titulo": "Financiamento: Price ou SAC?",
