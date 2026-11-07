@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-porcentagem",
+  "path": "/calculadoras/porcentagem/",
+  "titulo": "Calculadora de porcentagem",
+  "tipo": "Calculadora",
+  "desc": "Porcentagem, variação, aumento e desconto em uma tela.",
+  "data": "2026-11-07"
+ },
+ {
   "id": "rank-mortalidade-infantil",
   "path": "/ranking/mortalidade-infantil/",
   "titulo": "Mortalidade infantil: ranking dos países",
