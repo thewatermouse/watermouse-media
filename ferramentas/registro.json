@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-uso-de-internet",
+  "path": "/ranking/uso-de-internet/",
+  "titulo": "Uso de internet: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Porcentagem da população conectada em 210 países.",
+  "data": "2026-11-08"
+ },
+ {
   "id": "calc-porcentagem",
   "path": "/calculadoras/porcentagem/",
   "titulo": "Calculadora de porcentagem",
