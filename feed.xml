@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Sun, 08 Nov 2026 11:59:35 -0300</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 12:00:04 -0300</lastBuildDate>
+    <item>
+      <title>IA detectou sinais de câncer de pâncreas em tomografias cerca de 15 meses antes do diagnóstico, em estudo com exames antigos</title>
+      <link>https://media.thewatermouse.com/ia-redmod-cancer-pancreas-tomografia-gut-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/ia-redmod-cancer-pancreas-tomografia-gut-2026.html</guid>
+      <pubDate>Sun, 08 Nov 2026 12:00:04 -0300</pubDate>
+      <category>Ciência</category>
+      <description>Em tomografias de pacientes diagnosticados depois, a IA REDMOD achou sinais de câncer de pâncreas, em média, 475 dias antes do diagnóstico.</description>
+    </item>
     <item>
       <title>Disco da Via Láctea pode ter crescido de cabeça para baixo, com estrelas mais jovens em camadas cada vez mais finas</title>
       <link>https://media.thewatermouse.com/via-lactea-disco-cresceu-de-cabeca-para-baixo-gaia-2026.html</link>
