@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-dias-entre-datas",
+  "path": "/calculadoras/dias-entre-datas/",
+  "titulo": "Quantos dias entre duas datas?",
+  "tipo": "Calculadora",
+  "desc": "Dias, semanas, meses e dias úteis entre duas datas.",
+  "data": "2026-11-09"
+ },
+ {
   "id": "rank-uso-de-internet",
   "path": "/ranking/uso-de-internet/",
   "titulo": "Uso de internet: ranking dos países",
