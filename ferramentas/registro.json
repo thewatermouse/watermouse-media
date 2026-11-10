@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-emissoes-de-co2",
+  "path": "/ranking/emissoes-de-co2-por-pessoa/",
+  "titulo": "Emissões de CO₂ por pessoa: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Toneladas de CO₂ por habitante em 200 países.",
+  "data": "2026-11-10"
+ },
+ {
   "id": "calc-dias-entre-datas",
   "path": "/calculadoras/dias-entre-datas/",
   "titulo": "Quantos dias entre duas datas?",
