@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-imc",
+  "path": "/calculadoras/imc/",
+  "titulo": "Calculadora de IMC",
+  "tipo": "Calculadora",
+  "desc": "IMC e faixa segundo a OMS, para adultos. Informativo.",
+  "data": "2026-11-11"
+ },
+ {
   "id": "rank-emissoes-de-co2",
   "path": "/ranking/emissoes-de-co2-por-pessoa/",
   "titulo": "Emissões de CO₂ por pessoa: ranking dos países",
