@@ -6,7 +6,15 @@
     <atom:link href="https://media.thewatermouse.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>Notícias internacionais em português, com contexto para o Brasil e a fonte sempre no lugar.</description>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 12 Nov 2026 11:07:06 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 12 Nov 2026 14:07:09 -0300</lastBuildDate>
+    <item>
+      <title>Processador óptico da UCLA analisa 15 vídeos de uma vez para detectar deepfakes</title>
+      <link>https://media.thewatermouse.com/processador-optico-ucla-detecta-deepfakes-15-videos-por-vez-2026.html</link>
+      <guid isPermaLink="true">https://media.thewatermouse.com/processador-optico-ucla-detecta-deepfakes-15-videos-por-vez-2026.html</guid>
+      <pubDate>Thu, 12 Nov 2026 14:07:09 -0300</pubDate>
+      <category>Tecnologia</category>
+      <description>Um processador que usa luz acertou cerca de 98% ao checar 15 vídeos por vez em testes com deepfakes, segundo pesquisadores da UCLA.</description>
+    </item>
     <item>
       <title>Robô do MIT do tamanho de um chiclete nada usando células musculares vivas controladas por luz</title>
       <link>https://media.thewatermouse.com/robo-mit-nada-com-celulas-musculares-vivas-luz-2026.html</link>
