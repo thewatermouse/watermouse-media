@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-area-de-floresta",
+  "path": "/ranking/area-de-floresta/",
+  "titulo": "Área coberta por florestas: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Porcentagem do território coberta por florestas, em 211 países.",
+  "data": "2026-11-12"
+ },
+ {
   "id": "calc-imc",
   "path": "/calculadoras/imc/",
   "titulo": "Calculadora de IMC",
