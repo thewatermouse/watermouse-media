@@ -257,6 +257,38 @@ article a:not(.back):not(.chip){color:#2337FF;text-decoration:underline;text-und
       <p>Com 15 vídeos do conjunto Celeb-DF por passada, em luz visível, a acurácia média foi de 97,79%, com sensibilidade de 99,86% (cerca de 0,14% de falsos negativos) e especificidade de 95,72%. Com 18 vídeos por passada, a acurácia média caiu para 96,13%. Duas camadas difrativas passivas otimizadas melhoraram a acurácia em cerca de 6,8% em manipulações mais difíceis, sem aumento relevante de energia ou latência. Em vídeos inéditos do gerador Google Veo 3, com ajuste mínimo, o sistema teve 94,80% de acurácia e 97,61% de sensibilidade. Os autores relatam resistência a ataques adversariais de caixa-preta e proteção inerente contra os de caixa-branca, porque parte dos parâmetros do modelo está embutida no hardware óptico, e dizem que o desempenho se manteve sob ruído, desfoque, compressão JPEG e desalinhamentos.</p>
       <aside class="nl-mid"><span>☕ <b>Gostando?</b> Receba as histórias da semana por e-mail, em 3 minutos.</span><a href="#newsletter">Assinar grátis →</a></aside>
 
+      <!--deep-->
+      <h2>Análise: o que está em jogo</h2>
+
+      <p>A ideia é usar luz para processar vários vídeos ao mesmo tempo, em vez de analisá-los um por um de forma digital. Isso pode reduzir tempo e energia em triagem de grande volume, e por isso os autores o veem como filtro inicial, não como detector definitivo.</p>
+
+      <p>Os números precisam de contexto: a maior parte dos resultados vem de um único conjunto de vídeos (Celeb-DF), e a acurácia cai ao testar vídeos de um gerador novo, o Google Veo 3, com ajuste mínimo. O desempenho também cai com mais vídeos por passada.</p>
+
+      <p>A resistência a ataques adversariais é um ponto de interesse: como parte dos parâmetros do modelo está embutida no hardware óptico, o sistema oferece proteção inerente contra ataques de caixa-branca, segundo os autores.</p>
+
+      <h2>Os números, passo a passo</h2>
+
+      <ul style="margin:0 0 20px;padding-left:22px">
+        <li style="font-size:17px;line-height:1.7;margin-bottom:9px">Acurácia de 97,79% com 15 vídeos por passada, com sensibilidade de 99,86% (cerca de 0,14% de falsos negativos) e especificidade de 95,72% (cerca de 4,3% de falsos positivos, conta nossa: 100 − 95,72).</li>
+        <li style="font-size:17px;line-height:1.7;margin-bottom:9px">Com 18 vídeos por passada, a acurácia caiu para 96,13%: 1,66 ponto percentual a menos (97,79 − 96,13).</li>
+        <li style="font-size:17px;line-height:1.7;margin-bottom:9px">Em vídeos do Veo 3, acurácia de 94,80% e sensibilidade de 97,61%.</li>
+      </ul>
+
+      <h2>Perguntas frequentes</h2>
+
+      <p><b>O que é sensibilidade?</b><br>A proporção de vídeos falsos que o sistema identifica como falsos.</p>
+
+      <p><b>O que é especificidade?</b><br>A proporção de vídeos verdadeiros que o sistema identifica como verdadeiros.</p>
+
+      <p><b>Quem fez o estudo?</b><br>Pesquisadores da UCLA, incluindo Aydogan Ozcan, publicado na eLight (DOI 10.1186/s43593-026-00143-y).</p>
+
+      <h2>Fontes primárias e leitura adicional</h2>
+
+      <ul style="margin:0 0 20px;padding-left:22px">
+        <li style="font-size:17px;line-height:1.7;margin-bottom:9px"><a href="https://www.sciencedaily.com/releases/2026/09/260929053534.htm" target="_blank" rel="noopener">ScienceDaily: comunicado sobre o estudo</a></li>
+        <li style="font-size:17px;line-height:1.7;margin-bottom:9px"><a href="https://doi.org/10.1186/s43593-026-00143-y" target="_blank" rel="noopener">DOI do estudo (eLight)</a></li>
+      </ul>
+
       <!--ctx-->
       <h2>Para entender o contexto</h2>
 
