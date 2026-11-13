@@ -50,6 +50,10 @@ def main():
         subprocess.run([sys.executable, "-I", str(ROOT / "tools" / "update_home_latest.py"), "--push"], cwd=ROOT, timeout=120)
     except Exception as e:
         print("home nao atualizada:", e)
+    try:  # indice das analises e guias novos (best-effort)
+        subprocess.run([sys.executable, "-I", str(ROOT / "tools" / "build_indice_analises.py"), "--push"], cwd=ROOT, timeout=120)
+    except Exception as e:
+        print("indice de analises nao atualizado:", e)
     url = f"{BASE}/{slug}.html"
     for _ in range(30):
         try:

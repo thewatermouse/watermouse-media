@@ -1,0 +1,17 @@
+{
+ "slug": "desigualdade-e-renda-paises-ricos-sao-mais-iguais-so-em-parte-brasil-banco-mundial-2026",
+ "cat": "mundo",
+ "cat_label": "Mundo",
+ "title": "Desigualdade e renda: com Gini de 50,3, o Brasil é o 8º mais desigual entre 145 países, 14,5 pontos acima do previsto para a renda",
+ "dek": "A correlação entre renda e Gini é de apenas -0,28 em 145 países. Países ricos como Estados Unidos são desiguais, e países pobres como Índia são mais iguais.",
+ "dek_card": "Renda alta não garante igualdade: a correlação com o Gini é de -0,28. O Brasil tem Gini de 50,3.",
+ "og_desc": "Análise da Watermouse Media com dados do Banco Mundial: PIB por pessoa e índice de Gini em 145 países, com a posição do Brasil.",
+ "date_iso": "2026-11-29T10:00:00-03:00",
+ "image": "media/graf-gini-renda.jpg",
+ "image_alt": "Gráfico de dispersão com PIB por pessoa em escala logarítmica e índice de Gini de 145 países, com o Brasil destacado em azul",
+ "image_caption_html": "Gráfico: Watermouse Media, com dados do Banco Mundial (PIB por pessoa e índice de Gini, valor mais recente).",
+ "body_html": "<p>Renda alta garante distribuição mais igual? Os dados dizem que não. Cruzamos o PIB por pessoa e o índice de Gini de 145 países, com dados do Banco Mundial, e a correlação (em logaritmos da renda) é de apenas -0,28: negativa, mas fraca. Países mais ricos tendem a ser um pouco mais igualitários, com muitas exceções.</p>\n\n      <!--AD1-->\n\n      <h2>O Brasil</h2>\n\n      <p>O Brasil tem Gini de 50,3, o 8º mais alto entre 145 países, para uma renda de US$ 10.713 por pessoa. A reta de tendência indica Gini de 35,8 para essa renda, então a desigualdade brasileira fica 14,5 pontos acima do esperado.</p>\n\n      <h2>Ricos desiguais, pobres mais iguais</h2>\n\n      <p>Entre os 28 países com PIB por pessoa acima de US$ 30.000, os mais desiguais são Estados Unidos (Gini 41,8), Israel (Gini 38,3) e Lituânia (Gini 36,0). Entre os países com renda abaixo de US$ 5.000, os mais igualitários são Índia (Gini 23,0), Síria (Gini 26,4) e Quirguistão (Gini 27,5).</p>\n\n      <h2>O que isso mostra</h2>\n\n      <p>Renda média e distribuição são coisas diferentes: crescer não reduz a desigualdade automaticamente, e países de renda parecida chegam a patamares bem distintos de Gini, como resultado de impostos, transferências, educação e mercado de trabalho. Também é bom lembrar que o Gini vem de pesquisas domiciliares de anos diferentes e mede a distribuição de renda ou de consumo, conforme o país.</p>\n\n      <!--ctx-->\n      <h2>Para entender o contexto</h2>\n\n      O índice de Gini vai de 0, em que todos teriam a mesma renda, a 100, em que uma pessoa ficaria com tudo. Os dados do Banco Mundial vêm de pesquisas domiciliares e cada país tem um ano de referência próprio.",
+ "read_min": "5",
+ "note": "Análise própria da Watermouse Media com dados públicos do Banco Mundial. Os números são calculados por nós a partir da base; o texto não é tradução nem resumo de outra matéria.",
+ "attrib_html": "<b>Fonte:</b> <a href=\"https://data.worldbank.org\" target=\"_blank\" rel=\"noopener\">Banco Mundial, World Development Indicators</a>, indicadores de índice de Gini e PIB per capita, atualização de out/2026. Cálculo e gráfico da Watermouse Media, para países com 1 milhão de habitantes ou mais. A correlação mostra associação, não prova que uma variável causa a outra."
+}

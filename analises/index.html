@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<!-- Google Tag Manager com Consent Mode v2: consentimento NEGADO por padrao, sem cookies ate o aceite. GA4 e eventos ficam no container GTM. -->
+<script>
+(function(){
+  var GTM_ID = 'GTM-T665625S';
+  var ADVANCED = true; // true: GTM carrega sempre, com tudo negado (pings sem cookies); false: so depois do aceite
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  var ok = false;
+  try { ok = localStorage.getItem('wm_cookie_consent') === 'accepted'; } catch(e){}
+  var g = ok ? 'granted' : 'denied';
+  gtag('consent', 'default', {ad_storage: g, ad_user_data: g, ad_personalization: g, analytics_storage: g, wait_for_update: 500});
+  gtag('set', 'ads_data_redaction', true);
+  window.loadWatermouseGA = function(){
+    if (window.__watermouseGA) return; window.__watermouseGA = true;
+    dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+    document.head.appendChild(s);
+  };
+  window.wmConsentGrant = function(){
+    gtag('consent', 'update', {ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted'});
+    window.loadWatermouseGA();
+  };
+  if (ADVANCED || ok) window.loadWatermouseGA();
+  document.addEventListener('DOMContentLoaded', function(){
+    var o1 = window.wmCookie;
+    if (typeof o1 === 'function') { window.wmCookie = function(a){ o1.apply(this, arguments); if (a) window.wmConsentGrant(); }; }
+    var o2 = window.cookieAccept;
+    if (typeof o2 === 'function') { window.cookieAccept = function(){ o2.apply(this, arguments); window.wmConsentGrant(); }; }
+  });
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Análises de dados: o Brasil comparado com o mundo | Watermouse Media</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://media.thewatermouse.com/analises/">
+<link rel="alternate" type="application/rss+xml" title="Watermouse Media" href="https://media.thewatermouse.com/feed.xml">
+<meta name="description" content="Análises de dados originais da Watermouse Media: cruzamos indicadores do Banco Mundial para mostrar onde o Brasil fica em renda, saúde, desigualdade, energia, floresta e mais.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Watermouse Media">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Análises de dados">
+<meta property="og:description" content="Análises de dados originais da Watermouse Media: cruzamos indicadores do Banco Mundial para mostrar onde o Brasil fica em renda, saúde, desigualdade, energia, floresta e mais.">
+<meta property="og:url" content="https://media.thewatermouse.com/analises/">
+<meta property="og:image" content="https://media.thewatermouse.com/ferramentas/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://media.thewatermouse.com/ferramentas/og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Análises de dados", "description": "Análises de dados originais da Watermouse Media: cruzamos indicadores do Banco Mundial para mostrar onde o Brasil fica em renda, saúde, desigualdade, energia, floresta e mais.", "url": "https://media.thewatermouse.com/analises/", "inLanguage": "pt-BR", "isAccessibleForFree": true, "image": "https://media.thewatermouse.com/ferramentas/og.png", "publisher": {"@type": "NewsMediaOrganization", "name": "Watermouse Media", "url": "https://media.thewatermouse.com/", "logo": {"@type": "ImageObject", "url": "https://media.thewatermouse.com/og-image.png"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/ferr.css">
+
+<style>
+.glist{border-top:2px solid var(--ink)}
+.grow{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:6px 18px;padding:20px 4px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);align-items:baseline}
+.grow:hover{background:var(--tint)}
+.gn{font-size:14px;color:var(--cobalt)}
+.gt strong{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(22px,2.8vw,30px);line-height:1.1}
+.gd{display:block;color:var(--muted);font-size:16px;margin-top:6px;max-width:70ch}
+.gm{white-space:nowrap}
+@media (max-width:640px){.grow{grid-template-columns:34px 1fr}.gm{grid-column:2}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="106 18 100 100" aria-hidden="true"><circle cx="156" cy="68" r="50" fill="#F8F8F9"/><g transform="translate(156 68) scale(1.05) translate(-158 -68)"><g fill="#0D0D0F"><circle cx="128" cy="64" r="15"/><circle cx="128" cy="64" r="8" fill="#2B2C33"/><path d="M122 88 C120 66 140 54 158 60 L188 76 C193 79 192 84 186 86 L160 96 C146 101 128 100 122 88Z"/><circle cx="189" cy="80" r="4"/><g transform="translate(-2 6) rotate(8 156 50)"><path d="M141 56 C139 40 146 32 156 32 C166 32 173 40 171 56Z"/><rect x="141" y="47" width="30" height="5" fill="#2337FF"/><rect x="128" y="54" width="56" height="5" rx="2.5"/></g></g><circle cx="165" cy="71" r="3.2" fill="#F8F8F9"/><path d="M181 86 L199 90 M181 88 L197 96" stroke="#0D0D0F" stroke-width="1.2" stroke-linecap="round"/></g></svg>Watermouse Media</a>
+    <nav class="mastnav" aria-label="Seções"><a href="/">Notícias</a><a href="/analises/">Análises</a><a href="/guias/">Guias</a><a href="/ferramentas/">Ferramentas</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Watermouse Media</div>
+    <h1>Análises de dados</h1>
+    <p class="lede">Análises <strong>feitas por nós</strong> com dados públicos do Banco Mundial: onde o Brasil fica entre os países, com gráfico próprio, método e limites em cada texto. Quer entender como ler os gráficos? Veja os <a href="/guias/">guias</a>.</p>
+  </div>
+</section>
+
+<main class="wrap"><div class="glist"><a class="grow" href="/brasil-88-por-cento-urbano-44-paises-abaixo-de-50-banco-mundial-2026.html"><span class="gn num">01</span><span class="gt"><strong>O Brasil é 88% urbano, mas em 44 países menos da metade da população vive em cidades</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: o Brasil tem 88,2% de população urbana (20º de 159 países); 44 países têm menos de 50%.</span></span><span class="gm label">Análise · 7 nov 2026</span></a><a class="grow" href="/brasil-gasta-97-por-cento-do-pib-em-saude-e-56-em-educacao-banco-mundial-2026.html"><span class="gn num">02</span><span class="gt"><strong>O Brasil gasta 9,7% do PIB com saúde e 5,6% com educação pública: onde isso o coloca entre 150 países</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: o Brasil gasta 9,7% do PIB em saúde (25º de 156) e 5,6% em educação pública (24º de 158).</span></span><span class="gm label">Análise · 5 nov 2026</span></a><a class="grow" href="/30-paises-tem-mais-de-20-por-cento-de-idosos-brasil-banco-mundial-2026.html"><span class="gn num">03</span><span class="gt"><strong>30 países já têm mais de 20% da população com 65 anos ou mais, e o Brasil está em 11,5%</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: 30 de 159 países têm mais de 20% da população com 65 anos ou mais; o Brasil tem 11,5%, em 59º lugar.</span></span><span class="gm label">Análise · 3 nov 2026</span></a><a class="grow" href="/43-paises-menos-da-metade-usa-internet-banco-mundial-2026.html"><span class="gn num">04</span><span class="gt"><strong>Em 43 países, menos da metade da população usa internet, e 34 deles ficam na África Subsaariana</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: 43 países com mais de 1 milhão de habitantes têm menos de 50% de uso de internet, somando 1,41 bilhão de pessoas.</span></span><span class="gm label">Análise · 2 nov 2026</span></a><a class="grow" href="/57-paises-tem-menos-filhos-por-mulher-que-o-brasil-banco-mundial-2026.html"><span class="gn num">05</span><span class="gt"><strong>57 países com mais de 1 milhão de habitantes já têm menos filhos por mulher que o Brasil, e eles reúnem 2,7 bilhões de pessoas</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: 57 de 159 países com 1 milhão de habitantes ou mais têm taxa de fecundidade menor que a do Brasil (1,61).</span></span><span class="gm label">Análise · 1 nov 2026</span></a><a class="grow" href="/brasil-na-america-latina-sete-indicadores-banco-mundial-2026.html"><span class="gn num">06</span><span class="gt"><strong>O Brasil no meio da tabela: onde fica entre 23 países da América Latina em renda, vida longa, internet, floresta e desigualdade</strong><span class="gd">Análise da Watermouse Media com dados do Banco Mundial: posição do Brasil entre 23 países da América Latina em renda, expectativa de vida, internet, floresta, desigualdade, homicídios e mortalidade infantil.</span></span><span class="gm label">Análise · 31 out 2026</span></a></div></main>
+
+<section class="nl-tool" id="newsletter"><div class="wrap">
+  <div class="nl-in">
+    <div><h2>Receba as histórias que não chegam em português</h2><p>Uma vez por semana, em 3 minutos de leitura, com fonte em tudo. Sem spam.</p></div>
+    <div><div class="nl-ok" role="alert" hidden></div>
+    <form class="nl-form" novalidate><input type="email" name="email" placeholder="voce@email.com" required autocomplete="email" aria-label="Seu e-mail"><button type="submit">Assinar</button><span class="nl-hp" aria-hidden="true"><label>Não preencha<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></span></form></div>
+  </div>
+  <p class="nl-leg">Ao assinar, você concorda em receber a newsletter (com confirmação e link para sair em todo envio) e, conforme a <a href="https://thewatermouse.com/privacidade/">política de privacidade</a>, com o uso dos seus dados para medição e anúncios.</p>
+</div></section>
+<footer class="foot">
+  <div class="wrap">
+    <h4>Fontes e método</h4>
+    <ul><li>Cada análise traz a fonte, o recorte de países e os limites do cálculo. Veja a <a href="/politica-editorial.html">política editorial</a> e, se achar um erro, <a href="/contato.html">avise a gente</a>.</li></ul>
+    <div class="sitelinks">
+      <span>© 2026 Watermouse Media · parte do <a href="https://thewatermouse.com">The Watermouse</a></span>
+      <span><a href="/">Notícias</a> · <a href="/ferramentas/">Ferramentas</a> · <a href="/sobre.html">Sobre</a> · <a href="/politica-editorial.html">Política editorial</a> · <a href="/contato.html">Apontar um erro</a> · <a href="https://thewatermouse.com/privacidade/">Privacidade</a></span>
+    </div>
+  </div>
+</footer>
+<div id="wm-cookie" class="wm-cookie" role="dialog" aria-label="Aviso de cookies" hidden>
+  <span class="wm-cookie-text">Usamos cookies essenciais pro site funcionar e, com seu consentimento, cookies de medição e de marketing (incluindo pixels de Meta, Google e TikTok para anúncios). Veja a <a href="https://thewatermouse.com/privacidade/">Política de privacidade</a>.</span>
+  <span class="wm-cookie-actions">
+    <button type="button" class="wm-cookie-btn ghost" onclick="wmCookie(false)">Recusar</button>
+    <button type="button" class="wm-cookie-btn solid" onclick="wmCookie(true)">Aceitar</button>
+  </span>
+</div>
+<script>
+function wmCookie(a){try{localStorage.setItem('wm_cookie_consent',a?'accepted':'declined');}catch(e){}var el=document.getElementById('wm-cookie');if(el)el.hidden=true;}
+(function(){var el=document.getElementById('wm-cookie');if(!el)return;try{if(!localStorage.getItem('wm_cookie_consent'))el.hidden=false;}catch(e){el.hidden=false;}})();
+</script>
+<script src="/assets/ferr.js"></script>
+<script></script>
+</body>
+</html>
