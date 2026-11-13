@@ -8,7 +8,7 @@ ST = 'style="font-size:17px;line-height:1.7;margin-bottom:9px"'
 
 
 def block(d):
-    o = [MARK, '      <h2>Por que isso importa</h2>']
+    o = [MARK, '      <h2>Análise: o que está em jogo</h2>']
     for p in d["why"]:
         o.append(f"\n      <p>{p}</p>")
     if d.get("numeros"):
