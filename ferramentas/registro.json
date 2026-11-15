@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-maiores-economias",
+  "path": "/ranking/maiores-economias/",
+  "titulo": "PIB: as maiores economias do mundo",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "PIB total em dólares de 214 países. Veja a posição do Brasil.",
+  "data": "2026-11-14"
+ },
+ {
   "id": "rank-filhos-por-mulher",
   "path": "/ranking/filhos-por-mulher/",
   "titulo": "Filhos por mulher: ranking dos países",
