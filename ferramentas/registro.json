@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-idade-exata",
+  "path": "/calculadoras/idade-exata/",
+  "titulo": "Calculadora de idade exata",
+  "tipo": "Calculadora",
+  "desc": "Idade exata, dias vividos, dia da semana do nascimento e próximo aniversário.",
+  "data": "2026-11-15"
+ },
+ {
   "id": "rank-maiores-economias",
   "path": "/ranking/maiores-economias/",
   "titulo": "PIB: as maiores economias do mundo",
