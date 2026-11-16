@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-area-territorial",
+  "path": "/ranking/area-territorial/",
+  "titulo": "Área territorial: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Área total em km² de 213 países, dos gigantes aos microestados.",
+  "data": "2026-11-16"
+ },
+ {
   "id": "calc-idade-exata",
   "path": "/calculadoras/idade-exata/",
   "titulo": "Calculadora de idade exata",
