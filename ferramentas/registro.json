@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-consumo-combustivel",
+  "path": "/calculadoras/consumo-combustivel/",
+  "titulo": "Calculadora de consumo de combustível",
+  "tipo": "Calculadora",
+  "desc": "Km por litro, custo por km e por 100 km a partir do abastecimento.",
+  "data": "2026-11-17"
+ },
+ {
   "id": "rank-area-territorial",
   "path": "/ranking/area-territorial/",
   "titulo": "Área territorial: ranking dos países",
