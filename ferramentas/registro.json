@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-densidade-demografica",
+  "path": "/ranking/densidade-demografica/",
+  "titulo": "Densidade demográfica: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Habitantes por km² em 213 países e territórios.",
+  "data": "2026-11-18"
+ },
+ {
   "id": "calc-consumo-combustivel",
   "path": "/calculadoras/consumo-combustivel/",
   "titulo": "Calculadora de consumo de combustível",
