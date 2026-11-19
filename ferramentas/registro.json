@@ -1,5 +1,13 @@
 [
  {
+  "id": "calc-dividir-conta",
+  "path": "/calculadoras/dividir-conta/",
+  "titulo": "Dividir a conta com gorjeta",
+  "tipo": "Calculadora",
+  "desc": "Valor por pessoa com gorjeta, em segundos.",
+  "data": "2026-11-19"
+ },
+ {
   "id": "rank-densidade-demografica",
   "path": "/ranking/densidade-demografica/",
   "titulo": "Densidade demográfica: ranking dos países",
