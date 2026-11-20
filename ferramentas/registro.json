@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-desigualdade-gini",
+  "path": "/ranking/desigualdade-gini/",
+  "titulo": "Desigualdade de renda: ranking dos países pelo índice de Gini",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Índice de Gini de 171 países, do mais ao menos desigual.",
+  "data": "2026-11-20"
+ },
+ {
   "id": "calc-dividir-conta",
   "path": "/calculadoras/dividir-conta/",
   "titulo": "Dividir a conta com gorjeta",
