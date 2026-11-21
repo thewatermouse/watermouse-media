@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-homicidios",
+  "path": "/ranking/homicidios/",
+  "titulo": "Homicídios por 100 mil habitantes: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Homicídios por 100 mil habitantes em 194 países.",
+  "data": "2026-11-21"
+ },
+ {
   "id": "rank-desigualdade-gini",
   "path": "/ranking/desigualdade-gini/",
   "titulo": "Desigualdade de renda: ranking dos países pelo índice de Gini",
