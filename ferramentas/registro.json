@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-energia-renovavel",
+  "path": "/ranking/energia-renovavel/",
+  "titulo": "Energia renovável: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Parcela de renováveis no consumo final de energia, em 209 países.",
+  "data": "2026-11-23"
+ },
+ {
   "id": "rank-homicidios",
   "path": "/ranking/homicidios/",
   "titulo": "Homicídios por 100 mil habitantes: ranking dos países",
