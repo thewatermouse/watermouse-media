@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-populacao-idosa",
+  "path": "/ranking/populacao-idosa/",
+  "titulo": "População com 65 anos ou mais: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Parcela de pessoas com 65 anos ou mais, em 214 países.",
+  "data": "2026-11-23"
+ },
+ {
   "id": "rank-energia-renovavel",
   "path": "/ranking/energia-renovavel/",
   "titulo": "Energia renovável: ranking dos países",
