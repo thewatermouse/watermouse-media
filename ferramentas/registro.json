@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-urbanizacao",
+  "path": "/ranking/urbanizacao/",
+  "titulo": "População urbana: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Parcela da população que vive em áreas urbanas, por país.",
+  "data": "2026-11-24"
+ },
+ {
   "id": "rank-populacao-idosa",
   "path": "/ranking/populacao-idosa/",
   "titulo": "População com 65 anos ou mais: ranking dos países",
