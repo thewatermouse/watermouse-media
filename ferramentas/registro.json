@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-pib-ppc",
+  "path": "/ranking/pib-por-pessoa-ppc/",
+  "titulo": "PIB por pessoa em paridade de poder de compra: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "PIB por pessoa ajustado pelo custo de vida (PPC), por país.",
+  "data": "2026-11-25"
+ },
+ {
   "id": "rank-urbanizacao",
   "path": "/ranking/urbanizacao/",
   "titulo": "População urbana: ranking dos países",
