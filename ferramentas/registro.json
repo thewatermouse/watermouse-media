@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-desemprego",
+  "path": "/ranking/desemprego/",
+  "titulo": "Desemprego: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Taxa de desemprego por país, do maior ao menor.",
+  "data": "2026-11-26"
+ },
+ {
   "id": "rank-pib-ppc",
   "path": "/ranking/pib-por-pessoa-ppc/",
   "titulo": "PIB por pessoa em paridade de poder de compra: ranking dos países",
