@@ -1,5 +1,13 @@
 [
  {
+  "id": "rank-inflacao",
+  "path": "/ranking/inflacao/",
+  "titulo": "Inflação ao ano: ranking dos países",
+  "tipo": "Ranking · Banco Mundial",
+  "desc": "Inflação anual por país, do maior ao menor valor.",
+  "data": "2026-11-27"
+ },
+ {
   "id": "rank-desemprego",
   "path": "/ranking/desemprego/",
   "titulo": "Desemprego: ranking dos países",
